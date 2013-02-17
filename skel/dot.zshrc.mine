@@ -1,0 +1,20 @@
+# this is a configuration file for TKK invironment
+
+# custom alias
+alias sss='/homes/avsf/bin/looklog.sh da dsp ffmpeg cook kanri'
+alias ftp='sftp'				# ftp は危険なので使わない
+alias pkill="pkill -U 4702"			# kill 対象のユーザを指定
+alias xinit='exec xinit'			# 乗っ取り防止
+
+# itagaki の .cshrc から引用．これは神
+alias rmtex='rm -f *.tex~ *.aux *.ps *.pdf *.log *.lok *.bbl *.blg'
+
+# GTKを使った tfras を使用する時に必要？
+alias gog='env LD_LIBRARY_PATH=/usr/local/lib/gcc-4.2.4'
+
+# 以下は ~kota/.cshrc からパクって改造を加えたやつ
+alias d="pwd | sed 's/.amd_mnt/mnt/g' | sed 's/\/host\//\//g'" # pwd を強化
+
+alias lpr="/usr/local/bin/lpr"
+alias lpq="/usr/local/bin/lpq"
+alias lprm="/usr/local/bin/lprm"

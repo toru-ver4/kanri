@@ -1,0 +1,392 @@
+;; hoge に命じられ以下の文を冒頭に付け加えることにする．
+;; PATHの設定．
+(setq load-path
+      (append
+       '(expand-file-name "~/.emacs.d/site-lisp")	        ; 自分のsite-lisp 1
+       load-path))
+
+(require 'add-subdirs-to-load-path)
+(add-subdirs-to-load-path (expand-file-name "~/.emacs.d/site-lisp"))
+
+;; Lisp nesting exceeds max-lisp-eval-depth というエラーになった場合の対処方法
+(setq max-lisp-eval-depth 1000)
+
+;;
+;; Keyboad Translate Table (Delete <=> BackSpace)
+;;
+(setq keyboard-translate-table "\C-@\C-A\C-B\C-C\C-D\C-E\C-F\C-G\177\t\n\C-K\f\r\C-N\C-O\C-P\C-Q\C-R\C-S\C-T\C-U\C-V\C-W\C-X\C-Y\C-Z\C-[\C-\\\C-]\C-^\C-_ !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~\b")
+
+;; undo
+(global-set-key "\C-z" 'undo)
+
+;; configulation of inputmethod
+;; japanese-anthy をデフォルトの input-method にする。
+;;(load-library "anthy")
+(setq default-input-method "japanese-anthy")
+;;(global-set-key "\C-\\" 'anthy-mode)
+(load (expand-file-name "~/.emacs.d/dot.emacs.anthy") nil t nil)
+
+;; リージョンに色をつけよう．
+(setq transient-mark-mode t)                    ; 色を付けるぜ宣言．
+(set-face-foreground 'region nil)               ; フォアグラウンドの色．そのままで．
+(set-face-background 'region "DeepSkyBlue4") ; バックグラウンドの色．
+
+;; 括弧をピカピカ
+(cond
+ ((fboundp 'paren-set-mode)            ; XEmacs
+  (paren-set-mode 'paren))
+ ((fboundp 'show-paren-mode)            ; Standard Emacs
+  (show-paren-mode t)))
+
+;; 「。」を「．」に 「、」を「，」に変更
+;; 一般に技術論文では「。、」ではなく「．，」を用いる
+(setq its-hira-period "．")
+(setq its-hira-comma  "，")
+
+;; "n" = "nn" = "ん"
+(setq enable-double-n-syntax t)         ; "nn" and "n'"
+
+;;スクロールバーを右に
+(set-scroll-bar-mode 'right)
+;; スクロールバー削除
+(scroll-bar-mode nil)
+;;Tool bar Icon 削除
+(tool-bar-mode nil) 
+
+;;Menu bar Icon 削除
+(menu-bar-mode nil)
+
+;; バックアップファイルを作らない
+(setq backup-inhibited t) ;; *~
+(setq auto-save-default nil) ;; #*
+
+;; 画像をemacsで表示
+(setq image-file-name-extension nil)
+(auto-image-file-mode)
+
+;;C-x bでbuffersを選ぶ時便利
+;;(iswitchb-default-keybindings)
+;;(add-hook 'iswitchb-define-mode-map-hook
+;;         'iswitchb-my-keys)
+
+;; スクリプト保存時にchmod
+(defun make-file-executable ()
+  "Make the file of this buffer executable, when it is a script source."
+  (save-restriction
+    (widen)
+    (if (string= "#!" (buffer-substring-no-properties 1 (min 3 (point-max))))
+        (let ((name (buffer-file-name)))
+          (or (equal ?. (string-to-char (file-name-nondirectory name)))
+              (let ((mode (file-modes name)))
+                (set-file-modes name (logior mode (logand (/ mode 4) 73)))
+                (message (concat "Wrote " name " (+x)"))))))))
+(add-hook 'after-save-hook 'make-file-executable)
+
+(defun enlarge-window-10 ()
+  "enlarge-windowを使ってウィンドウを広げる"
+  (interactive)
+  (while (> (- (screen-height) (window-height)) 10)
+    (enlarge-window 1)))
+
+(global-set-key "\C-x/" 'enlarge-window-10)
+
+;; ウィンドウの移動！！
+(global-set-key "\M-h" 'windmove-left)
+(global-set-key "\M-j" 'windmove-down)
+(global-set-key "\M-k" 'windmove-up)
+(global-set-key "\M-l" 'windmove-right)
+
+;; ぷっぷ音を鳴らさないための処理
+(setq visible-bell t)
+
+;; 起動時に最近開いたファイル一覧を表示．
+(recentf-mode t)	; recentf-modeをON．
+;; recentf-open-filesを実行したときに，初期位置を2行下げる．
+(defadvice recentf-open-files (after hl-line-recentf-open-files activate)
+  (switch-to-buffer "*Open Recent*")
+  (hl-line-mode)
+  (forward-line 2))
+;(recentf-open-files)	; 初期画面をrecentfにする．
+(define-key ctl-x-map "\C-r" 'recentf-open-files)
+(setq recentf-max-saved-items 2000)
+
+;; 右側で表示を自動的に折り返す            by sugimoto 2008.05.11
+(setq truncate-partial-width-windows nil)
+
+;; キーバインド無効
+(global-set-key "\C-x\C-t" 'undefined)
+(global-set-key "\C-x\C-z" 'undefined)
+
+;; printf と fprintf の テンプレ作成
+(defun ty_printf ()
+  (interactive)
+  (insert "printf(\"\\n\")\;"))
+(global-set-key "\C-cp" 'ty_printf)
+
+(defun ty_fprintf ()
+  (interactive)
+  (insert "fprintf(stderr, \"\\n\")\;"))
+(global-set-key "\C-cf" 'ty_fprintf)
+
+;; 拡張子に応じてテンプレートを挿入
+;; auto-insert
+(setq auto-insert-directory "~/.code_template/")
+(load "autoinsert" t)
+(setq auto-insert-alist
+  (append '(
+    ("\.py$"   . "template.py")
+    ("\.c$"   . "template.c")
+    ("\.gpl$"   . "template.gpl")
+  ) auto-insert-alist))
+(add-hook 'find-file-hooks 'auto-insert)
+(add-hook 'find-file-not-found-hooks 'auto-insert)
+
+
+;; 全スクロールではなく半スクロールに
+(defun scroll-up-half ()
+  "Scroll up half a page."
+  (interactive)
+  (scroll-up (/ (window-height) 3))
+)
+
+(defun scroll-down-half ()
+  "Scroll down half a page."
+  (interactive)
+  (scroll-down (/ (window-height) 3))
+)
+
+(global-set-key "\C-v" 'scroll-up-half)
+(global-set-key "\M-v" 'scroll-down-half)
+
+;------------画面分割の記憶  はじめ
+;;http://www.bookshelf.jp/soft/meadow_30.html#SEC404
+;; キーバインドを保存
+;;デフォルトは，C-c C-w
+;; 変更しない場合は以下の３行を削除する．
+;;(setq win:switch-prefix "\C-z")
+;;(define-key global-map win:switch-prefix nil)
+;;(define-key global-map "\C-z1" 'win-switch-to-window)
+(require 'windows)
+;; 新規にフレームを作らない
+(setq win:use-frame nil)
+(win:startup-with-window)
+(define-key ctl-x-map "C" 'see-you-again)
+(global-set-key "\M-u" 'win-resume-menu)
+;------------画面分割の記憶  おわり
+
+;; クリップボードに関する設定
+(global-set-key "\M-w" 'clipboard-kill-ring-save)  ; クリップボードにコピー
+(global-set-key "\C-w" 'clipboard-kill-region)     ; 切り取ってクリップボードへ
+
+;; コンパイルに関する設定
+(setq compilation-window-height 10) ;行数が減る by kfuru
+
+;; 以下は navi2ch に関する設定
+;; 必ず書く設定
+(autoload 'navi2ch "navi2ch" "Navigator for 2ch for Emacs" t)
+;; 終了時に訪ねない
+(setq navi2ch-ask-when-exit nil)
+;; スレのデフォルト名を使う
+(setq navi2ch-message-user-name "")
+;; あぼーんがあったたき元のファイルは保存しない
+(setq navi2ch-net-save-old-file-when-aborn nil)
+;; 送信時に訪ねない
+(setq navi2ch-message-ask-before-send nil)
+;; kill するときに訪ねない
+(setq navi2ch-message-ask-before-kill nil)
+;; バッファは 5 つまで
+(setq navi2ch-article-max-buffers 5)
+;; navi2ch-article-max-buffers を超えたら古いバッファは消す
+(setq navi2ch-article-auto-expunge t)
+;; Board モードのレス数欄にレスの増加数を表示する。
+(setq navi2ch-board-insert-subject-with-diff t)
+;; Board モードのレス数欄にレスの未読数を表示する。
+(setq navi2ch-board-insert-subject-with-unread t)
+;; 既読スレはすべて表示
+(setq navi2ch-article-exist-message-range '(1 . 1000))
+;; 未読スレもすべて表示
+(setq navi2ch-article-new-message-range '(1000 . 1))
+;; 3 ペインモードでみる
+;;(setq navi2ch-list-stay-list-window t)
+;; C-c 2 で起動
+;;(global-set-key "\C-c2" 'navi2ch)
+
+;; C-b で華麗にバッファを選択
+(iswitchb-mode 1)
+(add-hook 'iswitchb-define-mode-map-hook
+          'iswitchb-my-keys)
+
+(defun iswitchb-my-keys ()
+  "Add my keybindings for iswitchb."
+  (define-key iswitchb-mode-map "\C-f" 'iswitchb-next-match)
+  (define-key iswitchb-mode-map " " 'iswitchb-next-match)
+  (define-key iswitchb-mode-map "\C-b" 'iswitchb-prev-match)
+  )
+
+;; yasnippetに関する設定
+(require 'yasnippet) ;; not yasnippet-bundle
+(yas/initialize)
+(yas/load-directory "~/.emacs.d/site-lisp/yasnippet-0.6.1c/snippets")
+
+;; ポップアップで補間する
+;;(require 'auto-complete)
+(require 'auto-complete-yasnippet)
+
+;; M-/ で補間開始にする
+(global-auto-complete-mode t)
+;;(global-set-key "\M-/" 'ac-start)
+
+;; これを書くと，複数のバッファの内容を補間できるようになる？．
+(setq-default ac-sources '(ac-source-abbrev ac-source-words-in-all-buffer))
+
+;; 補間開始文字数の指定
+(setq ac-auto-start 2)
+(define-key ac-complete-mode-map "\C-n" 'ac-next)
+(define-key ac-complete-mode-map "\C-p" 'ac-previous)
+
+; 起動時のメッセージ非表示
+(setq inhibit-startup-message t)
+
+;; === howm の設定 basic ===
+(setq howm-menu-lang 'ja)
+(global-set-key "\C-c,," 'howm-menu)
+(mapc
+ (lambda (f)
+   (autoload f
+     "howm" "Hitori Otegaru Wiki Modoki" t))
+ '(howm-menu howm-list-all howm-list-recent
+             howm-list-grep howm-create
+             howm-keyword-to-kill-ring))
+
+;; === howm の設定 custermize ===
+;; リンクを TAB で辿る
+(eval-after-load "howm-mode"
+  '(progn
+     (define-key howm-mode-map [tab] 'action-lock-goto-next-link)
+     (define-key howm-mode-map [(meta tab)] 'action-lock-goto-previous-link)))
+;; 「最近のメモ」一覧時にタイトル表示
+(setq howm-list-recent-title t)
+;; 全メモ一覧時にタイトル表示
+(setq howm-list-all-title t)
+;; メニューを 2 時間キャッシュ
+(setq howm-menu-expiry-hours 2)
+
+;; howm の時は auto-fill で
+(add-hook 'howm-mode-on-hook 'auto-fill-mode)
+
+;; RET でファイルを開く際, 一覧バッファを消す
+;; C-u RET なら残る
+(setq howm-view-summary-persistent nil)
+
+;; メニューの予定表の表示範囲
+;; 10 日前から
+(setq howm-menu-schedule-days-before 10)
+;; 3 日後まで
+(setq howm-menu-schedule-days 3)
+
+;; howm のファイル名
+;; 以下のスタイルのうちどれかを選んでください
+;; で，不要な行は削除してください
+;; 1 メモ 1 ファイル (デフォルト)
+(setq howm-file-name-format "%Y/%m/%Y-%m-%d-%H%M%S.howm")
+;; 1 日 1 ファイルであれば
+(setq howm-file-name-format "%Y/%m/%Y-%m-%d.howm")
+
+(setq howm-view-grep-parse-line
+      "^\\(\\([a-zA-Z]:/\\)?[^:]*\\.howm\\):\\([0-9]*\\):\\(.*\\)$")
+;; 検索しないファイルの正規表現
+(setq
+ howm-excluded-file-regexp
+ "/\\.#\\|[~#]$\\|\\.bak$\\|/CVS/\\|\\.doc$\\|\\.pdf$\\|\\.ppt$\\|\\.xls$")
+
+;; いちいち消すのも面倒なので
+;; 内容が 0 ならファイルごと削除する
+(if (not (memq 'delete-file-if-no-contents after-save-hook))
+    (setq after-save-hook
+          (cons 'delete-file-if-no-contents after-save-hook)))
+(defun delete-file-if-no-contents ()
+  (when (and
+         (buffer-file-name (current-buffer))
+         (string-match "\\.howm" (buffer-file-name (current-buffer)))
+         (= (point-min) (point-max)))
+    (delete-file
+     (buffer-file-name (current-buffer)))))
+
+;; http://howm.sourceforge.jp/cgi-bin/hiki/hiki.cgi?SaveAndKillBuffer
+;; C-cC-c で保存してバッファをキルする
+(defun my-save-and-kill-buffer ()
+  (interactive)
+  (when (and
+         (buffer-file-name)
+         (string-match "\\.howm"
+                       (buffer-file-name)))
+    (save-buffer)
+    (kill-buffer nil)))
+(eval-after-load "howm"
+  '(progn
+     (define-key howm-mode-map
+       "\C-c\C-c" 'my-save-and-kill-buffer)))
+
+;; メニューを自動更新しない
+(setq howm-menu-refresh-after-save nil)
+;; 下線を引き直さない
+(setq howm-refresh-after-save nil)
+;; howm-end ==========================================================
+
+;; emacsからgitを扱う
+(require 'magit)
+
+; C-jでひらがなモードにするのを無効化
+(define-key anthy-mode-map (char-to-string 10) 'newline-and-indent)
+; 代わりにC-;でひらがなモード
+(define-key anthy-mode-map [?\C-\;] 'anthy-hiragana-map)
+
+;; compile を M-c にバインド
+(setq compile-command "gmake install")
+(global-set-key "\M-c" 'compile)
+
+;; フォントの設定
+;;TakaoExGothic
+(cond
+(window-system (set-default-font "Takaoゴシック-7:spacing=0")
+(set-fontset-font
+(frame-parameter nil 'font)
+'japanese-jisx0208
+'("Takaoゴシック" . "unicode-bmp")
+)))
+
+;; flymakeでpython構文をチェック（pyflakesを使用）
+(when (load "flymake" t) 
+         (defun flymake-pyflakes-init () 
+           (let* ((temp-file (flymake-init-create-temp-buffer-copy 
+                              'flymake-create-temp-inplace)) 
+              (local-file (file-relative-name 
+                           temp-file 
+                           (file-name-directory buffer-file-name)))) 
+             (list "pyflakes" (list local-file)))) 
+
+         (add-to-list 'flymake-allowed-file-name-masks 
+                  '("\\.py\\'" flymake-pyflakes-init))) 
+
+   (add-hook 'find-file-hook 'flymake-find-file-hook)
+
+;; flymake 現在行のエラーをpopup.elのツールチップで表示する
+(defun flymake-display-err-menu-for-current-line ()
+  (interactive)
+  (let* ((line-no (flymake-current-line-no))
+         (line-err-info-list (nth 0 (flymake-find-err-info flymake-err-info line-no))))
+    (when line-err-info-list
+      (let* ((count (length line-err-info-list))
+             (menu-item-text nil))
+        (while (> count 0)
+          (setq menu-item-text (flymake-ler-text (nth (1- count) line-err-info-list)))
+          (let* ((file (flymake-ler-file (nth (1- count) line-err-info-list)))
+                 (line (flymake-ler-line (nth (1- count) line-err-info-list))))
+            (if file
+                (setq menu-item-text (concat menu-item-text " - " file "(" (format "%d" line) ")"))))
+          (setq count (1- count))
+          (if (> count 0) (setq menu-item-text (concat menu-item-text "\n")))
+          )
+        (popup-tip menu-item-text)))))   
+(global-set-key "\C-cd" 'flymake-display-err-menu-for-current-line)
+

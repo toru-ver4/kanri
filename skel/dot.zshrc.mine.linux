@@ -1,0 +1,2 @@
+echo "Read zshrc.min.linux"
+export PATH=${PATH}:${HOME}/workspace/src/image

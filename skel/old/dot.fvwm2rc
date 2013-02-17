@@ -1,0 +1,969 @@
+
+Z# this is a bare bones sample .fvwm2rc/system.fvwm2rc file for fvwm.
+# It should be customized before install.  See other sample .fvwm2rc files
+# for hints, as well as pointers from the various links on the official
+# fvwm web page (see the FAQ).
+
+
+################################################################################
+#                            基本的なフォントの設定                            #
+################################################################################
+#! デフォルトのフォント
+DefaultFont	"-adobe-helvetica-bold-r-*-*-12-*-*-*-*-*-*-*"
+
+################################################################################
+
+################################################################################
+##                   どこで宣言すれば良いかわからない設定たち                 ##
+################################################################################
+EdgeResistance 100 10
+EdgeScroll 100 100
+ClickTime 200
+
+#! イミフ
+ColormapFocus FollowsMouse
+
+#! タイトルバーの文字位置，高さの設定
+TitleStyle     Centered 	Height 	18
+#! 枠をフラットに表示する
+BorderStyle -- flat
+#! 仮想デスクトップのサイズを指定
+DeskTopSize 4x4
+
+#! マウスを左クリックしたときのメニューの設定
+MenuStyle gray90 gray20 gray30 "-*-ipapgothic-bold-r-*-*-12-*-*-*-*-*-*-*" fvwm
+
+#! アイコンのディレクトリを指定
+ImagePath /usr/X11R6/share/fvwm2/pixmaps/\
+	  :/usr/local/share/fvwm2/pixmaps/\
+	  :/homes/yosihara/memo/icons/
+################################################################################
+
+
+################################################################################
+#                               default Styles:                                #
+################################################################################
+# make sure these fonts exist on your system:
+#! タイトルバー等のフォントの指定
+Style *           Font "-*-ipapgothic-bold-r-*-*-12-*-*-*-*-*-*-*"
+#! アイコン化した時のフォント（たぶん）
+Style *           IconFont "-adobe-times-bold-r-*-*-18-*-*-*-*-*-*-*"
+
+#!フォーカスの合った       ウィンドウの 文字色/背景色
+Style *           HilightFore black, HilightBack #d8d8d8
+
+#! フォーカスが合っていない ウィンドウの 文字色/背景色
+Style *		  Icon unknown1.xpm, Color gray70/gray20
+
+#! ウィンドウの外枠の太さ
+Style *		  BorderWidth 1, HandleWidth 2
+
+#! ウィンドウ境界をクリック時に 押された感じに表示
+#Style *           DepressableBorder
+
+#! 新しくウィンドウを開いたら，そちらにフォーカスが移動
+Style *           GrabFocus
+
+#! 使用するボタンの設定 ↓↓これ意味あるのかな・・・
+Style *		  Button 1 
+
+#! ダイアログボックスなどの一時ウィンドウに装飾を行う
+Style *           DecorateTransient
+
+#! dsp_launcher は，PPosition 情報を使用することにする
+Style "dsp_launcher"	usePPosition
+
+#! プログラムが特定の位置にウィンドウを表示することを許可しない
+Style *			usePPosition
+
+#! ROX-Filer の設定
+Style "ROX-Filer"   Sticky
+
+#!# この下は知らん #!#
+Style *           MWMFunctions, MWMDecor, HintOverride
+Style *           IconBox 0 -10 -280 -1
+Style *           FocusFollowsMouse
+Style *           TileCascadePlacement
+#Style *           ManualPlacement
+
+#! emacs22 だと，2ピクセルほど隙間ができてしまうので，枠の太さを変更して誤魔化す
+#Style "emacs"	    Font "-*-ipapgothic-bold-r-*-*-14-*-*-*-*-*-*-*"
+#Style "emacs"	    BorderWidth 0, HandleWidth 6  
+
+# Styles for Buttons
+#! ボタンのスタイルを変えてみる
+
+ButtonStyle 1 ActiveUp Pixmap ichi.xpm -- flat
+ButtonStyle 1 Inactive Pixmap ichi_bg.xpm -- flat
+
+ButtonStyle 2 ActiveUp Pixmap batsu.xpm -- flat
+ButtonStyle 2 ActiveDown Pixmap batsu.xpm -- flat
+ButtonStyle 2 Inactive Pixmap batsu_bg.xpm -- flat
+
+ButtonStyle 4 ActiveUp Pixmap max.xpm -- flat
+ButtonStyle 4 ActiveDown Pixmap max.xpm -- flat
+ButtonStyle 4 Inactive Pixmap max_bg.xpm -- flat
+
+ButtonStyle 6 ActiveUp Pixmap move.xpm -- flat
+ButtonStyle 6 ActiveDown Pixmap move.xpm -- flat
+ButtonStyle 6 Inactive Pixmap move_bg.xpm -- flat
+
+ButtonStyle 8 ActiveUp Pixmap haji.xpm -- flat
+ButtonStyle 8 ActiveDown Pixmap haji.xpm -- flat
+ButtonStyle 8 Inactive Pixmap haji_bg.xpm -- flat
+
+#! 少し遊んでみる
+#! 新しくウィンドウを開いたら，そちらにフォーカスが移動
+Style *           GrabFocus
+
+#! ダイアログボックス等が表示されたときに，フォーカスを移動
+Style *           GrabFocusTransient
+
+#! 最大化時のサイズを指定
+#Style *           MaxWindowSize 80 80
+
+#! ブラウザの表示位置を指定 かつ，初期状態ではフォーカスを移さない……と
+#! 思ったら，StartsOnPage は強勢でGrabFocus になるっぽいorz/	
+Style "firefox-bin"   StartsOnPage 0 0 2 # デスク，横，縦 の順番
+Style "firefox.exe"   StartsOnPage 0 1 2 # デスク，横，縦 の順番
+
+Style "firefox-bin"   SkipMapping
+#! wineだとなぜか失敗するのでコメントアウト
+#Style "firefox.exe"   SkipMapping
+
+#! 全体のスタイルをXfceっぽくする一括設定
+AddToDecor XfceDecor
+ # タイトル左寄せ
+ + TitleStyle LeftJustified	
+ + TitleStyle ActiveUp Height 17 -- flat
+ + TitleStyle ActiveDown Height 17 -- flat
+ + TitleStyle Inactive Height 17 -- flat
+ + TitleStyle ActiveUp (TiledPixmap xfce_title_alive2.xpm -- flat) \
+   	      ActiveDown (TiledPixmap xfce_title_alive2.xpm -- flat) \
+   	      Inactive (TiledPixmap xfce_title_dead2.xpm -- flat)
+ + ButtonStyle 1 ActiveUp TiledPixmap xfce_title_alive2.xpm -- flat
+ + ButtonStyle 2 ActiveUp TiledPixmap xfce_title_alive2.xpm -- flat
+ + ButtonStyle 4 ActiveUp TiledPixmap xfce_title_alive2.xpm -- flat
+ + ButtonStyle 6 ActiveUp TiledPixmap xfce_title_alive2.xpm -- flat
+ + ButtonStyle 1 ActiveDown TiledPixmap xfce_title_alive2.xpm -- flat
+ + ButtonStyle 2 ActiveDown TiledPixmap xfce_title_alive2.xpm -- flat
+ + ButtonStyle 4 ActiveDown TiledPixmap xfce_title_alive2.xpm -- flat
+ + ButtonStyle 6 ActiveDown TiledPixmap xfce_title_alive2.xpm -- flat
+ + ButtonStyle 1 Inactive TiledPixmap xfce_title_dead2.xpm -- flat
+ + ButtonStyle 2 Inactive TiledPixmap xfce_title_dead2.xpm -- flat
+ + ButtonStyle 4 Inactive TiledPixmap xfce_title_dead2.xpm -- flat
+ + ButtonStyle 6 Inactive TiledPixmap xfce_title_dead2.xpm -- flat
+ + AddButtonStyle 1 ActiveUp Pixmap xfce_1_alive.xpm -- flat
+ + AddButtonStyle 2 ActiveUp Pixmap xfce_2_alive.xpm -- flat
+ + AddButtonStyle 4 ActiveUp Pixmap xfce_4_alive.xpm -- flat
+ + AddButtonStyle 6 ActiveUp Pixmap xfce_6_alive.xpm -- flat
+ + AddButtonStyle 1 ActiveDown Pixmap xfce_1_push.xpm -- flat
+ + AddButtonStyle 2 ActiveDown Pixmap xfce_2_push.xpm -- flat
+ + AddButtonStyle 4 ActiveDown Pixmap xfce_4_push.xpm -- flat
+ + AddButtonStyle 6 ActiveDown Pixmap xfce_6_push.xpm -- flat
+ + AddButtonStyle 1 Inactive Pixmap xfce_1_dead.xpm -- flat
+ + AddButtonStyle 2 Inactive Pixmap xfce_2_dead.xpm -- flat
+ + AddButtonStyle 4 Inactive Pixmap xfce_4_dead.xpm -- flat
+ + AddButtonStyle 6 Inactive Pixmap xfce_6_dead.xpm -- flat
+ 
+Style XfceStyle UseDecor XfceDecor, \
+      HilightFore white, HilightBack gray30, Color black/black \
+      NoHandles, HandleWidth 1, BorderWidth 1, NoButton 8
+Style * UseStyle XfceStyle
+
+#! firefox を Windows っぽく表示してみよう
+AddToDecor FirefoxDecor
+ + TitleStyle TiledPixmap win_title.xpm
+ + TitleStyle LeftJustified Height 30 -- flat
+ + ButtonStyle 1 ActiveUp TiledPixmap win_title.xpm -- flat
+ + ButtonStyle 2 ActiveUp TiledPixmap win_title.xpm -- flat
+ + ButtonStyle 4 ActiveUp TiledPixmap win_title.xpm -- flat
+ + ButtonStyle 6 ActiveUp TiledPixmap win_title.xpm -- flat
+ + ButtonStyle 1 ActiveDown TiledPixmap win_title.xpm -- flat
+ + ButtonStyle 2 ActiveDown TiledPixmap win_title.xpm -- flat
+ + ButtonStyle 4 ActiveDown TiledPixmap win_title.xpm -- flat
+ + ButtonStyle 6 ActiveDown TiledPixmap win_title.xpm -- flat
+ + ButtonStyle 1 Inactive TiledPixmap win_title.xpm -- flat
+ + ButtonStyle 2 Inactive TiledPixmap win_title.xpm -- flat
+ + ButtonStyle 4 Inactive TiledPixmap win_title.xpm -- flat
+ + ButtonStyle 6 Inactive TiledPixmap win_title.xpm -- flat
+ + AddButtonStyle 1 ActiveUp Pixmap win_ie.xpm -- flat
+ + AddButtonStyle 2 ActiveUp Pixmap win_close.xpm -- flat
+ + AddButtonStyle 4 ActiveUp Pixmap win_max.xpm -- flat
+ + AddButtonStyle 6 ActiveUp Pixmap win_min.xpm -- flat
+ + AddButtonStyle 1 ActiveDown Pixmap win_ie.xpm -- flat
+ + AddButtonStyle 2 ActiveDown Pixmap win_close.xpm -- flat
+ + AddButtonStyle 4 ActiveDown Pixmap win_max.xpm -- flat
+ + AddButtonStyle 6 ActiveDown Pixmap win_min.xpm -- flat
+ + AddButtonStyle 1 Inactive Pixmap win_ie.xpm -- flat
+ + AddButtonStyle 2 Inactive Pixmap win_close.xpm -- flat
+ + AddButtonStyle 4 Inactive Pixmap win_max.xpm -- flat
+ + AddButtonStyle 6 Inactive Pixmap win_min.xpm -- flat
+
+Style FirefoxStyle UseDecor FirefoxDecor, \
+      HilightFore white, HilightBack #0052E7, HandleWidth 0, BorderWidth 0, NoButton 8
+
+Style *Firefox UseStyle FirefoxStyle
+#! ウィンドウをクリックしたら，ウィンドウを手前に表示
+#Style * MouseFocusClickRaises
+
+# Styles for various Fvwm modules:
+Style "Fvwm*"       NoTitle,  Sticky, WindowListSkip
+Style "Fvwm*"       BorderWidth 2, CirculateSkipIcon, CirculateSkip
+Style "FvwmPager"   StaysOnTop
+Style "FvwmBanner"  StaysOnTop
+
+Style "Gnuplot"		NoTitle
+#! FvwmButtons を常に前面に表示するために，StaysOnTop を追加した．
+#! あと，邪魔な枠も削除
+Style "FvwmButtons" StaysOnTop,Icon toolbox.xpm,ClickToFocus,BorderWidth 0,NoHandles
+
+################################################################################
+
+################################################################################
+#                               カーソルの設定                                 #
+################################################################################
+#! ウィンドウの縁（？）は Move っぽいカーソルを使う
+CursorStyle TOP          52		black	white
+CursorStyle RIGHT        52		black	white
+CursorStyle BOTTOM       52		black	white
+CursorStyle LEFT         52		black	white
+
+################################################################################
+#                            ここからキーバインドの設定                        #
+################################################################################
+
+#! Alt + Tab でウィンドウの切り替え
+#Key Tab  A  M  WindowList Root c c NoDeskSort, SelectOnRelease Meta_L
+    
+#! Alt + Tab で同じワークスペース内のウィンドウを切り替え
+AddToFunc next-raise-and-focus 
++ I Next [CurrentScreen !Iconic] Raise
++ I Next [CurrentScreen !Iconic] Focus
+
+AddToFunc prev-raise-and-focus 
++ I Prev [CurrentScreen !Iconic] Raise
++ I Prev [CurrentScreen !Iconic] Focus
+
+Key Tab A M next-raise-and-focus
+Key Tab A SM prev-raise-and-focus 
+
+#! Ctrl+Shift+hjkl でデスクトップの移動
+Key l          A       SC       Scroll +100 +0
+Key h          A       SC       Scroll -100 +0
+Key k          A       SC       Scroll +0   -100
+Key j          A       SC       Scroll +0   +100
+
+#! Alt+マウスホイールでデスクトップ間の移動
+Mouse 4 	A 	M	 GotoPage +0p -1p
+Mouse 5 	A 	M	 GotoPage +0p +1p
+Mouse 4 	A 	SM       GotoPage -1p +0p
+Mouse 5 	A 	SM       GotoPage +1p +0p
+
+#! press 6789 + Ctrl + Shift, and scroll by 1/10 of a page
+Key 6	A	SC	Scroll -32p +0
+Key 9	A	SC	Scroll +32p +0
+Key 8	A	SC	Scroll +0   -32p
+Key 7	A	SC	Scroll +0   +32p
+
+#! Shift+Alt+矢印キー で 1px ずつポインタを移動
+Key 6		A 	SM	CursorMove -1p +0p
+Key 9		A 	SM 	CursorMove +1p +0p
+Key 8 		A	SM	CursorMove +0p -1p
+Key 7		A 	SM 	CursorMove +0p +1p
+
+#! マウスポインタをちょっぴり移動
+Key h 		A 	SM	CursorMove -2 +0
+Key l 		A 	SM 	CursorMove +2 +0
+Key k 		A	SM	CursorMove +0 -2
+Key j 		A 	SM 	CursorMove +0 +2
+# Key Left	A 	SC 	CursorMove -2 +0
+# Key Right	A 	SC 	CursorMove +2 +0
+# Key Up 		A 	SC 	CursorMove +0 -2
+# Key Down	A 	SC 	CursorMove +0 +2
+
+
+#! Alt+ファンクションキーでの設定
+Key F1          A       M       Menu RootMenu Nop
+Key F2          A       M       Menu Window-Ops Nop
+Key F3          A       M       Exec exec rsh yame pkill npviewer
+Key F4		A	M	Move
+Key F5		A	M	Resize
+Key F6		A	M	Exec exec pkill gnuplot
+#Key F7		A	M	Lower
+Key F7		A	M	Raisel
+Key F8		A	M	Maximize +100 +50
+Key F9		A	M	Maximize +0 +100
+Key F10		A	M 	Maximize
+Key F11		A	M	SuperExpandWindow
+
+key p		A	SCM	/homes/yosihara/bin/s_capture.sh
+
+# Ctrl+Shift+e でウィンドウを閉じる
+Key e		A	SC	Close
+# Ctrl+Shift+x で xlock を起動
+Key x		A	SC	Exec exec nice -20 xlock -mode blank
+# Ctrl+Shift+m で RootMenu
+key m		A	SC	Menu RootMenu Nop
+
+key r		A	SC	Resize
+
+key v		A	SC	Move
+################################################################################
+#                         ここからマウスの設定！                               #
+################################################################################
+
+#!########## マウスのクリックと"ボタン番号"の関係 ##########
+#! 0 : ３ボタンのいずれか
+#! 1 : 左クリック
+#! 2 : 中クリック
+#! 3 : 右クリック
+#!##########################################################
+
+#!########## マウスカーソルの位置と略号の関係 ##########
+#! A     : Any
+#! F     : フレーム
+#! I     : アイコン
+#! R     : ルートウィンドウ
+#! S     : サイドバー（どの部分かは不明）
+#! T     : タイトルバー
+#! W     : ウィンドウ
+#! 1〜10 : タイトルバーのボタン
+#!######################################################
+
+#!########## 押下キーと略号の関係 ##########
+#! A : Any （何も押していない，を含む）
+#! C : Ctrl
+#! M : Alt
+#! N : 何も押していない
+#! S : Shift
+#! L : CapsLock
+#!##########################################
+
+#! Mouse ボタン番号 カーソル位置 押下キー 機能   の順に記述
+#! RootWindow をクリックしたときの動作
+Mouse 1	R   	A       Menu RootMenu Nop
+Mouse 2	R    	A      	Menu Window-Ops Nop
+Mouse 3	R    	A      	WindowList
+
+#! タイトルバーのボタンをクリックしたときの動作
+Mouse 0	1    	A      	Close-Func1
+Mouse 4 1	A	Nop
+Mouse 5 1	A	Nop
+Mouse 0 2	A	Close-Func2
+Mouse 4 2	A	Nop
+Mouse 5 2	A	Nop
+Mouse 0	4    	A     	Maximize-Func
+Mouse 4 4	A	Nop
+
+Mouse 5 4	A	Nop
+Mouse 1 6	A	LeftJumpWindowMouse
+Mouse 3 6	A	RightJumpWindowMouse
+Mouse 4 6	A	UpJumpWindowMouse
+Mouse 5 6	A	DownJumpWindowMouse
+Mouse 1 8	A	GoToLeftWindow
+Mouse 3 8	A	GoToRightWindow
+Mouse 4 8	A	GoToTopWindow
+Mouse 5 8	A	GoToBottomWindow
+
+#! タイトルバーおよびフレーム上でホイールを動かすと，隣の仮想デスクトップに移動
+#Mouse 4 TS	S	LeftJumpWindowMouse
+#Mouse 5 TS	S	RightJumpWindowMouse
+#Mouse 4 TS	N	UpJumpWindowMouse
+#Mouse 5 TS	N	DownJumpWindowMouse
+
+#! ウィンドウやフレームをクリックした時の設定
+Mouse 1	F	A	Resize-or-Raise
+Mouse 1	TS	A	Move-or-Raise
+Mouse 1	I	A	Move-or-Iconify
+Mouse 2	I	A	Iconify
+Mouse 2	FST	A	Menu Window-Ops Nop
+#! ウィンドウを右クリックで背面に移行
+Mouse 3	TSIF	A	Lower
+################################################################################
+
+########################## Initialization Functions ############################
+##                      ログイン直後に実行するコマンド                        ##
+################################################################################
+AddToFunc StartFunction
+ + I Module FvwmButtons
+#! ちょwwwおまwwwwテラWindowswww
+# + I Module FvwmTaskBar
+
+AddToFunc InitFunction
+#! 背景色の設定．
+# + I exec xsetroot -solid DarkSlateBlue
+#! 起動時に立ち上がるものたち
+# + I exec rox --bottom=PANEL	
+ + I exec aterm -ls -geometry 89x69-0+0 \
+     	  -e /homes/avsf/bin/looklog.sh da dsp ffmpeg kanri &
+ + I exec aterm -ls -geometry 89x70-0+0 &
+ + I exec emacs &
+
+#AddToFunc RestartFunction
+# + I exec ~/Ohhhhh/bin/rxvt-2.7.10 -geometry 84x69-0+0 &
+# For some SM-s (like gnome-session) there is an internal background setter.
+AddToFunc SessionInitFunction
+ + I Nop
+################################################################################
+
+
+################################################################################
+##                       ポップアップメニューの設定                           ##
+################################################################################
+#! マウスを左クリックしたときのメニュー
+AddToMenu RootMenu	"Root Menu"	Title
++			"Browser"	Popup Browser
++			"Graphics"	Popup Graphics
++			"SSH"		Popup SSH
++			"Editor"	Popup Editor
++			"Termial"	Popup Terminal
++                       "Utilities"     Popup Utilities
++			""		Nop
++			"Remote Logins"	Popup Remote-Logins
++			""		Nop
++			""		Nop
++                       "Refresh Screen"   Refresh
++                       "Recapture Screen" Recapture
++			""		Nop
++			"Exit Fvwm"	Popup Quit-Verify
+
+AddToMenu Browser	"Browser" Title
++	  		"firefox 3.5"   Exec exec firefox_init 3.5
++	  		"firefox 3.0.6" Exec exec firefox_init 3.0.6
++	  		"firefox 2.x"	Exec exec firefox_init 2
++			"firefox 3.x"	Exec exec firefox_init 3
++			"wine firefox"	Exec exec firefox2
+AddToMenu Utilities     "Utilities" Title
++                       "XLock"         Exec exec nice -20 xlock -mode blank
++			"wine_firefox"	Exec exec firefox2
++			"Top"		Exec exec kterm -ls-e top
++			"Calculator"	Exec exec xcalc
++			"Calendar"	Exec exec wmclockmon-cal
++			""		Nop
++			"Super SL"	Exec exec kterm -ls-vb -geometry 180x71+0+0 \
+					-km euc +sb -rv -ls -j -fn 7x14kana -fk k14 \
+					-e /homes/yosihara/bin/sl 
++                       "Reset X defaults" Exec xrdb -load $HOME/.Xresources
+
+AddToMenu Editor	"Editor" Title
++			"emacs"		Exec exec emacs
++			"emacs23" 	Exec exec emacs-23.0.91
++			"openoffice"	Exec exec openoffice.org-2.3.1
+
+AddToMenu Graphics	"Graphics" Title
++			"tgif"		Exec exec tgif
++			"gimp"		Exec exec gimp
++			"inkscape"	Exec exec inkscape
+
+AddToMenu SSH		"SSH"		Title
++			"free"		Exec exec aterm -ls \
+					-geometry 89x30 -e ~/bin/secret/ouchi
++			"connect"	Exec exec aterm -ls \
+					-geometry 89x30 -e ~/bin/secret/connect_port
++			"rshiromatsu"	Exec exec rdesktop -u Toru -K -D -g 1280x1024 -r sound -a 16 -k ja 127.0.0.1:11111
++	  		"cc"		Exec exec aterm -ls \
+			      		-geometry 89x30 -e ~/bin/secret/cc
++	  		"ied"		Exec exec aterm -ls \
+			      		-geometry 89x30 -e ~/bin/secret/ied
++			"rteka"		Exec exec rdesktop -u avsf -D -K -g 1280x1024 -r sound:localhost -a 16 -k ja 130.153.61.216
++			"rkoku"		Exec exec rdesktop -u avsf -D -g 1280x1024 -r sound -a 16 -k ja koku
++			"rnappa"	Exec exec rdesktop -u Administrator -D -g 1280x1024 -r sound -a 16 -k ja 130.153.61.116
+AddToMenu Appli-cations "Applications" Title
+
+AddToMenu Terminal	"Terminal" Title
++			"Aterm S"	Exec exec aterm -ls -geometry 89x34
++			"Aterm M"	Exec exec aterm -ls -geometry 89x71-0+0
++			"Kterm"		Exec exec kterm -ls -geometry 84x30
++			"xterm"		Exec exec xterm -geometry 84x32
+
+AddToMenu Window-Ops	"Window Ops"	Title
++			"Move"		Move
++			"Resize"	Resize
++			""		Nop
++			""		Nop
++			"Close"		Close
++			"Destroy"	Destroy
++			"Delete"	Delete
++		 	"(De)Iconify"	Iconify
++			"(Un)Stick"	Stick
++			"(Un)Maximize"	Maximize
++			"Raise"		Raise
++			"Lower"		Lower
++			""		Nop
++			"Refresh Window" RefreshWindow
+
+#! rloginの設定
+AddToMenu Remote-Logins	"Select Hostname"	Title
++			"H-Series"	Popup HSeries
++			"R-Series"	Popup RSeries
++			"S-Series"	Popup SSeries
++			"Kanri"		Popup Kanri
+
+AddToMenu RSeries	"R-Series"	Title
++	"raku" Exec rcmd raku aterm -ls -g 89x30 -name raku -display $HOSTDISPLAY &
++	"riku" Exec rcmd riku aterm -ls -g 89x30 -name riku -display $HOSTDISPLAY &
++	"ruku" Exec rcmd ruku aterm -ls -g 89x30 -name ruku -display $HOSTDISPLAY &
++	"reku" Exec rcmd reku aterm -ls -g 89x30 -name reku -display $HOSTDISPLAY &
++	"roku" Exec rcmd roku aterm -ls -g 89x30 -name roku -display $HOSTDISPLAY &
++	"rank" Exec rcmd rank aterm -ls -g 89x30 -name rank -display $HOSTDISPLAY &
+
+AddToMenu HSeries	"H-Series"	Title
++	"haya" Exec rcmd haya aterm -ls -g 89x30 -name haya -display $HOSTDISPLAY &
++	"hiya" Exec rcmd hiya aterm -ls -g 89x30 -name hiya -display $HOSTDISPLAY &
++	"huya" Exec rcmd huya aterm -ls -g 89x30 -name huya -display $HOSTDISPLAY &
++	"heya" Exec rcmd heya aterm -ls -g 89x30 -name heya -display $HOSTDISPLAY &
++	"hoya" Exec rcmd hoya aterm -ls -g 89x30 -name hoya -display $HOSTDISPLAY &
+
+AddToMenu SSeries	"S-Series"	Title
++	"sese" Exec rcmd sese aterm -ls -g 89x30 -name sese -display $HOSTDISPLAY &
++	"sasa" Exec rcmd sasa aterm -ls -g 89x30 -name sasa -display $HOSTDISPLAY &
++	"sui"  Exec rcmd sui  aterm -ls -g 89x30 -name sui  -display $HOSTDISPLAY &
+
+AddToMenu Quit-Verify 	"Really Quit Fvwm?" Title
++		      	"Yes, Really Quit"  Quit
++		      	""		    Nop
++		      	"Restart Fvwm 2.x"  Restart fvwm2 -s
++		      	""		    Nop
++		      	""		    Nop
++		      	"No, Don't Quit"    Nop
+################################################################################
+
+
+######################## Sample Functions ##########################
+
+AddToFunc MailFunction	   I Next (AcceptsFocus $0) Iconify -1
++		           I Next (AcceptsFocus $0) Focus
++			   I None (AcceptsFocus $0) Exec $0 $1
+
+AddToFunc Move-or-Raise		I Raise
++				M Move
++  				D Maximize	100 100
+
+AddToFunc Maximize-Func		M Nop
++				C Maximize	 100 100
++				D Maximize	 0 100
+
+AddToFunc Move-or-Iconify	I Raise
++				M Move
++				D Iconify
+
+AddToFunc Resize-or-Raise	I Raise
++				M Resize
++				D Lower
+
+AddToFunc PrintFunction		I Raise
++				I Exec xdpr -id $w
+
+AddToFunc PrintReverseFunction  I Raise
++                               I Exec xdpr 1/2 -h -rv -id $w
+
+AddToFunc Iconify-and-Raise     I Iconify
++                               I Raise
+
+AddToFunc Close-Func1		I Menu Window-Ops Close
+	  			D Close
+
+AddToFunc Close-Func2	 	C Close
++	  			D Destroy
+
+# RLOGIN machine fg bg
+AddToFunc RLOGIN I Exec xterm -fg $1 -bg $2 -e rlogin $0 -8
+
+# TELNET machine fg bg
+AddToFunc TELNET I Exec xterm -fg $1 -bg $2 -e telnet $0
+
+AddToFunc FocusAndWarp I Focus
++                      I WarpToWindow 2p 2p
+
+AddToFunc DeiconifyFocusAndWarp I Iconify -1
++                               I FocusAndWarp
+
+AddToFunc ChangeDefaultFocus I Style * $0
++                            I Recapture
+
+
+################################################################################
+##                     yosihara 独自定義コーナー キター！！！                 ##
+################################################################################
+#! emacs のウィンドウを 一つ下の仮想デスクトップに移動しつつ縦方向最大化！
+DestroyFunc EmacsCopy
+AddToFunc EmacsCopy
+#+ I MoveToPage +0p +1p
++ I Move 0p 1024p
++ I GotoPage +0p 1p
++ I Maximize 0 100
+Key n A CS EmacsCopy
+
+
+#! ウィンドウを←↓↑→の仮想デスクトップに移動！（キーボード用）
+--------------------------------------------------
+DestroyFunc RightJumpWindow
+AddToFunc RightJumpWindow
++ I Raise
++ I MoveToPage +1p 0p	#!フォーカスのあるウィンドウを上の仮想デスクトップに移動
++ I GotoPage +1p 0p 	#!１つうえの仮想デスクトップに視点（？）を移動
++ I WarpToWindow 3p 3p 	#!マウスカーソルをウィンドウの左上に移動
+Key o A CS RightJumpWindow
+
+DestroyFunc LeftJumpWindow
+AddToFunc LeftJumpWindow
++ I Raise
++ I MoveToPage -1p 0p
++ I GotoPage -1p 0p
++ I WarpToWindow 3p 3p
+Key y A CS LeftJumpWindow
+
+DestroyFunc UpJumpWindow
+AddToFunc UpJumpWindow
++ I Raise
++ I MoveToPage 0p -1p
++ I GotoPage 0p -1p
++ I WarpToWindow 3p 3p
+Key i A CS UpJumpWindow
+
+DestroyFunc DownJumpWindow
+AddToFunc DownJumpWindow
++ I Raise
++ I MoveToPage 0p +1p
++ I GotoPage 0p +1p
++ I WarpToWindow 3p 3p
+Key u A CS DownJumpWindow
+--------------------------------------------------
+
+#! ウィンドウを←↓↑→の仮想デスクトップに移動！（マウス用）
+--------------------------------------------------
+DestroyFunc RightJumpWindowMouse
+AddToFunc RightJumpWindowMouse
++ I Raise
++ I MoveToPage +1p 0p	#!フォーカスのあるウィンドウを上の仮想デスクトップに移動
++ I GotoPage +1p 0p 	#!１つうえの仮想デスクトップに視点（？）を移動
+Key o A CS RightJumpWindow
+
+DestroyFunc LeftJumpWindowMouse
+AddToFunc LeftJumpWindowMouse
++ I Raise
++ I MoveToPage -1p 0p
++ I GotoPage -1p 0p
+Key y A CS LeftJumpWindow
+
+DestroyFunc UpJumpWindowMouse
+AddToFunc UpJumpWindowMouse
++ I Raise
++ I MoveToPage 0p -1p
++ I GotoPage 0p -1p
+Key i A CS UpJumpWindow
+
+DestroyFunc DownJumpWindowMouse
+AddToFunc DownJumpWindowMouse
++ I Raise
++ I MoveToPage 0p +1p
++ I GotoPage 0p +1p
+Key u A CS DownJumpWindow
+--------------------------------------------------
+
+#! ウィンドウの左・下・上・右寄せコマンド
+DestroyFunc GoToLeftWindow
+AddToFunc GoToLeftWindow
++ I Focus			#! キーボードフォーカスを得る（意味不明）
++ I AnimatedMove +0 w			#! w ってどういう意味だろう……
++ I Piperead "echo WarpToWindow $(($[w.width]-68))p 15p
+Key y A SM GoToLeftWindow
+
+DestroyFunc GoToTopWindow
+AddToFunc GoToTopWindow
++ I Focus
++ I AnimatedMove w +0			#! w ってどういう意味だろう……
++ I Piperead "echo WarpToWindow $(($[w.width]-68))p 15p
+Key i A SM GoToTopWindow
+
+DestroyFunc GoToBottomWindow
+AddToFunc GoToBottomWindow
++ I Focus
++ I AnimatedMove w -0			#! w ってどういう意味だろう……
++ I Piperead "echo WarpToWindow $(($[w.width]-68))p 15p
+Key u A SM GoToBottomWindow
+
+DestroyFunc GoToRightWindow
+AddToFunc GoToRightWindow
++ I Focus
++ I AnimatedMove -0 w			#! w ってどういう意味だろう……
++ I Piperead "echo WarpToWindow $(($[w.width]-68))p 15p
+Key o A SM GoToRightWindow
+
+#! $(()) 記法が使用できることを確認．うまく応用したい．
+# DestroyFunc CenterWindow
+# AddToFunc CenterWindow
+# + I Piperead "echo Move $(($[vp.width]/2 - $[w.width]/2))p $(($[vp.height]/2 - $[w.height]/2))p"
+# + I Focus
+# + I WarpToWindow
+# Key c A CS CenterWindow 
+
+#!ウィンドウを仮想デスクトップを利用して限界まで拡大する
+DestroyFunc SuperExpandWindow 
+AddToFunc SuperExpandWindow 
++ I Raise 
++ I Maximize +200 +50
+#+ I MoveToPage 0 0 
+##################################################
+
+######################### FvwmButtons button-bar ###############################
+##                           ボタンバーの設定                                 ##
+################################################################################
+#! Foreの色
+*FvwmButtonsFore Black
+
+#! 透明化 from sugimoto
+#*FvwmButtonsPixmap none
+
+#! バックの色
+#*FvwmButtonsBack rgb:85/85/85
+#*FvwmButtonsBack rgb:85/85/85
+*FvwmButtonsBack gray70
+
+#! Geometry
+*FvwmButtonsGeometry 255x30-0-0
+
+#! Buttons全体は2行で構成		#! xclock の位置調整のため
+*FvwmButtonsRows 2
+
+#! フレーム幅
+*FvwmButtonsFrame 0
+
+#! フォントの指定
+*FvwmButtonsFont "-adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*"
+
+#! ボタン表示の周囲にとる余白の値（ピクセルで指定）．今回はナシで．
+*FvwmButtonsPadding 0 0
+
+#! Pagerのボタン 
+*FvwmButtons(2x2, Swallow "FvwmPager" `FvwmPager 0 0` Frame 1)
+
+#! xyoubinのボタン
+*FvwmButtons(2x2 Swallow(UseOld) "xyoubin" 'Exec exec xyoubin -server pop.ice.uec.ac.jp \
+	-empty flagdown -full flagup -bg gray70' Frame 1)
+
+#! Xloadのボタン
+*FvwmButtons(2x2 Swallow(UseOld,Kill) "xload" \
+	'Exec xload -fg black -bg gray70 -update 5 -nolabel&' Frame 1)
+
+#! Xclockのボタン
+*FvwmButtons(11x2 center Swallow(Respawn,NoHints) "xclock" \
+		 'Exec exec xclock -bg gray70 -update 1 -d -strftime %m/%d___%T ' Frame 1)
+################################################################################
+
+
+########################## Icon Manager ####################################
+# this FvwmIconMan setup is for swallowing in above button bar example
+*FvwmIconMan*numManagers 1
+*FvwmIconMan*Resolution  page
+*FvwmIconMan*background  bisque3
+*FvwmIconMan*foreground  black
+*FvwmIconMan*font        7x13bold
+*FvwmIconMan*format      "%t"
+*FvwmIconMan*action      Mouse   1 N sendcommand Focus, sendcommand "Iconify"
+*FvwmIconMan*action      Mouse   2 N sendcommand "Iconify 1"
+*FvwmIconMan*action      Mouse   3 N sendcommand "FvwmIdent"
+*FvwmIconMan*followfocus true
+*FvwmIconMan*sort        name
+*FvwmIconMan*plainbutton          up black bisque3
+*FvwmIconMan*selectbutton         down black bisque3
+*FvwmIconMan*focusbutton          up yellow firebrick
+*FvwmIconMan*focusandselectButton down yellow firebrick
+*FvwmIconMan*dontshow icon=Untitled title=Untitled
+#*FvwmIconMan*drawicons true
+*FvwmIconMan*buttongeometry  300x0
+*FvwmIconMan*managergeometry 1x5
+
+########################## Window-Identifier ###############################
+# Just choose colors and a fonts
+*FvwmIdentBack MidnightBlue
+*FvwmIdentFore Yellow
+*FvwmIdentFont -adobe-helvetica-medium-r-*-*-12-*-*-*-*-*-*-*
+
+########################### Pager #########################################
+#*FvwmPagerBack #808080
+*FvwmPagerBack gray70
+*FvwmPagerFore #484048
+#*FvwmPagerFont -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
+# turn off desktop names for swallowing in above button bar example:
+*FvwmPagerFont none
+*FvwmPagerHilight #cab3ca
+*FvwmPagerGeometry -1-1
+*FvwmPagerLabel 0 Misc
+*FvwmPagerLabel 1 Maker
+*FvwmPagerLabel 2 Mail
+*FvwmPagerLabel 3 Matlab
+*FvwmPagerSmallFont 5x8
+*FvwmPagerBalloons            All
+*FvwmPagerBalloonBack         Yellow
+*FvwmPagerBalloonFore         Black
+*FvwmPagerBalloonFont         lucidasanstypewriter-12
+*FvwmPagerBalloonYOffset      +2
+*FvwmPagerBalloonBorderWidth  1
+*FvwmPagerBalloonBorderColor  Black
+
+##########################FvwmWinList##################################
+*FvwmWinListBack #808080
+*FvwmWinListFore Black
+*FvwmWinListFont -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
+*FvwmWinListAction Click1 Iconify -1,Focus
+*FvwmWinListAction Click2 Iconify
+*FvwmWinListAction Click3 Module "FvwmIdent" FvwmIdent
+*FvwmWinListUseSkipList
+*FvwmWinListGeometry +0-1
+
+
+*FvwmBackerDesk 0 -solid steelblue
+*FvwmBackerDesk 1 -solid midnightblue
+
+*FvwmScrollBack grey40
+*FvwmScrollFore green
+
+############################################################
+############################################################
+# Note that icons are shown in the module
+#    only if NoIcon commnand is applied.
+#Style     *  NoIcon
+
+############################################################
+*FvwmIconBoxIconBack    #cfcfcf
+*FvwmIconBoxIconHiFore  black
+*FvwmIconBoxIconHiBack  LightSkyBlue
+*FvwmIconBoxBack        #5f9ea0
+#*FvwmIconBoxFore       blue
+*FvwmIconBoxGeometry    5x1+0+0
+*FvwmIconBoxMaxIconSize 64x38
+*FvwmIconBoxFont        -adobe-helvetica-medium-r-*-*-12-*-*-*-*-*-*-*
+*FvwmIconBoxSortIcons   IconName
+*FvwmIconBoxPadding     4
+*FvwmIconBoxLines       10
+*FvwmIconBoxSBWidth     11
+*FvwmIconBoxPlacement   Left Top
+*FvwmIconBoxPixmap      fvwm.xpm
+#*FvwmIconBoxHideSC Horizontal
+*FvwmIconBoxSetWMIconSize
+*FvwmIconBoxHilightFocusWin
+#*FvwmIconBoxResolution          Desk
+*FvwmIconBoxMouse       1       Click           RaiseLower
+*FvwmIconBoxMouse       1       DoubleClick     Iconify
+*FvwmIconBoxMouse       2       Click           Iconify -1, Focus
+*FvwmIconBoxMouse       3       Click           Module FvwmIdent
+*FvwmIconBoxKey         r       RaiseLower
+*FvwmIconBoxKey         space   Iconify
+*FvwmIconBoxKey         d       Close
+*FvwmIconBoxKey         n       Next
+*FvwmIconBoxKey         p       Prev
+*FvwmIconBoxKey         h       Left
+*FvwmIconBoxKey         j       Down
+*FvwmIconBoxKey         k       Up
+*FvwmIconBoxKey         l       Right
+#
+# Icon file specifications
+#
+# Mostly, you don't have to specify icon files, as FvwmIconBox now
+# reads icon files specified in Style commands.
+#
+*FvwmIconBox            "Fvwm*"         -
+
+# FvwmForm alias - rlogin or telnet to host via xterm
+*RloginWarpPointer
+*RloginFont         *helvetica*m*r*n*12*
+*RloginButtonFont   *helvetica*m*o*n*12*
+*RloginInputFont    *cour*m*r*n*12*
+*RloginFore         Black
+*RloginBack         Light Gray
+*RloginItemFore          Wheat
+*RloginItemBack          Gray50
+# begin items
+*RloginLine         center
+*RloginText         "Login to Remote Host"
+*RloginLine         center
+*RloginText         "Host:"
+*RloginInput        HostName  30   ""
+*RloginLine         center
+*RloginSelection    meth single
+*RloginChoice       TN TN off "telnet"
+*RloginChoice       RL RL on "rlogin"
+*RloginSelection    UserSel   single
+#*RloginChoice       Default   Default   on   "same user"
+#*RloginChoice       Custom    Custom    off  "user:"
+*RloginText         "(Userid:"
+*RloginInput        UserName  10   ""
+*RloginText         ")"
+*RloginLine         center
+*RloginText         "FG:"
+*RloginInput        FgColor 15 ""
+*RloginText         "BG:"
+*RloginInput        BgColor 15 ""
+*RloginLine         expand
+*RloginButton       quit "Login" ^M
+*RloginCommand Exec xterm  $(FgColor?-fg $(FgColor)) $(BgColor?-bg $(BgColor)) -T xterm@$(HostName) -e $(RL?rlogin) $(TN?telnet) $(HostName) $(RL?-8 $(UserName?-l $(UserName)))
+*RloginButton       restart   "Clear"
+*RloginCommand Beep
+*RloginButton       quit "Cancel"
+*RloginCommand Nop
+
+# FvwmForm alias - query exit ala mwm
+*QuitVerifyGrabServer
+*QuitVerifyWarpPointer
+*QuitVerifyFont          *helvetica*m*r*n*14*
+#*QuitVerifyButtonFont    *helvetica*m*o*n*14*
+*QuitVerifyButtonFont    7x13bold
+*QuitVerifyFore          Black
+*QuitVerifyBack          Light Gray
+*QuitVerifyItemFore Wheat
+*QuitVerifyItemBack Gray50
+# begin items
+*QuitVerifyLine          center
+*QuitVerifyText          "Do you really want to exit FVWM?"
+*QuitVerifyLine          expand
+*QuitVerifyButton   quit      " Exit "
+*QuitVerifyCommand  Quit
+*QuitVerifyButton   quit      "Cancel"
+*QuitVerifyCommand  Nop
+
+# MyTalk & MyFvwmTalk from Dave Goldberg
+# MyTalk Form - dissappears after use
+*MyTalkWarpPointer
+*MyTalkFont *helvetica*m*r*n*14*
+*MyTalkButtonFont *helvetica*m*o*n*14*
+*MyTalkInputFont *cour*m*r*n*14*
+*MyTalkFore Red
+*MyTalkBack Gray
+*MyTalkItemFore Blue
+*MyTalkItemBack Gray
+*MyTalkLine center
+*MyTalkText "Fvwm Function"
+*MyTalkInput Func 40 ""
+*MyTalkLine expand
+*MyTalkButton quit "Run" ^M
+*MyTalkCommand $(Func)
+*MyTalkButton restart "Clear" ^R
+*MyTalkButton quit "Cancel" ^C
+*MyTalkCommand Nop
+# MyFvwmTalk Form - sticks around
+*MyFvwmTalkWarpPointer
+*MyFvwmTalkFont *helvetica*m*r*n*14*
+*MyFvwmTalkButtonFont *helvetica*m*o*n*14*
+*MyFvwmTalkInputFont *cour*m*r*n*14*
+*MyFvwmTalkFore Red
+*MyFvwmTalkBack Gray
+*MyFvwmTalkItemFore Blue
+*MyFvwmTalkItemBack Gray
+*MyFvwmTalkLine center
+*MyFvwmTalkText "Fvwm Function"
+*MyFvwmTalkInput Func 40 ""
+*MyFvwmTalkLine expand
+*MyFvwmTalkButton restart "Run" ^M
+*MyFvwmTalkCommand $(Func)
+*MyFvwmTalkButton restart "Clear" ^R
+*MyFvwmTalkCommand Nop
+*MyFvwmTalkButton restart "Iconify" ^Z
+*MyFvwmTalkCommand Next [MyFvwmTalk] Iconify
+*MyFvwmTalkButton quit "Quit" ^C
+*MyFvwmTalkCommand Nop
+
+# to change banner pixmap
+#*FvwmBannerPixmap fvwm3.xpm
+#*FvwmBannerTimeout 2

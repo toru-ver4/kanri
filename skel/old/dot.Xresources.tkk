@@ -1,0 +1,172 @@
+KTerm*VT100*Translations:       #override\
+        Shift<Key>space: begin-conversion(JAPANESE_CONVERSION)\n\
+	Shift<Key>Tab: 	string([Z)\n\
+	<Btn4Down>:	scroll-back(5)\n\
+	<Btn5Down>:	scroll-forw(5)
+KTerm*allowSendEvents:	true
+KTerm*reverseVideo:	false
+KTerm*font:		7x14kana
+KTerm*kanjiFont:	k14
+KTerm*kanjiMode:	euc
+KTerm*scrollBar: 	false
+KTerm*foreground:	#E5E5E5
+KTerm*background:	black
+KTerm*saveLines: 	3000
+!KTerm*geometry: 	93x40+0+0
+KTerm*visualBell:	true
+#
+! XTerm*geometry: 	93x40+0+0
+! xterm ¤Î reverseVideo ¤ÏÂ¾¤ÎÃ¼Ëö¥¨¥ß¥å¥ì¡¼¥¿¤Ë±Æ¶Á¤òµÚ¤Ü¤¹¤Î¤ÇÀßÄê¤·¤Ê¤¤
+! XTerm*reverseVideo:	true
+! XTerm*visualBell:	true
+#
+!Aterm*geometry: 	84x32+0+0
+Aterm*visualBell:	true
+Aterm*scrollBar: 	false
+Aterm*transparent:	true
+Aterm*shading:		40
+Aterm*backspacekey: 	\b	
+Aterm*foreground:	grey90
+Aterm*background:	gray15
+!Aterm*background:	rgb:37/37/37
+Aterm*title:		yosihara_term
+#
+!
+urxvt*background:	gray15
+urxvt*foreground:	gray90
+urxvt*scrollBar:	false
+urxvt*transparent:	true
+urxvt*shading:		50
+!urxvt*termName:		rxvt-unicode
+!urxvt*multichar_encoding: eucj
+!urxvt*kanjiMode:	euc
+!urxvt*font:             xft:M+2VM+IPAG circle:size=9:antialias=true,\
+!			xft:M+2VM+IPAG circle:size=9:antialias=true
+!
+Tgif*PrintCommand:	lpr
+Tgif*SaveWithEPS:	on
+Tgif*KanjiFontReadSkip:	on
+Tgif*LineStyle:		PLAIN
+Tgif*AutoKinput:	on
+#
+!mule*FontJP:		kanji16
+!mule*font:		8x16
+!mule*reverseVideo:	on
+#
+emacs*FontJP:            kanji14
+emacs*font:              7x14
+emacs*reverseVideo:      off
+emacs*geometry:          181x88+0+0
+!emacs*geometry:          89x74-614+0
+!emacs*background:	 rgb:37/37/37
+emacs*background:	 gray15
+emacs*foreground:	 gray90
+emacs*cursorColor:	 gray90
+emacs*pointerColor:	 gray90
+Emacs.FontBackend: xft
+#
+gnuplot*reverseVideo: off
+#
+XDvi.reverseVideo:	false
+XDvi*geometry: 		830x1182-0-0
+XDvi.shrinkFactor:	6
+XDvi.expert:		true
+#
+Kinput2*CcWnn.jserver:	momo
+Kinput2*CcWnn.wnnEnvrc:	.wnnenvrc
+Kinput2*CcWnn.ccdef:	ccdef.kinput2.egg
+Kinput2*sendbackKeyPress:       true
+Kinput2*IMProtocol.locales:     ja_JP.eucJP
+Kinput2*modeLocation:           BottomLeft
+#
+Tgif.SquareDoubleByteFonts: \n\
+-jis-fixed-medium-r-*--%d-*-*-*-*-*-jisx0208.1983-*,H,Ryumin-Light-EUC-H\n\
+-jis-fixed-medium-r-*--%d-*-*-*-*-*-jisx0208.1983-*,H,Ryumin-Light-EUC-H\n\
+-jis-fixed-medium-r-*--%d-*-*-*-*-*-jisx0208.1983-*,H,Ryumin-Light-EUC-H\n\
+-jis-fixed-medium-r-*--%d-*-*-*-*-*-jisx0208.1983-*,H,Ryumin-Light-EUC-H\n\
+\n\
+-jis-fixed-medium-r-*--%d-*-*-*-*-*-jisx0208.1983-*,H,GothicBBB-Medium-EUC-H\n\
+-jis-fixed-medium-r-*--%d-*-*-*-*-*-jisx0208.1983-*,H,GothicBBB-Medium-EUC-H\n\
+-jis-fixed-medium-r-*--%d-*-*-*-*-*-jisx0208.1983-*,H,GothicBBB-Medium-EUC-H\n\
+-jis-fixed-medium-r-*--%d-*-*-*-*-*-jisx0208.1983-*,H,GothicBBB-Medium-EUC-H\n\
+\n\
+-jis-fixed-medium-r-*--%d-*-*-*-*-*-jisx0208.1983-*,V,Ryumin-Light-EUC-V\n\
+-jis-fixed-medium-r-*--%d-*-*-*-*-*-jisx0208.1983-*,V,Ryumin-Light-EUC-V\n\
+-jis-fixed-medium-r-*--%d-*-*-*-*-*-jisx0208.1983-*,V,Ryumin-Light-EUC-V\n\
+-jis-fixed-medium-r-*--%d-*-*-*-*-*-jisx0208.1983-*,V,Ryumin-Light-EUC-V\n\
+\n\
+-jis-fixed-medium-r-*--%d-*-*-*-*-*-jisx0208.1983-*,V,GothicBBB-Medium-EUC-V\n\
+-jis-fixed-medium-r-*--%d-*-*-*-*-*-jisx0208.1983-*,V,GothicBBB-Medium-EUC-V\n\
+-jis-fixed-medium-r-*--%d-*-*-*-*-*-jisx0208.1983-*,V,GothicBBB-Medium-EUC-V\n\
+-jis-fixed-medium-r-*--%d-*-*-*-*-*-jisx0208.1983-*,V,GothicBBB-Medium-EUC-V
+Tgif.DoubleByteInputMethod: kinput2
+
+Tgif*ConvSelection: JAPANESE_CONVERSION
+Tgif*IMProtocol: kinput
+Tgif*InputMethod: kinput2
+Tgif*International: true
+Tgif*ConversionStartKey: Shiftspace
+
+Tgif.MaxColors:60
+Tgif.Color0:black
+Tgif.Color1:white
+Tgif.Color2:red
+Tgif.Color3:green
+Tgif.Color4:blue
+Tgif.Color5:yellow
+Tgif.Color6:pink
+Tgif.Color7:cyan
+Tgif.Color8:CadetBlue
+Tgif.Color9:magenta
+Tgif.Color10:#006000
+Tgif.Color11:#007000
+Tgif.Color12:#008000
+Tgif.Color13:#009000
+Tgif.Color14:#00A000
+Tgif.Color15:#00B000
+Tgif.Color16:#00C000
+Tgif.Color17:#00D000
+Tgif.Color18:#00E000
+Tgif.Color19:#00F000
+Tgif.Color20:#600000
+Tgif.Color21:#700000
+Tgif.Color22:#800000
+Tgif.Color23:#900000
+Tgif.Color24:#A00000
+Tgif.Color25:#B00000
+Tgif.Color26:#C00000
+Tgif.Color27:#D00000
+Tgif.Color28:#E00000
+Tgif.Color29:#F00000
+Tgif.Color30:#000060
+Tgif.Color31:#000070
+Tgif.Color32:#000080
+Tgif.Color33:#000090
+Tgif.Color34:#0000A0
+Tgif.Color35:#0000B0
+Tgif.Color36:#0000C0
+Tgif.Color37:#0000D0
+Tgif.Color38:#0000E0
+Tgif.Color39:#0000F0
+Tgif.Color40:#800060
+Tgif.Color41:#800070
+Tgif.Color42:#800080
+Tgif.Color43:#800090
+Tgif.Color44:#8000A0
+Tgif.Color45:#8000B0
+Tgif.Color46:#8000C0
+Tgif.Color47:#8000D0
+Tgif.Color48:#8000E0
+Tgif.Color49:#8000F0
+Tgif.Color50:#F06000
+Tgif.Color51:#F07000
+Tgif.Color52:#F08000
+Tgif.Color53:#F09000
+Tgif.Color54:#F0A000
+Tgif.Color55:#F0B000
+Tgif.Color56:#F0C000
+Tgif.Color57:#F0D000
+Tgif.Color58:#F0E000
+Tgif.Color59:#F0F000
+Tgif.DefaultColorIndex:0
+
