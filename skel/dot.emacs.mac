@@ -57,5 +57,3 @@
 (load "~/.emacs.d/color-theme/themes/color-theme-library.el")
 (require 'color-theme)
 (color-theme-dark-laptop)
-
-

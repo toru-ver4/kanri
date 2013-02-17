@@ -4,11 +4,6 @@
 
 # Check Environment
 kankyo=`uname`
-# if [ `uname` = "Linux" ]; then
-#    kankyo="Linux"
-# else
-#    kankyo="Unknown"
-# fi
 
 # Language
 case "${kankyo}" in
@@ -54,16 +49,6 @@ setopt auto_pushd # This is Excellent!
 setopt list_packed # compressd lists
 setopt nolistbeep # beep off 
 
-
-## terminal configuration
-#
-case "${TERM}" in
-screen)
-    TERM=xterm
-    ;;
-esac
-
-
 # color
 case "${kankyo}" in
 Linux)
@@ -104,7 +89,7 @@ alias nnn='emacs -nw'
 alias cp='cp -i'
 alias mv='mv -i'
 alias xxx='chmod +x'
-alias screen='~/local/bin/screen -D -RR'	# 
+alias screen='screen -D -RR'	# 
 alias ssp="screen -X eval split 'select 1' focus 'select 2'"
 
 # fron ~kota/.cshrc

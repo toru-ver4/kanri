@@ -1,42 +1,27 @@
-startup_message off #スタート時のメッセージを非表示に
-defencoding utf-8 # 文字コードはeuc-jp
+startup_message off # 
+defencoding utf-8 # 
 defscrollback 10000
 
 defbce on # for Vim
 
-#ンドプレフィックスキーをC-]に
+#
 escape ^]^]
 
-shell zsh  # シェルを変えたいときはここに書く
+shell zsh  #
 
-# 下の方に書く文字
+# 256 color
+termcapinfo xterm* 'Co#256:pa#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm:'
+attrcolor b ".I"
+
+# 
 hardstatus alwayslastline "[%02c] % `%-w%{=b bw}%n %t%{-}%+w"
 caption always "%{= Rk} %?%F%{b kr}%? %?%h%:%t (screen #%n)%? %{-}"
 
-# 文字コード変換
+# 
 bind U encoding utf8
 bind E encoding euc
 bind J encoding SJIS
 
-# バッファの場所．パスワード等をコピーしても見られないように変更しておく．
-#bufferfile /mnt/hiya/home/yosihara/Ohhhhh/tmp/screen-exchange
-#bufferfile /tmp/screen-exchange	# デフォルトはここ
-
-# screen のバッファをファイルに書き出してクリップボードにコピーするキーバインド
-#bind c eval writebuf 'exec /homes/yosihara/bin/screen_paste'
-
-# これはなぜか上手く行かない．参考 → http://d.hatena.ne.jp/emacsjjj/20050717
-#bindkey -m ' ' eval 'stuff \040' writebuf 'exec /homes/yosihara/bin/screen_paste'
-
 screen 0
 title T
-screen 1
-title W1
-screen 2
-title W2
-screen 3
-title R
-screen 4
-title G1
-screen 5
-title G2
+
