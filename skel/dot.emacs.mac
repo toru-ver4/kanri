@@ -86,13 +86,13 @@
 (global-set-key "\M-v" 'scroll-down-half)
 
 ;; insert templete
-: (auto-insert-mode)
-: (setq auto-insert-directory "~/.emacs.d/insert/")
-: (setq auto-insert-alist
-:   (append '(
-:     ("\.py$"   . "template.py")
-:     ("\.c$"   . "template.c")
-:     ("\.gpl$"   . "template.gpl")
-:   ) auto-insert-alist))
+(auto-insert-mode)
+(setq auto-insert-directory "~/.emacs.d/insert/")
+(setq auto-insert-alist
+  (append '(
+    ("\.py$"   . "template.py")
+    ("\.c$"   . "template.c")
+    ("\.gpl$"   . "template.gpl")
+  ) auto-insert-alist))
 
   
