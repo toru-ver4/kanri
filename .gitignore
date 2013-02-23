@@ -1,12 +1,11 @@
 #emacs
 *~
 \#*\#
-/.emacs.desktop
-/.emacs.desktop.lock
-.elc
+*.elc
 auto-save-list
 tramp
 .\#*
+skel/dot.emacs.d/history
 
 # Object files
 *.o
