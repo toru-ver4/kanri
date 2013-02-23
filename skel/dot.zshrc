@@ -11,6 +11,7 @@ Linux)
    export LANG=ja_JP.UTF-8
    ;;
 FreeBSD)
+   export LC_CTYPE=ja_JP.UTF-8
    export LANG=ja_JP.UTF-8
    echo "FreeBSD!!!"
 esac

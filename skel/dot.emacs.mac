@@ -57,3 +57,42 @@
 (load "~/.emacs.d/color-theme/themes/color-theme-library.el")
 (require 'color-theme)
 (color-theme-dark-laptop)
+
+;; recentf
+(define-key ctl-x-map "\C-r" 'recentf-open-files)
+(setq recentf-max-saved-times 2000)
+(setq recentf-exclude '("/TAGS$" "/var/tmp/"))
+(require 'recentf-ext)
+(recentf-open-files)
+
+;; move window with hjkl
+(global-set-key "\M-h" 'windmove-left)
+(global-set-key "\M-j" 'windmove-down)
+(global-set-key "\M-k" 'windmove-up)
+(global-set-key "\M-l" 'windmove-right)
+
+;; half scroll
+(defun scroll-up-half ()
+  "Scroll up half a page."
+  (interactive)
+  (scroll-up (/ (window-height) 3))
+)
+(defun scroll-down-half ()
+  "Scroll down half a page."
+  (interactive)
+  (scroll-down (/ (window-height) 3))
+)
+(global-set-key "\C-v" 'scroll-up-half)
+(global-set-key "\M-v" 'scroll-down-half)
+
+;; insert templete
+: (auto-insert-mode)
+: (setq auto-insert-directory "~/.emacs.d/insert/")
+: (setq auto-insert-alist
+:   (append '(
+:     ("\.py$"   . "template.py")
+:     ("\.c$"   . "template.c")
+:     ("\.gpl$"   . "template.gpl")
+:   ) auto-insert-alist))
+
+  
