@@ -1,0 +1,10 @@
+# change /etc/apache2/sites-avaiable/default
+/usr/lib/cgi-bin/ --> /var/www/cgi-bin
+
+
+
+# add /etc/apache2/modes-avaliable/userdir.conf 
+<Directory /var/www/cgi-bin>
+                Options +ExecCGI
+                AddHandler cgi-script .cgi .pl .py
+</Directory>
