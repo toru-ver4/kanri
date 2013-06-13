@@ -41,7 +41,7 @@
 ;;; yes/no -> y/n
 (defalias 'yes-or-no-p 'y-or-n-p)
 ;;; disable toolbar and menubar
-;;(tool-bar-mode -1)
+(tool-bar-mode -1)
 ;;(scroll-bar-mode -1)
 
 ;; the following description is for the auto-install.
@@ -71,7 +71,7 @@
 (global-set-key "\M-k" 'windmove-up)
 (global-set-key "\M-l" 'windmove-right)
 
-;; half scroll
+;; half scrollx
 (defun scroll-up-half ()
   "Scroll up half a page."
   (interactive)
@@ -95,4 +95,7 @@
     ("\.gpl$"   . "template.gpl")
   ) auto-insert-alist))
 
-  
+;; find with moccur
+(require 'color-moccur)
+(setq moccur-split-word t)
+
