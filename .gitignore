@@ -25,6 +25,8 @@ skel/dot.emacs.d/history
 *.out
 *.app
 
+# Windows Binary
+WindowsBinary
 
 
 
