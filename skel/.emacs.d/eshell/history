@@ -1,0 +1,36 @@
+cmd
+ll
+ls -l
+grep
+grep-v
+grep -v
+grep --version
+which grep
+grep
+ls
+dir
+less .bashrc
+ls .bashrc
+ls
+pwd
+which grep
+grep
+which find
+which xargs
+exit
+which grep
+exit
+which fine
+which find
+which grep
+grep --help
+grep --version
+time
+../kanri/gtags/bin/gtags.exe
+ls
+../kanri/gtags/bin/gtags.exe
+ls
+../kanri/gtags/bin/gtags.exe -v
+ls
+ls -l
+git --version

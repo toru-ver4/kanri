@@ -1,0 +1,8 @@
+mklink /D E:\Documents\share\Movie 		"\\nas.toru.local\Samba2TB\Backup\Download\Movie"
+mklink /D E:\Documents\share\Picture 		"\\nas.toru.local\Samba2TB\Backup\Backup\Picture"
+mklink /D E:\Documents\share\Music 		"\\nas.toru.local\Samba2TB\Backup\Download\My Music"
+mklink /D E:\Documents\share\Documents 		"\\nas.toru.local\Samba2TB\Backup\Backup\Document"
+mklink /D E:\Documents\share\Dojin 		"\\nas.toru.local\Samba2TB\Backup\Download\Doujin"
+mklink /D E:\Documents\share\Freesoft 		"\\nas.toru.local\Samba2TB\Backup\Backup\Freesoft"
+mklink /D E:\Documents\Startup\Freesoft 	"\\nas.toru.local\Samba2TB\Backup\Backup\Freesoft"
+set /P USR_INPUT_STR="Please type any key to exit this script : "
