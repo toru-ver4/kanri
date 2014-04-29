@@ -6,6 +6,7 @@ auto-save-list
 tramp
 .\#*
 skel/dot.emacs.d/history
+skel/dot.emacs.d/eshell/history
 
 # Object files
 *.o

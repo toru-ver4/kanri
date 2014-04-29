@@ -7,7 +7,7 @@
   )
  ((string-match "mingw" system-configuration)
    ;; 日本語入力のための設定
-   (set-keyboard-coding-system 'cp932)
+   (set-keyboard-coding-systm 'cp932)
 
    (prefer-coding-system 'utf-8-dos)
    (set-file-name-coding-system 'cp932)
@@ -509,10 +509,6 @@
    ;; (load-library "migemo")
    ;; (migemo-init)
 
-;; ------------------------------------------------------------------------
-;; @ color-theme
-   ;; (require 'color-theme)
-   ;; (color-theme-initialize)
 
 ;; ------------------------------------------------------------------------
 ;; @ package manager
@@ -592,7 +588,7 @@
 ;;; set color current-line
 (global-hl-line-mode 1)
 ;; color settings
-;(set-face-background 'hl-line "darkolivegreen")
+;(set-face-background 'hl-line "dakolivegreen")
 (set-face-background 'hl-line "gray20")
 ;;; save history
 (savehist-mode 1)
@@ -655,6 +651,13 @@
 (require 'yasnippet)
 (yas/global-mode 1)
 
+;;---------------------------------------------------------------------------------
+;; color-theme
+;;---------------------------------------------------------------------------------
+(require 'color-theme)
+(color-theme-initialize)
+
+(if window-system (color-theme-dark-laptop) (color-theme-dark-laptop-nw) )
 
 ;;---------------------------------------------------------------------------------
 ;; auto-complete
@@ -721,9 +724,13 @@
 
 ;; customize
 (custom-set-variables
- '(helm-gtags-path-style 'relative)
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(helm-gtags-auto-update t)
  '(helm-gtags-ignore-case t)
- '(helm-gtags-auto-update t))
+ '(helm-gtags-path-style (quote relative)))
 
 ;; key bindings
 (eval-after-load "helm-gtags"
@@ -736,4 +743,11 @@
      (define-key helm-gtags-mode-map (kbd "C-c >") 'helm-gtags-next-history)
      (define-key helm-gtags-mode-map (kbd "M-,") 'helm-gtags-pop-stack)))
 
+
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(minibuffer-prompt ((t (:foreground "color-39")))))
 
