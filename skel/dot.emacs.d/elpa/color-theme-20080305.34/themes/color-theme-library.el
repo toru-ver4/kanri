@@ -5283,7 +5283,7 @@ Includes custom, fl, font-lock, gnus, message, widget."
      (fl-string-face ((t (:foreground "green"))))
      (fl-type-face ((t (:foreground "yellow"))))
      (font-lock-builtin-face ((t (:foreground "LightSteelBlue"))))
-     (font-lock-comment-face ((t (:foreground "color-208"))))
+     (font-lock-comment-face ((t (:foreground "color-214"))))
 ;     (font-lock-constant-face ((t (:foreground "Aquamarine"))))
      (font-lock-constant-face ((t (:foreground "color-51"))))
      (font-lock-doc-string-face ((t (:foreground "LightSalmon"))))

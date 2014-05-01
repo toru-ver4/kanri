@@ -251,7 +251,7 @@
    (setq scroll-step 1)
 
    ;; 画面スクロール時の重複行数
-   (setq next-screen-context-lines 1)
+   (setq next-screen-context-lines 5)
 
 ;; ------------------------------------------------------------------------
 ;; @ default setting
@@ -700,8 +700,8 @@
        `((,(kbd "C-r")   helm-for-files)
          (,(kbd "C-^")   helm-c-apropos)
          (,(kbd "C-;")   helm-resume)
-         (,(kbd "M-s")   helm-occur)
-	 (,(kbd "M-g")   helm-ag)
+         (,(kbd "M-s s")   helm-occur)
+	 (,(kbd "M-s g")   helm-ag)
          (,(kbd "M-x")   helm-M-x)
          (,(kbd "M-y")   helm-show-kill-ring)
          (,(kbd "M-z")   helm-do-grep)
@@ -737,7 +737,7 @@
   '(progn
      (define-key helm-gtags-mode-map (kbd "M-t") 'helm-gtags-find-tag)
      (define-key helm-gtags-mode-map (kbd "M-r") 'helm-gtags-find-rtag)
-     (define-key helm-gtags-mode-map (kbd "M-s") 'helm-gtags-find-symbol)
+;     (define-key helm-gtags-mode-map (kbd "M-s") 'helm-gtags-find-symbol)
      (define-key helm-gtags-mode-map (kbd "M-g M-p") 'helm-gtags-parse-file)
      (define-key helm-gtags-mode-map (kbd "C-c <") 'helm-gtags-previous-history)
      (define-key helm-gtags-mode-map (kbd "C-c >") 'helm-gtags-next-history)
