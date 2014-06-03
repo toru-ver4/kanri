@@ -630,6 +630,7 @@
 ;;; disable toolbar and menubar
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
+(menu-bar-mode -1)
 ;;; move window with hjkl
 (global-set-key "\M-h" 'windmove-left)
 (global-set-key "\M-j" 'windmove-down)
@@ -638,6 +639,8 @@
 ;;; search result move
 (global-set-key "\M-n" 'next-error)
 (global-set-key "\M-p" 'previous-error)
+;; enlarge-window
+(global-set-key "\C-T" 'enlarge-window)
 ;;---------------------------------------------------------------------------------
 ;; minimum settings end
 ;;---------------------------------------------------------------------------------
@@ -735,7 +738,7 @@
 ;; key bindings
 (eval-after-load "helm-gtags"
   '(progn
-     (define-key helm-gtags-mode-map (kbd "M-t") 'helm-gtags-find-tag)
+     (define-key helm-gtags-mode-map (kbd "C-t") 'helm-gtags-find-tag)
      (define-key helm-gtags-mode-map (kbd "M-r") 'helm-gtags-find-rtag)
 ;     (define-key helm-gtags-mode-map (kbd "M-s") 'helm-gtags-find-symbol)
      (define-key helm-gtags-mode-map (kbd "M-g M-p") 'helm-gtags-parse-file)
@@ -751,3 +754,8 @@
  ;; If there is more than one, they won't work right.
  '(minibuffer-prompt ((t (:foreground "color-39")))))
 
+(add-to-list 'load-path "~/.emacs.d/psvn")
+(require 'psvn)
+(setq process-coding-system-alist '(("svn" . utf-8)))
+(setq default-file-name-coding-system 'utf-8)
+(setq svn-status-svn-file-coding-system 'utf-8)
