@@ -1,5 +1,16 @@
 ; -*- Mode: Emacs-Lisp ; Coding: utf-8 -*-
 
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+;;; @ site-lisp                                                     ;;;
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+
+(let ( (default-directory
+         (file-name-as-directory (concat user-emacs-directory "site-lisp")))
+       )
+  (add-to-list 'load-path default-directory)
+  (normal-top-level-add-subdirs-to-load-path)
+  )
+
 ;; ------------------------------------------------------------------------
 ;; @ coding system
 (cond
@@ -361,13 +372,13 @@
 
 ;; ------------------------------------------------------------------------
 ;; @ hiwin-mode
-;; (require 'hiwin)
+(require 'hiwin)
 
-   ;; hiwin-modeを有効化
-   ;; (hiwin-activate)
+;; hiwin-modeを有効化
+   (hiwin-activate)
 
-   ;; 非アクティブウィンドウの背景色を設定
-   ;; (set-face-background 'hiwin-face "gray80")
+;; 非アクティブウィンドウの背景色を設定
+   (set-face-background 'hiwin-face "gray25")
 
 ;; ------------------------------------------------------------------------
 ;; @ tabbar
@@ -589,7 +600,8 @@
 (global-hl-line-mode 1)
 ;; color settings
 ;(set-face-background 'hl-line "dakolivegreen")
-(set-face-background 'hl-line "gray20")
+;(set-face-background 'hl-line "gray20")
+(set-face-background 'hl-line "color-25")
 ;;; save history
 (savehist-mode 1)
 ;;; save cursor position
@@ -629,7 +641,8 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 ;;; disable toolbar and menubar
 (tool-bar-mode -1)
-(scroll-bar-mode -1)
+;(scroll-bar-mode -1)
+(scroll-bar-mode 'right)
 (menu-bar-mode -1)
 ;;; move window with hjkl
 (global-set-key "\M-h" 'windmove-left)
@@ -641,6 +654,28 @@
 (global-set-key "\M-p" 'previous-error)
 ;; enlarge-window
 (global-set-key "\C-T" 'enlarge-window)
+;; C++ style
+(add-hook 'c++-mode-hook
+          '(lambda()
+             (c-set-style "stroustrup")
+             (setq indent-tabs-mode nil)     ; インデントは空白文字で行う（TABコードを空白に変換）
+             (c-set-offset 'innamespace 0)   ; namespace {}の中はインデントしない
+             (c-set-offset 'arglist-close 0) ; 関数の引数リストの閉じ括弧はインデントしない
+             ))
+;; C++ style
+(add-hook 'c-mode-hook
+          '(lambda()
+             (c-set-style "stroustrup")
+             (setq indent-tabs-mode nil)     ; インデントは空白文字で行う（TABコードを空白に変換）
+	     (setq c-basic-offset 4)
+	     (setq tab-width 4)
+             (c-set-offset 'arglist-close 0) ; 関数の引数リストの閉じ括弧はインデントしない
+             ))
+;; use clipboard
+(setq x-select-enable-clipboard t)
+;; enlarge window
+(global-set-key "\C-t"  'enlarge-window)
+
 ;;---------------------------------------------------------------------------------
 ;; minimum settings end
 ;;---------------------------------------------------------------------------------
@@ -702,7 +737,8 @@
 (let ((key-and-func
        `((,(kbd "C-r")   helm-for-files)
          (,(kbd "C-^")   helm-c-apropos)
-         (,(kbd "C-;")   helm-resume)
+;         (,(kbd "C-;")   helm-resume)
+	 (,(kbd "M-.")   helm-resume)
          (,(kbd "M-s s")   helm-occur)
 	 (,(kbd "M-s g")   helm-ag)
          (,(kbd "M-x")   helm-M-x)
@@ -715,7 +751,7 @@
   (loop for (key func) in key-and-func
         do (global-set-key key func)))
 (trace-function-background 'helm-mp-highlight-region) ;; bug fix??? http://www49.atwiki.jp/ntemacs/m/pages/32.html 
-
+(setq helm-buffer-max-length 40)
 ;;---------------------------------------------------------------------------------
 ;; helm-gtags
 ;;---------------------------------------------------------------------------------
@@ -731,16 +767,18 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(helm-gtags-auto-update t)
+; '(helm-gtags-auto-update t)
  '(helm-gtags-ignore-case t)
  '(helm-gtags-path-style (quote relative)))
+
+(setq helm-gtags-auto-update t)
 
 ;; key bindings
 (eval-after-load "helm-gtags"
   '(progn
      (define-key helm-gtags-mode-map (kbd "C-t") 'helm-gtags-find-tag)
      (define-key helm-gtags-mode-map (kbd "M-r") 'helm-gtags-find-rtag)
-;     (define-key helm-gtags-mode-map (kbd "M-s") 'helm-gtags-find-symbol)
+     (define-key helm-gtags-mode-map (kbd "M-s t") 'helm-gtags-find-symbol)
      (define-key helm-gtags-mode-map (kbd "M-g M-p") 'helm-gtags-parse-file)
      (define-key helm-gtags-mode-map (kbd "C-c <") 'helm-gtags-previous-history)
      (define-key helm-gtags-mode-map (kbd "C-c >") 'helm-gtags-next-history)
