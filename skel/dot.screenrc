@@ -11,8 +11,8 @@ shell bash  #
 
 # 256 color
 term xterm-256color
-#termcapinfo xterm* 'Co#256:pa#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm:'
-#attrcolor b ".I"
+termcapinfo xterm* 'Co#256:pa#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm:'
+attrcolor b ".I"
 
 
 # bar
@@ -25,5 +25,15 @@ bind E encoding euc
 bind J encoding SJIS
 
 screen 0
-title T
+title editor
+screen 1
+title compile
+screen 2
+title write
+screen 3
+title ssh
+screen 4
+title other1
+screen 5
+title other2
 

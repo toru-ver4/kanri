@@ -372,13 +372,13 @@
 
 ;; ------------------------------------------------------------------------
 ;; @ hiwin-mode
-(require 'hiwin)
+;(require 'hiwin)
 
 ;; hiwin-modeを有効化
-   (hiwin-activate)
+;   (hiwin-activate)
 
 ;; 非アクティブウィンドウの背景色を設定
-   (set-face-background 'hiwin-face "gray25")
+;   (set-face-background 'hiwin-face "gray25")
 
 ;; ------------------------------------------------------------------------
 ;; @ tabbar
@@ -543,7 +543,8 @@
     init-loader
     magit
     open-junk-file
-    yasnippet))
+    yasnippet
+    atom-dark-theme))
 (let ((not-installed
        (loop for package in my-package-list
              when (not (package-installed-p package))
@@ -692,10 +693,12 @@
 ;;---------------------------------------------------------------------------------
 ;; color-theme
 ;;---------------------------------------------------------------------------------
-(require 'color-theme)
-(color-theme-initialize)
 
-(if window-system (color-theme-dark-laptop) (color-theme-dark-laptop-nw) )
+(setq custom-theme-directory "~/.emacs.d/themes/")
+(load-theme 'atom-dark-nw t)
+;(load-theme 'atom-dark t)
+;(load-theme 'misterioso t)
+;(load-theme 'manoj-dark t)
 
 ;;---------------------------------------------------------------------------------
 ;; auto-complete
