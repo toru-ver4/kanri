@@ -544,7 +544,8 @@
     magit
     open-junk-file
     yasnippet
-    atom-dark-theme))
+    atom-dark-theme
+    minimap))
 (let ((not-installed
        (loop for package in my-package-list
              when (not (package-installed-p package))
@@ -602,7 +603,7 @@
 ;; color settings
 ;(set-face-background 'hl-line "dakolivegreen")
 ;(set-face-background 'hl-line "gray20")
-(set-face-background 'hl-line "color-25")
+;(set-face-background 'hl-line "color-25")
 ;;; save history
 (savehist-mode 1)
 ;;; save cursor position
@@ -676,6 +677,8 @@
 (setq x-select-enable-clipboard t)
 ;; enlarge window
 (global-set-key "\C-t"  'enlarge-window)
+;; not gen backupfile
+(setq make-backup-files nil)
 
 ;;---------------------------------------------------------------------------------
 ;; minimum settings end
