@@ -545,7 +545,7 @@
     open-junk-file
     yasnippet
     atom-dark-theme
-    minimap))
+    neotree))
 (let ((not-installed
        (loop for package in my-package-list
              when (not (package-installed-p package))
