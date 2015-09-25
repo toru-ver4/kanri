@@ -37,3 +37,10 @@ title other1
 screen 5
 title other2
 
+bind h focus left
+bind j focus down
+bind k focus up
+bind l focus right
+
+bind s eval 'source $HOME/.screen/3-windows.layout'
+
