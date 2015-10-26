@@ -1,4 +1,4 @@
-; -*- Mode: Emacs-Lisp ; Coding: utf-8 -*-
+; -*- mode: Emacs-Lisp ; Coding: utf-8 -*-
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ site-lisp                                                     ;;;
@@ -520,7 +520,6 @@
    ;; (load-library "migemo")
    ;; (migemo-init)
 
-
 ;; ------------------------------------------------------------------------
 ;; @ package manager
    (require 'package)
@@ -644,7 +643,7 @@
 ;;; disable toolbar and menubar
 (tool-bar-mode -1)
 ;(scroll-bar-mode -1)
-(scroll-bar-mode 'right)
+;(scroll-bar-mode 'right)
 (menu-bar-mode -1)
 ;;; move window with hjkl
 (global-set-key "\M-h" 'windmove-left)
@@ -684,9 +683,6 @@
 ;; minimum settings end
 ;;---------------------------------------------------------------------------------
 
-
-;;; package settings
-
 ;;---------------------------------------------------------------------------------
 ;; yasnippet
 ;;---------------------------------------------------------------------------------
@@ -698,10 +694,15 @@
 ;;---------------------------------------------------------------------------------
 
 (setq custom-theme-directory "~/.emacs.d/themes/")
-(load-theme 'atom-dark-nw t)
+;(load-theme 'atom-dark-nw t)
 ;(load-theme 'atom-dark t)
-;(load-theme 'misterioso t)
+(load-theme 'misterioso t)
 ;(load-theme 'manoj-dark t)
+;(load-theme 'manoj-dark_ore t)
+(set-face-background 'hl-line "color-59")
+
+;(custom-set-faces
+; '(default ((t (:background "#000000")))))
 
 ;;---------------------------------------------------------------------------------
 ;; auto-complete
@@ -803,3 +804,4 @@
 (setq process-coding-system-alist '(("svn" . utf-8)))
 (setq default-file-name-coding-system 'utf-8)
 (setq svn-status-svn-file-coding-system 'utf-8)
+

@@ -40,7 +40,8 @@
  ;; Basic
  '(button ((t (:inherit (link)))))
  '(cursor ((((background light)) (:background "black")) (((background dark)) (:background "white"))))
- '(default ((t (:foreground "#c5c8c6" :background "#1d1f21" :weight normal :slant normal :underline nil :overline nil :strike-through nil :box nil :inverse-video nil :stipple nil :inherit nil))))
+; '(default ((t (:foreground "#c5c8c6" :background "#000000" :weight normal :slant normal :underline nil :overline nil :strike-through nil :box nil :inverse-video nil :stipple nil :inherit nil))))
+ '(default ((t (:foreground "#E8E8E8" :weight normal :slant normal :underline nil :overline nil :strike-through nil :box nil :inverse-video nil :stipple nil :inherit nil))))
  '(escape-glyph ((t (:foreground "#FF8000"))))
  '(fixed-pitch ((t (:family "Monospace"))))
  '(header-line ((t (:foreground "grey90" :background "grey20"))))
@@ -79,7 +80,7 @@
  '(font-lock-warning-face ((t (:foreground "#ff982d" :weight bold))))
 
  ;; mode-line
- '(mode-line ((t (:background "grey10" :foreground "#96CBFE"))))
+ '(mode-line ((t (:background "grey30" :foreground "#96CBFE"))))
  '(mode-line-buffer-id ((t (:weight bold))))
  '(mode-line-emphasis ((t (:weight bold))))
  '(mode-line-highlight ((((class color) (min-colors 88)) (:box (:line-width 2 :color "#1d1f21" :style released-button))) (t (:inherit (highlight)))))

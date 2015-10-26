@@ -90,7 +90,7 @@ alias nnn='emacs -nw'
 alias cp='cp -i'
 alias mv='mv -i'
 alias xxx='chmod +x'
-alias screen='screen -D -RR'	# 
+alias screen="$HOME/local/bin/screen -D -RR"	# 
 alias ssp="screen -X eval split 'select 1' focus 'select 2'"
 
 # fron ~kota/.cshrc
