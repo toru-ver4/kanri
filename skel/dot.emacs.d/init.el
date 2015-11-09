@@ -181,7 +181,7 @@
 ;; @ font
 
    ;; 標準フォントの設定
-   ;; (set-default-font "M+2VM+IPAG circle-12")
+   ;;(set-default-font "M+2VM+IPAG circle-12")
 
    ;; IME変換時フォントの設定（テストバージョンのみ）
    ;; (setq w32-ime-font-face "MigMix 1M")
@@ -192,6 +192,37 @@
 
    ;; 可変幅フォントの設定
    ;; (set-face-attribute 'variable-pitch nil :family "M+2VM+IPAG circle")
+
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+;;; @ language - fontset                                            ;;;
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+
+;; デフォルト フォント
+;; (set-face-attribute 'default nil :family "Migu 1M" :height 110)
+(set-face-font 'default "Migu 1M-11:antialias=standard")
+
+;; プロポーショナル フォント
+;; (set-face-attribute 'variable-pitch nil :family "Migu 1M" :height 110)
+(set-face-font 'variable-pitch "Migu 1M-11:antialias=standard")
+
+;; 等幅フォント
+;; (set-face-attribute 'fixed-pitch nil :family "Migu 1M" :height 110)
+(set-face-font 'fixed-pitch "Migu 1M-11:antialias=standard")
+
+;; ツールチップ表示フォント
+;; (set-face-attribute 'tooltip nil :family "Migu 1M" :height 90)
+(set-face-font 'tooltip "Migu 1M-9:antialias=standard")
+
+;;; fontset
+
+;; フォントサイズ調整
+(global-set-key (kbd "C-<wheel-up>")   '(lambda() (interactive) (text-scale-increase 1)))
+(global-set-key (kbd "C-=")            '(lambda() (interactive) (text-scale-increase 1)))
+(global-set-key (kbd "C-<wheel-down>") '(lambda() (interactive) (text-scale-decrease 1)))
+(global-set-key (kbd "C--")            '(lambda() (interactive) (text-scale-decrease 1)))
+
+;; フォントサイズ リセット
+(global-set-key (kbd "M-0") '(lambda() (interactive) (text-scale-set 0)))
 
 ;; ------------------------------------------------------------------------
 ;; @ frame
@@ -600,9 +631,7 @@
 ;;; set color current-line
 (global-hl-line-mode 1)
 ;; color settings
-;(set-face-background 'hl-line "dakolivegreen")
-;(set-face-background 'hl-line "gray20")
-;(set-face-background 'hl-line "color-25")
+;(set-face-background 'hl-line "navy")
 ;;; save history
 (savehist-mode 1)
 ;;; save cursor position
@@ -696,10 +725,10 @@
 (setq custom-theme-directory "~/.emacs.d/themes/")
 ;(load-theme 'atom-dark-nw t)
 ;(load-theme 'atom-dark t)
-(load-theme 'misterioso t)
-;(load-theme 'manoj-dark t)
+;(load-theme 'misterioso t)
+(load-theme 'manoj-dark t)
 ;(load-theme 'manoj-dark_ore t)
-(set-face-background 'hl-line "color-59")
+;(set-face-background 'hl-line "DodgerBlue4")
 
 ;(custom-set-faces
 ; '(default ((t (:background "#000000")))))
