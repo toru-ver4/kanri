@@ -1,0 +1,76 @@
+
+# 以下は，default.nokokaよりコピー＆バインド変更したもの ---------------------
+#key C-S-M	= Applications		# アプリケーションキー
+key C-S-F10	= &WindowMaximize	# ウィンドウの最小化
+key C-S-F9	= &WindowVMaximize	# ウィンドウの縦最大化
+
+key S-A-H	= &MouseMove(-16, 0)	# マウスの移動
+key S-A-L	= &MouseMove(16, 0)	#	〃
+key S-A-K	= &MouseMove(0, -16)	#	〃
+key S-A-J	= &MouseMove(0, 16)	#	〃
+key S-A-Y	= &MouseMove(-1, 0)	#	〃
+key S-A-O	= &MouseMove(1, 0)	#	〃
+key S-A-I	= &MouseMove(0, -1)	#	〃
+key S-A-U	= &MouseMove(0, 1)	#	〃
+
+key S-A-Y		= &WindowClingToLeft	# ウィンドウを左に寄せる
+key S-A-O		= &WindowClingToRight	# ウィンドウを右に寄せる
+key S-A-I		= &WindowClingToTop	# ウィンドウを上に寄せる
+key S-A-U		= &WindowClingToBottom	# ウィンドウを下に寄せる
+
+key C-S-*E	= A-F4		# ウィンドウを閉じる
+
+key C-S-F12	= &WindowVMaximize &Sync &WindowHMaximize &Sync &WindowResizeMoveToPer(73, 100, NW, 0, 0)
+#-------------------------------------------------------------------------------
+
+# 仮想デスクトップソフトの制御
+# key C-S-H	= S-A-C-W-Left 
+# key C-S-J	= S-A-C-W-Down
+# key C-S-K	= S-A-C-W-Up
+# key C-S-L	= S-A-C-W-Right
+
+# key C-S-Y	= A-C-W-Left &Sync S-A-C-W-Left 
+# key C-S-U	= A-C-W-Down &Sync S-A-C-W-Down
+# key C-S-I	= A-C-W-Up &Sync S-A-C-W-Up
+# key C-S-O	= A-C-W-Right &Sync S-A-C-W-Right
+#-------------------------------------------------------------------------------
+
+# Orchis Launcherの設定
+window orchis /orchis\.exe/ : Global
+ key h		= C-B
+ key j		= C-N
+ key k		= C-P
+ key l		= C-F
+ # 上で割り当てたキーをシフト＋の値で設定しておく
+ key S-H	= h
+ key S-J	= j
+ key S-K	= k
+ key S-L	= l
+
+window virtualbox /VirtualBox\.exe/ : Global
+ key C-S-H = C-S-H
+ key C-S-J = C-S-J
+ key C-S-K = C-S-K
+ key C-S-L = C-S-L
+
+ key C-S-Y = C-S-Y
+ key C-S-U = C-S-U
+ key C-S-I = C-S-I
+ key C-S-O = C-S-O
+
+ key S-A-Y = S-A-Y
+ key S-A-O = S-A-O
+ key S-A-I = S-A-I
+ key S-A-U = S-A-U
+
+# Emacsバインド使用の有無
+keymap	KeymapDefault = &Default	# これはどこに書けばよいかわからんかった．
+include	"emacsedit.nodoka.custom"
+
+# 以下のようにして設定．
+#window word /WINWORD\.EXE/ : EmacsMove	# 本家？の用意した由緒正しき設定ファイル
+#window word /WINWORD\.EXE/ : EmacsMoveRestricted	# 適当に機能を絞った．
+#window word /WINWORD\.EXE/ : EmacsEditCustom		# テスト用に無理やり作った．
+#window twitdeck /TweetDeck.exe/ : EmacsEdit
+window qtcreator /qtcreator.exe/ : EmacsEdit
+
