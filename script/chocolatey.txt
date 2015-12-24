@@ -1,0 +1,9 @@
+choco install google-chrome-x64
+choco install sourcetree
+choco install clover
+choco install devbox-rapidee
+choco install lhaplus
+choco install winrar
+choco install itunes
+choco install vlc
+choco install googlejapaneseinput
