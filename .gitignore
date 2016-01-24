@@ -31,3 +31,13 @@ WindowsBinary
 
 
 
+skel/dot.emacs.d/ac-comphist.dat
+skel/dot.emacs.d/places
+skel/dot.emacs.d/recentf
+skel/dot.emacs.d/elpa/archives/gnu/archive-contents
+skel/dot.emacs.d/elpa/archives/gnu/archive-contents.signed
+skel/dot.emacs.d/elpa/archives/marmalade/archive-contents
+skel/dot.emacs.d/elpa/archives/melpa/archive-contents
+skel/dot.emacs.d/elpa/gnupg/pubring.gpg
+skel/dot.emacs.d/elpa/gnupg/secring.gpg
+skel/dot.emacs.d/elpa/gnupg/trustdb.gpg
