@@ -197,35 +197,32 @@
 ;;; @ language - fontset                                            ;;;
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-(when (equal window-system 'w32)
+;; デフォルト フォント
+;; (set-face-attribute 'default nil :family "Migu 1M" :height 110)
+(set-face-font 'default "Migu 1M-11:antialias=standard")
 
-  ;; デフォルト フォント
-  ;; (set-face-attribute 'default nil :family "Migu 1M" :height 110)
-  (set-face-font 'default "Migu 1M-11:antialias=standard")
+;; プロポーショナル フォント
+;; (set-face-attribute 'variable-pitch nil :family "Migu 1M" :height 110)
+(set-face-font 'variable-pitch "Migu 1M-11:antialias=standard")
 
-  ;; プロポーショナル フォント
-  ;; (set-face-attribute 'variable-pitch nil :family "Migu 1M" :height 110)
-  (set-face-font 'variable-pitch "Migu 1M-11:antialias=standard")
+;; 等幅フォント
+;; (set-face-attribute 'fixed-pitch nil :family "Migu 1M" :height 110)
+(set-face-font 'fixed-pitch "Migu 1M-11:antialias=standard")
 
-  ;; 等幅フォント
-  ;; (set-face-attribute 'fixed-pitch nil :family "Migu 1M" :height 110)
-  (set-face-font 'fixed-pitch "Migu 1M-11:antialias=standard")
+;; ツールチップ表示フォント
+;; (set-face-attribute 'tooltip nil :family "Migu 1M" :height 90)
+(set-face-font 'tooltip "Migu 1M-9:antialias=standard")
 
-  ;; ツールチップ表示フォント
-  ;; (set-face-attribute 'tooltip nil :family "Migu 1M" :height 90)
-  (set-face-font 'tooltip "Migu 1M-9:antialias=standard")
-  
-  ;;; fontset
-  
-  ;; フォントサイズ調整
-  (global-set-key (kbd "C-<wheel-up>")   '(lambda() (interactive) (text-scale-increase 1)))
-  (global-set-key (kbd "C-=")            '(lambda() (interactive) (text-scale-increase 1)))
-  (global-set-key (kbd "C-<wheel-down>") '(lambda() (interactive) (text-scale-decrease 1)))
-  (global-set-key (kbd "C--")            '(lambda() (interactive) (text-scale-decrease 1)))
+;;; fontset
 
-  ;; フォントサイズ リセット
-  (global-set-key (kbd "M-0") '(lambda() (interactive) (text-scale-set 0)))
-)
+;; フォントサイズ調整
+(global-set-key (kbd "C-<wheel-up>")   '(lambda() (interactive) (text-scale-increase 1)))
+(global-set-key (kbd "C-=")            '(lambda() (interactive) (text-scale-increase 1)))
+(global-set-key (kbd "C-<wheel-down>") '(lambda() (interactive) (text-scale-decrease 1)))
+(global-set-key (kbd "C--")            '(lambda() (interactive) (text-scale-decrease 1)))
+
+;; フォントサイズ リセット
+(global-set-key (kbd "M-0") '(lambda() (interactive) (text-scale-set 0)))
 
 ;; ------------------------------------------------------------------------
 ;; @ frame
