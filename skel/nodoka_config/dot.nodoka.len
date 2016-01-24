@@ -1,0 +1,126 @@
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# のどか - dot.nodoka
+# Copyright (C) 1999-2005, TAGA Nayuta <nayuta@users.sourceforge.net>
+#
+# Modify by applet on Sep. 1, 2008
+
+include "104.nodoka" # 104 キーボード設定
+
+keymap Global
+
+# このファイルをホームディレクトリにコピーしてから、
+# 以下に自分の好みのキーバインディングを設定するとよい。
+# このファイル自体を変更しないこと。
+
+# 以下は、便宜上、設定するもの
+
+key C-A-D		= &DescribeBindings 	# 現在のキーマップのログ出力
+
+keymap Global
+# capsをctrlで置き換え
+mod control += CapsLock
+key *CapsLock = *LeftControl
+mod control -= LeftControl
+key *LeftControl = *CapsLock 
+
+# Escとバッククオートとのswap
+key GraveAccent = Esc
+key Esc = GraveAccent
+
+# Altとアプリケーションキーのswap
+mod alt += Applications
+key *Applications = *RightAlt
+mod alt -= RightAlt
+key *RightAlt = *Applications
+
+# 以下は，default.nokokaよりコピー＆バインド変更したもの ---------------------
+#key C-S-M	= Applications		# アプリケーションキー
+key C-S-F10	= &WindowMaximize	# ウィンドウの最小化
+key C-S-F9	= &WindowVMaximize	# ウィンドウの縦最大化
+
+key S-A-H	= &MouseMove(-16, 0)	# マウスの移動
+key S-A-L	= &MouseMove(16, 0)	#	〃
+key S-A-K	= &MouseMove(0, -16)	#	〃
+key S-A-J	= &MouseMove(0, 16)	#	〃
+key S-A-Y	= &MouseMove(-1, 0)	#	〃
+key S-A-O	= &MouseMove(1, 0)	#	〃
+key S-A-I	= &MouseMove(0, -1)	#	〃
+key S-A-U	= &MouseMove(0, 1)	#	〃
+
+key S-A-Y		= &WindowClingToLeft	# ウィンドウを左に寄せる
+key S-A-O		= &WindowClingToRight	# ウィンドウを右に寄せる
+key S-A-I		= &WindowClingToTop	# ウィンドウを上に寄せる
+key S-A-U		= &WindowClingToBottom	# ウィンドウを下に寄せる
+
+key C-S-E	= A-F4		# ウィンドウを閉じる
+
+key C-S-F12	= &WindowVMaximize &Sync &WindowHMaximize &Sync &WindowResizeMoveToPer(70, 100, NW, 0, 0)
+#-------------------------------------------------------------------------------
+
+# 仮想デスクトップソフトの制御
+key C-S-H	= S-A-C-W-Left 
+key C-S-J	= S-A-C-W-Down
+key C-S-K	= S-A-C-W-Up
+key C-S-L	= S-A-C-W-Right
+
+key C-S-Y	= A-C-W-Left &Sync S-A-C-W-Left 
+key C-S-U	= A-C-W-Down &Sync S-A-C-W-Down
+key C-S-I	= A-C-W-Up &Sync S-A-C-W-Up
+key C-S-O	= A-C-W-Right &Sync S-A-C-W-Right
+#-------------------------------------------------------------------------------
+
+# wordの設定
+window word /WINWORD\.EXE/ : Global
+# key Home		= C-Home		# 文頭
+# key End		= C-End			# 文末
+# key C-Space		= &Undefined		# Mark
+ key C-A		= Home			# 行頭
+ key C-B		= Left			# ←
+# key M-B		= C-Left		# ←(単語)
+ key C-E		= End			# 行末
+ key C-F		= Right			# →
+# key M-F		= C-Right		# →(単語)
+# key C-G		= Escape		# CANCEL
+# key C-L		= &WindowRedraw &Recenter # 再描画
+ key C-N		= Down			# ↓
+ key C-P		= Up			# ↑
+# key C-Q		= &Prefix(KeymapDefault) # mayu に左右されないキー入力
+# key C-S		= C-F			# 検索
+# if ( !ZXCV ) key C-V	= Next			# 次頁
+# key M-V		= Prior			# 前頁
+# key S-Home		= S-C-Home		# 文頭(選択)
+# key S-End		= S-C-End		# 文末(選択)
+# key S-M-Comma		= C-Home		# 文頭
+# key S-M-Period		= C-End			# 文末
+ key C-D		= Delete				# 削除
+ key C-H		= BackSpace				# BS
+# key C-J		= Return				# RETURN
+#-------------------------------------------------------------------------------
+
+# Orchis Launcherの設定
+window orchis /orchis\.exe/ : Global
+ key h		= C-B
+ key j		= C-N
+ key k		= C-P
+ key l		= C-F
+ # 上で割り当てたキーをシフト＋の値で設定しておく
+ key S-H	= h
+ key S-J	= j
+ key S-K	= k
+ key S-L	= l
+
+window virtualbox /VirtualBox\.exe/ : Global
+ key C-S-H = C-S-H
+ key C-S-J = C-S-J
+ key C-S-K = C-S-K
+ key C-S-L = C-S-L
+
+ key C-S-Y = C-S-Y
+ key C-S-U = C-S-U
+ key C-S-I = C-S-I
+ key C-S-O = C-S-O
+
+ key S-A-Y = S-A-Y
+ key S-A-O = S-A-O
+ key S-A-I = S-A-I
+ key S-A-U = S-A-U
