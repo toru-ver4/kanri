@@ -45,7 +45,8 @@ Search the "Github.css" in %APPDATA% directory.
 
 How to Transform.
 ```bat:
-> markdown-pdf -s Github.css hoge.md
+> markdown-pdf -s Github.css input.md
+> pandoc input.md -s --self-contained -c Github.css -o out.html
 ```
 
 
