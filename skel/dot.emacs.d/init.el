@@ -317,34 +317,34 @@
 ;;; @ screen - tabbar                                               ;;;
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;; (require 'tabbar)
+(require 'tabbar)
 
-;; ;; tabbar有効化（有効：t、無効：nil）
-;; (call-interactively 'tabbar-mode t)
+;; tabbar有効化（有効：t、無効：nil）
+(call-interactively 'tabbar-mode t)
 
-;; ;; ボタン非表示
-;; (dolist (btn '(tabbar-buffer-home-button
-;;                tabbar-scroll-left-button
-;;                tabbar-scroll-right-button))
-;;   (set btn (cons (cons "" nil) (cons "" nil)))
-;;   )
+;; ボタン非表示
+(dolist (btn '(tabbar-buffer-home-button
+               tabbar-scroll-left-button
+               tabbar-scroll-right-button))
+  (set btn (cons (cons "" nil) (cons "" nil)))
+  )
 
-;; ;; タブ切替にマウスホイールを使用（有効：0、無効：-1）
-;; (call-interactively 'tabbar-mwheel-mode -1)
-;; (remove-hook 'tabbar-mode-hook      'tabbar-mwheel-follow)
-;; (remove-hook 'mouse-wheel-mode-hook 'tabbar-mwheel-follow)
+;; タブ切替にマウスホイールを使用（有効：0、無効：-1）
+(call-interactively 'tabbar-mwheel-mode -1)
+(remove-hook 'tabbar-mode-hook      'tabbar-mwheel-follow)
+(remove-hook 'mouse-wheel-mode-hook 'tabbar-mwheel-follow)
 
-;; ;; タブグループを使用（有効：t、無効：nil）
-;; (defvar tabbar-buffer-groups-function nil)
-;; (setq tabbar-buffer-groups-function nil)
+;; タブグループを使用（有効：t、無効：nil）
+(defvar tabbar-buffer-groups-function nil)
+(setq tabbar-buffer-groups-function nil)
 
-;; ;; タブの表示間隔
-;; (defvar tabbar-separator nil)
-;; (setq tabbar-separator '(1.0))
+;; タブの表示間隔
+(defvar tabbar-separator nil)
+(setq tabbar-separator '(1.0))
 
-;; ;; タブ切り替え
-;; (global-set-key (kbd "<C-tab>") 'tabbar-forward-tab)
-;; (global-set-key (kbd "C-q")     'tabbar-backward-tab)
+;; タブ切り替え
+(global-set-key (kbd "<C-tab>") 'tabbar-forward-tab)
+(global-set-key (kbd "C-q")     'tabbar-backward-tab)
 
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
@@ -392,10 +392,10 @@
 ;;; @ screen - hiwin                                                ;;;
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;;(require 'hiwin)
+(require 'hiwin)
 
 ;; hiwin-modeを有効化
-;;(hiwin-activate)
+(hiwin-activate)
 
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
@@ -403,25 +403,25 @@
 ;;;   https://github.com/emacs-jp/migemo                            ;;;
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;; (require 'migemo)
+(require 'migemo)
 
-;; (defvar migemo-command nil)
-;; (setq migemo-command "cmigemo")
+(defvar migemo-command nil)
+(setq migemo-command "cmigemo")
 
-;; (defvar migemo-options nil)
-;; (setq migemo-options '("-q" "--emacs"))
+(defvar migemo-options nil)
+(setq migemo-options '("-q" "--emacs"))
 
-;; (defvar migemo-dictionary nil)
-;; (setq migemo-dictionary "/usr/local/share/migemo/utf-8/migemo-dict")
+(defvar migemo-dictionary nil)
+(setq migemo-dictionary "/usr/local/share/migemo/utf-8/migemo-dict")
 
-;; (defvar migemo-user-dictionary nil)
+(defvar migemo-user-dictionary nil)
 
-;; (defvar migemo-regex-dictionary nil)
+(defvar migemo-regex-dictionary nil)
 
-;; (defvar migemo-coding-system nil)
-;; (setq migemo-coding-system 'utf-8-unix)
+(defvar migemo-coding-system nil)
+(setq migemo-coding-system 'utf-8-unix)
 
-;; (load-library "migemo")
+(load-library "migemo")
 
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
@@ -543,288 +543,50 @@
 (setq shell-file-name "bash.exe")
 (modify-coding-system-alist 'process ".*sh\\.exe" 'utf-8)
 
-;; ------------------------------------------------------------------------
-;; @ package manager
-   (require 'package)
-   (add-to-list 'package-archives
-                '("melpa" . "http://melpa.milkbox.net/packages/") t)
-   (add-to-list 'package-archives
-                '("marmalade" . "http://marmalade-repo.org/packages/"))
-   (package-initialize)
 
-;; ------------------------------------------------------------------------
-;; @ install if not installed
-(require 'cl)
-(defvar my-package-list
-  '(auto-async-byte-compile
-    auto-complete
-    helm
-    helm-ag
-    helm-descbinds
-    helm-ls-git
-    init-loader
-    magit
-    open-junk-file
-    yasnippet
-    atom-dark-theme
-    neotree))
-(let ((not-installed
-       (loop for package in my-package-list
-             when (not (package-installed-p package))
-             collect package)))
-  (when not-installed
-    (package-refresh-contents)
-    (dolist (package not-installed)
-      (package-install package))))
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+;;; @ package manager                                               ;;;
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;; ------------------------------------------------------------------------
-;; @ w32-symlinks
-
-   ;; (custom-set-variables '(w32-symlinks-handle-shortcuts t))
-   ;; (require 'w32-symlinks)
-
-   ;; (defadvice insert-file-contents-literally
-   ;;   (before insert-file-contents-literally-before activate)
-   ;;   (set-buffer-multibyte nil))
-
-   ;; (defadvice minibuffer-complete (before expand-symlinks activate)
-   ;;   (let ((file (expand-file-name
-   ;;                (buffer-substring-no-properties
-   ;;                 (line-beginning-position) (line-end-position)))))
-   ;;     (when (file-symlink-p file)
-   ;;       (delete-region (line-beginning-position) (line-end-position))
-   ;;       (insert (w32-symlinks-parse-symlink file)))))
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(add-to-list 'package-archives
+             '("marmalade" . "http://marmalade-repo.org/packages/"))
+(package-initialize)
 
 
-;; ------------------------------------------------------------------------
-;; @ toru.yoshihara personal settings
-;; for windows
-(global-set-key [M-kanji] 'ignore)
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+;;; @ theme                                                         ;;;
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;; OS if version
+;; テーマ格納ディレクトリのパス追加
+(add-to-list 'custom-theme-load-path
+             (file-name-as-directory (concat user-emacs-directory "themes"))
+             )
 
-(cond
- ((string-match "linux" system-configuration)
-  )
- ((string-match "mingw" system-configuration)
-  ;; add path for find, grep, and xargs.
-;  (setenv "PATH" (format (expand-file-name "~/kanri/WindowsBinary/GnuWin32/bin") (getenv "PATH")))
-  (setenv "PATH" (format (expand-file-name "~/kanri/WindowsBinary/Git/bin") (getenv "PATH")))
-  )
- )
-
-;; change find-grep command.
-;;(setq grep-find-command '("find . -type f -print0 | xargs -0 -e grep -nH -e "))
+;; テーマ選択
+;; (load-theme 'solarized-light t)
+;; (load-theme 'solarized-dark t)
+(load-theme 'gnupack-dark t)
 
 
-;;---------------------------------------------------------------------------------
-;; minimum settings
-;;---------------------------------------------------------------------------------
-;;; set color current-line
-(global-hl-line-mode 1)
-;; color settings
-;(set-face-background 'hl-line "dakolivegreen")
-;(set-face-background 'hl-line "gray20")
-;(set-face-background 'hl-line "color-25")
-;;; save history
-(savehist-mode 1)
-;;; save cursor position
-(setq-default save-place t)
-(require 'saveplace)
-;;; brink bracket
-(show-paren-mode 1)
-;;; set C-h backspace
-(global-set-key (kbd "C-h") 'delete-backward-char)
-;;; display time on mode-line
-(display-time)
-;;; display line and column number
-(line-number-mode 1)
-(column-number-mode 1)
-;;; coloring resion
-(transient-mark-mode 1)
-;;; light wait
-(setq gc-cons-threshold (* 10 gc-cons-threshold))
-;;; increase log max
-(setq message-log-max 10000)
-;;; permit recursive processing
-(setq enable-recursive-minibuffers t)
-;;; disable dialog box
-(setq use-dialog-box nil)
-(defalias 'message-box 'message)
-;;; save history
-(setq history-length 1000)
-;;; fast display of key stroke
-(setq echo-keystrokes 0.1)
-;;; alarm settings of big file open
-(setq large-file-warning-threshold (* 25 1024 1024))
-;;; save history of minibuffer
-(defadvice abort-recursive-edit (before minibuffer-save activate)
-  (when (eq (selected-window) (active-minibuffer-window))
-    (add-to-history minibuffer-history-variable (minibuffer-contents))))
-;;; yes/no -> y/n
-(defalias 'yes-or-no-p 'y-or-n-p)
-;;; disable toolbar and menubar
-(tool-bar-mode -1)
-;(scroll-bar-mode -1)
-;(scroll-bar-mode 'right)
-(menu-bar-mode -1)
-;;; move window with hjkl
-(global-set-key "\M-h" 'windmove-left)
-(global-set-key "\M-j" 'windmove-down)
-(global-set-key "\M-k" 'windmove-up)
-(global-set-key "\M-l" 'windmove-right)
-;;; search result move
-(global-set-key "\M-n" 'next-error)
-(global-set-key "\M-p" 'previous-error)
-;; enlarge-window
-(global-set-key "\C-T" 'enlarge-window)
-;; C++ style
-(add-hook 'c++-mode-hook
-          '(lambda()
-             (c-set-style "stroustrup")
-             (setq indent-tabs-mode nil)     ; インデントは空白文字で行う（TABコードを空白に変換）
-             (c-set-offset 'innamespace 0)   ; namespace {}の中はインデントしない
-             (c-set-offset 'arglist-close 0) ; 関数の引数リストの閉じ括弧はインデントしない
-             ))
-;; C++ style
-(add-hook 'c-mode-hook
-          '(lambda()
-             (c-set-style "stroustrup")
-             (setq indent-tabs-mode nil)     ; インデントは空白文字で行う（TABコードを空白に変換）
-	     (setq c-basic-offset 4)
-	     (setq tab-width 4)
-             (c-set-offset 'arglist-close 0) ; 関数の引数リストの閉じ括弧はインデントしない
-             ))
-;; use clipboard
-(setq x-select-enable-clipboard t)
-;; enlarge window
-(global-set-key "\C-t"  'enlarge-window)
-;; not gen backupfile
-(setq make-backup-files nil)
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+;;; @ server                                                        ;;;
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;;---------------------------------------------------------------------------------
-;; minimum settings end
-;;---------------------------------------------------------------------------------
-
-;;---------------------------------------------------------------------------------
-;; yasnippet
-;;---------------------------------------------------------------------------------
-(require 'yasnippet)
-(yas/global-mode 1)
-
-;;---------------------------------------------------------------------------------
-;; color-theme
-;;---------------------------------------------------------------------------------
-
-(setq custom-theme-directory "~/.emacs.d/themes/")
-;(load-theme 'atom-dark-nw t)
-(load-theme 'atom-dark t)
-;(load-theme 'misterioso t)
-;(load-theme 'manoj-dark t)
-;(load-theme 'manoj-dark_ore t)
-;(set-face-background 'hl-line "color-59")
-
-;(custom-set-faces
-; '(default ((t (:background "#000000")))))
-
-;;---------------------------------------------------------------------------------
-;; auto-complete
-;;---------------------------------------------------------------------------------
-(require 'auto-complete)
-(global-auto-complete-mode t)
-(require 'auto-complete-config)
-(ac-config-default)
-;; C-n/C-pで候補選択
-(setq ac-use-menu-map t)
-(define-key ac-menu-map "\C-n" 'ac-next)
-(define-key ac-menu-map "\C-p" 'ac-previous)
+;; emacs-server起動
+(require 'server)
+(defun server-ensure-safe-dir (dir) "Noop" t)
+(setq server-socket-dir "~/.emacs.d")
+(unless (server-running-p)
+  (server-start)
+)
 
 
-(eval-when-compile (require 'cl))
+;; Local Variables:
+;; coding: utf-8
+;; mode: emacs-lisp
+;; End:
 
-;; ミニバッファで C-h でヘルプでないようにする
-(load "term/bobcat")
-(when (fboundp 'terminal-init-bobcat)
-  (terminal-init-bobcat))
-
-;;---------------------------------------------------------------------------------
-;; magit
-;;---------------------------------------------------------------------------------
-(require 'magit)
-
-
-;;---------------------------------------------------------------------------------
-;; helm (basic)
-;;---------------------------------------------------------------------------------
-(require 'helm-config)
-(require 'helm-command)
-;;(require 'helm-descbinds)
-
-(setq helm-idle-delay             0.3
-      helm-input-idle-delay       0.3
-      helm-candidate-number-limit 200)
-
-(let ((key-and-func
-       `((,(kbd "C-r")   helm-for-files)
-         (,(kbd "C-^")   helm-c-apropos)
-;         (,(kbd "C-;")   helm-resume)
-	 (,(kbd "M-.")   helm-resume)
-         (,(kbd "M-s s")   helm-occur)
-	 (,(kbd "M-s g")   helm-ag)
-         (,(kbd "M-x")   helm-M-x)
-         (,(kbd "M-y")   helm-show-kill-ring)
-         (,(kbd "M-z")   helm-do-grep)
-         (,(kbd "C-S-h") helm-descbinds)
-	 (,(kbd "C-x b") helm-buffers-list)
-	 (,(kbd "C-x r") helm-recentf)
-        )))
-  (loop for (key func) in key-and-func
-        do (global-set-key key func)))
-(trace-function-background 'helm-mp-highlight-region) ;; bug fix??? http://www49.atwiki.jp/ntemacs/m/pages/32.html 
-(setq helm-buffer-max-length 40)
-;;---------------------------------------------------------------------------------
-;; helm-gtags
-;;---------------------------------------------------------------------------------
-(require 'helm-gtags)
-;;; Enable helm-gtags-mode
-(add-hook 'c-mode-hook 'helm-gtags-mode)
-(add-hook 'c++-mode-hook 'helm-gtags-mode)
-(add-hook 'asm-mode-hook 'helm-gtags-mode)
-
-;; customize
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
-; '(helm-gtags-auto-update t)
- '(helm-gtags-ignore-case t)
- '(helm-gtags-path-style (quote relative)))
-
-(setq helm-gtags-auto-update nil)
-
-;; key bindings
-(eval-after-load "helm-gtags"
-  '(progn
-     (define-key helm-gtags-mode-map (kbd "C-t") 'helm-gtags-find-tag)
-     (define-key helm-gtags-mode-map (kbd "M-r") 'helm-gtags-find-rtag)
-     (define-key helm-gtags-mode-map (kbd "M-s t") 'helm-gtags-find-symbol)
-     (define-key helm-gtags-mode-map (kbd "M-g M-p") 'helm-gtags-parse-file)
-     (define-key helm-gtags-mode-map (kbd "C-c <") 'helm-gtags-previous-history)
-     (define-key helm-gtags-mode-map (kbd "C-c >") 'helm-gtags-next-history)
-     (define-key helm-gtags-mode-map (kbd "M-,") 'helm-gtags-pop-stack)))
-
-
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(minibuffer-prompt ((t (:foreground "color-39")))))
-
-(add-to-list 'load-path "~/.emacs.d/psvn")
-(require 'psvn)
-(setq process-coding-system-alist '(("svn" . utf-8)))
-(setq default-file-name-coding-system 'utf-8)
-(setq svn-status-svn-file-coding-system 'utf-8)
-
+;;; ends here
