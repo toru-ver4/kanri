@@ -92,16 +92,9 @@ alias lll='ls -AlFt'
 alias llls='ls -AlFt | less'
 alias nn='emacs'
 alias nnn='emacs -nw'
-alias cp='cp -i'
-alias mv='mv -i'
-alias xxx='chmod +x'
 alias screen="$SCREEN_BIN -D -RR"
-alias ssp="$SCREEN_BIN -X eval split 'select 1' focus 'select 2'"
 
 # fron ~kota/.cshrc
-alias h='history -r 30 | cut -f 3 | cat -n'	
-alias pss='ps -ux'
-alias ttt="top -U`whoami`"
 alias moji='nkf --guess'
 
 # Definition of Function
