@@ -698,7 +698,12 @@
 ;; color-theme
 ;;---------------------------------------------------------------------------------
 (setq custom-theme-directory "~/.emacs.d/themes/")
-(load-theme 'gnupack-dark t)
+(cond ((equal window-system 'nil)
+       (load-theme 'gnupack-dark-nw t)
+       )
+      (t
+	(load-theme 'gnupack-dark t)
+	))
 ;(load-theme 'atom-dark-nw t)
 ;(load-theme 'atom-dark t)
 ;(load-theme 'misterioso t)

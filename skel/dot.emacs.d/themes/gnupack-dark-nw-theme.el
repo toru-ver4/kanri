@@ -22,8 +22,9 @@
 ;; along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Code:
+;; aaaa
 
-(deftheme gnupack-dark "gnupack dark color theme")
+(deftheme gnupack-dark-nw "gnupack dark color theme")
 
 (dolist (face '(cursor-ime-on cursor-ime-off))
   (unless (facep face) (make-face face)) )
@@ -43,7 +44,7 @@
       )
 
   (custom-theme-set-faces
-   'gnupack-dark
+   'gnupack-dark-nw
 
    `(default     ((t (:foreground ,gray-80 :background ,gray-05)))) 
    `(bold        ((t (:bold t   :italic nil :underline nil ))))
@@ -175,7 +176,7 @@
    `(hicol-line-frame-face ((t (:foreground nil :background ,gray-15))))
    )
   )
-(provide-theme 'gnupack-dark)
+(provide-theme 'gnupack-dark-nw)
 
 ;; --------------------------------------------------------------------
 ;; Local Variables:
