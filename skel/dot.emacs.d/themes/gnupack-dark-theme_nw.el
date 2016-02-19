@@ -23,13 +23,14 @@
 
 ;;; Code:
 
+;; torutoru
 (deftheme gnupack-dark "gnupack dark color theme")
 
 (dolist (face '(cursor-ime-on cursor-ime-off))
   (unless (facep face) (make-face face)) )
 (let (
-      (red-pale      "#FFF2F2") (red-light     "#CC6666") (red-basic     "#A65353") (red-dark      "#663333") (red-deep      "#332B2B")
-      (orange-pale   "#FFF7F2") (orange-light  "#CC9166") (orange-basic  "#A67653") (orange-dark   "#664833") (orange-deep   "#332E2B")
+      (red-pale      "#FFF2F2") (red-light     "#CC6666") (red-basic     "#A65353") (red-dark      "#200000") (red-deep      "#332B2B")
+      (orange-pale   "#FFF7F2") (orange-light  "#600000") (orange-basic  "#A67653") (orange-dark   "#664833") (orange-deep   "#332E2B")
       (yellow-pale   "#FDFFF2") (yellow-light  "#BBCC66") (yellow-basic  "#98A653") (yellow-dark   "#5D6633") (yellow-deep   "#32332B")
       (green-pale    "#F2FFF2") (green-light   "#66CC66") (green-basic   "#53A653") (green-dark    "#336633") (green-deep    "#2B332B")
       (cyan-pale     "#F2FBFF") (cyan-light    "#66AACC") (cyan-basic    "#538AA6") (cyan-dark     "#335566") (cyan-deep     "#2B3033")
