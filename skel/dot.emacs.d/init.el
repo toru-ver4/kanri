@@ -59,63 +59,66 @@
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ key binding - keyboard                                        ;;;
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-
-;; Altキーを使用せずにMetaキーを使用（有効：t、無効：nil）
-(setq w32-alt-is-meta t)
+(if (equal system-type 'windows-nt)
+    ;; Altキーを使用せずにMetaキーを使用（有効：t、無効：nil）
+    (setq w32-alt-is-meta t))
 
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ language - input method                                       ;;;
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;; モードラインの表示文字列
-(setq-default w32-ime-mode-line-state-indicator "[Aa] ")
-(setq w32-ime-mode-line-state-indicator-list '("[Aa]" "[あ]" "[Aa]"))
-
-;; IME初期化
-(w32-ime-initialize)
-
-;; デフォルトIME
-(setq default-input-method "W32-IME")
-
-;; IME変更
-(global-set-key (kbd "C-\\") 'toggle-input-method)
-
-;; 漢字/変換キー入力時のエラーメッセージ抑止
-(global-set-key (kbd "<M-kanji>") 'ignore)
-(global-set-key (kbd "<kanji>") 'ignore)
-
+(cond ((equal system-type 'windows-nt)
+       ;; モードラインの表示文字列
+       (setq-default w32-ime-mode-line-state-indicator "[Aa] ")
+       (setq w32-ime-mode-line-state-indicator-list '("[Aa]" "[あ]" "[Aa]"))
+       
+       ;; IME初期化
+       (w32-ime-initialize)
+       
+       ;; デフォルトIME
+       (setq default-input-method "W32-IME")
+       
+       ;; IME変更
+       (global-set-key (kbd "C-\\") 'toggle-input-method)
+       
+       ;; 漢字/変換キー入力時のエラーメッセージ抑止
+       (global-set-key (kbd "<M-kanji>") 'ignore)
+       (global-set-key (kbd "<kanji>") 'ignore)
+       ))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ language - fontset                                            ;;;
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;; デフォルト フォント
-;; (set-face-attribute 'default nil :family "Migu 1M" :height 110)
-(set-face-font 'default "Migu 1M-11:antialias=standard")
+(cond ((equal system-type 'windows-nt)
+       ;; デフォルト フォント
+       ;; (set-face-attribute 'default nil :family "Migu 1M" :height 110)
+       (set-face-font 'default "Migu 1M-11:antialias=standard")
 
-;; プロポーショナル フォント
-;; (set-face-attribute 'variable-pitch nil :family "Migu 1M" :height 110)
-(set-face-font 'variable-pitch "Migu 1M-11:antialias=standard")
+       ;; プロポーショナル フォント
+       ;; (set-face-attribute 'variable-pitch nil :family "Migu 1M" :height 110)
+       (set-face-font 'variable-pitch "Migu 1M-11:antialias=standard")
 
-;; 等幅フォント
-;; (set-face-attribute 'fixed-pitch nil :family "Migu 1M" :height 110)
-(set-face-font 'fixed-pitch "Migu 1M-11:antialias=standard")
+       ;; 等幅フォント
+       ;; (set-face-attribute 'fixed-pitch nil :family "Migu 1M" :height 110)
+       (set-face-font 'fixed-pitch "Migu 1M-11:antialias=standard")
 
-;; ツールチップ表示フォント
-;; (set-face-attribute 'tooltip nil :family "Migu 1M" :height 90)
-(set-face-font 'tooltip "Migu 1M-9:antialias=standard")
+       ;; ツールチップ表示フォント
+       ;; (set-face-attribute 'tooltip nil :family "Migu 1M" :height 90)
+       (set-face-font 'tooltip "Migu 1M-9:antialias=standard")
 
 ;;; fontset
-
-;; フォントサイズ調整
-(global-set-key (kbd "C-<wheel-up>")   '(lambda() (interactive) (text-scale-increase 1)))
-(global-set-key (kbd "C-=")            '(lambda() (interactive) (text-scale-increase 1)))
-(global-set-key (kbd "C-<wheel-down>") '(lambda() (interactive) (text-scale-decrease 1)))
-(global-set-key (kbd "C--")            '(lambda() (interactive) (text-scale-decrease 1)))
-
-;; フォントサイズ リセット
-(global-set-key (kbd "M-0") '(lambda() (interactive) (text-scale-set 0)))
+       
+       ;; フォントサイズ調整
+       (global-set-key (kbd "C-<wheel-up>")   '(lambda() (interactive) (text-scale-increase 1)))
+       (global-set-key (kbd "C-=")            '(lambda() (interactive) (text-scale-increase 1)))
+       (global-set-key (kbd "C-<wheel-down>") '(lambda() (interactive) (text-scale-decrease 1)))
+       (global-set-key (kbd "C--")            '(lambda() (interactive) (text-scale-decrease 1)))
+       
+       ;; フォントサイズ リセット
+       (global-set-key (kbd "M-0") '(lambda() (interactive) (text-scale-set 0)))
+       ))
 
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
@@ -227,58 +230,61 @@
 ;;; @ screen - minibuffer                                           ;;;
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;; minibufferのアクティブ時、IMEを無効化
-(add-hook 'minibuffer-setup-hook
-          (lambda ()
-            (deactivate-input-method)))
-(wrap-function-to-control-ime 'y-or-n-p nil nil)
-(wrap-function-to-control-ime 'map-y-or-n-p nil nil)
-(wrap-function-to-control-ime 'read-char nil nil)
+(cond ((equal system-type 'windows-nt)
+       ;; minibufferのアクティブ時、IMEを無効化
+       (add-hook 'minibuffer-setup-hook
+		 (lambda ()
+		   (deactivate-input-method)))
+       (wrap-function-to-control-ime 'y-or-n-p nil nil)
+       (wrap-function-to-control-ime 'map-y-or-n-p nil nil)
+       (wrap-function-to-control-ime 'read-char nil nil)
+       ))
 
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ screen - cursor                                               ;;;
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;; カーソルの点滅（有効：1、無効：0）
-(blink-cursor-mode 0)
+(cond ((equal system-type 'windows-nt)
+       ;; カーソルの点滅（有効：1、無効：0）
+       (blink-cursor-mode 0)
+       
+       ;; 非アクティブウィンドウのカーソル表示（有効：t、無効：nil）
+       (setq-default cursor-in-non-selected-windows t)
+       
+       ;; IME無効／有効時のカーソルカラー定義
+       (unless (facep 'cursor-ime-off)
+	 (make-face 'cursor-ime-off)
+	 (set-face-attribute 'cursor-ime-off nil
+			     :background "DarkRed" :foreground "White")
+	 )
+       (unless (facep 'cursor-ime-on)
+	 (make-face 'cursor-ime-on)
+	 (set-face-attribute 'cursor-ime-on nil
+			     :background "DarkGreen" :foreground "White")
+	 )
+       
+       ;; IME無効／有効時のカーソルカラー設定
+       (advice-add 'ime-force-on
+		   :before (lambda (&rest args)
+			     (if (facep 'cursor-ime-on)
+				 (let ( (fg (face-attribute 'cursor-ime-on :foreground))
+					(bg (face-attribute 'cursor-ime-on :background)) )
+				   (set-face-attribute 'cursor nil :foreground fg :background bg) )
+			       )
+			     ))
+       (advice-add 'ime-force-off
+		   :before (lambda (&rest args)
+			     (if (facep 'cursor-ime-off)
+				 (let ( (fg (face-attribute 'cursor-ime-off :foreground))
+					(bg (face-attribute 'cursor-ime-off :background)) )
+				   (set-face-attribute 'cursor nil :foreground fg :background bg) )
+			       )
+			     ))
 
-;; 非アクティブウィンドウのカーソル表示（有効：t、無効：nil）
-(setq-default cursor-in-non-selected-windows t)
-
-;; IME無効／有効時のカーソルカラー定義
-(unless (facep 'cursor-ime-off)
-  (make-face 'cursor-ime-off)
-  (set-face-attribute 'cursor-ime-off nil
-                      :background "DarkRed" :foreground "White")
-  )
-(unless (facep 'cursor-ime-on)
-  (make-face 'cursor-ime-on)
-  (set-face-attribute 'cursor-ime-on nil
-                      :background "DarkGreen" :foreground "White")
-  )
-
-;; IME無効／有効時のカーソルカラー設定
-(advice-add 'ime-force-on
-            :before (lambda (&rest args)
-                      (if (facep 'cursor-ime-on)
-                          (let ( (fg (face-attribute 'cursor-ime-on :foreground))
-                                 (bg (face-attribute 'cursor-ime-on :background)) )
-                            (set-face-attribute 'cursor nil :foreground fg :background bg) )
-                        )
-                      ))
-(advice-add 'ime-force-off
-            :before (lambda (&rest args)
-                      (if (facep 'cursor-ime-off)
-                          (let ( (fg (face-attribute 'cursor-ime-off :foreground))
-                                 (bg (face-attribute 'cursor-ime-off :background)) )
-                            (set-face-attribute 'cursor nil :foreground fg :background bg) )
-                        )
-                      ))
-
-;; バッファ切り替え時の状態引継ぎ設定（有効：t、無効：nil）
-(setq w32-ime-buffer-switch-p t)
-
+       ;; バッファ切り替え時の状態引継ぎ設定（有効：t、無効：nil）
+       (setq w32-ime-buffer-switch-p t)
+       ))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ screen - linum                                                ;;;
@@ -352,7 +358,7 @@
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
 ;; 大文字・小文字を区別しないでサーチ（有効：t、無効：nil）
-(setq-default case-fold-search nil)
+(setq-default case-fold-search t)
 
 ;; インクリメント検索時に縦スクロールを有効化（有効：t、無効：nil）
 (setq isearch-allow-scroll nil)
@@ -392,10 +398,11 @@
 ;;; @ screen - hiwin                                                ;;;
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;;(require 'hiwin)
+(require 'hiwin)
 
+(set-face-background 'hiwin-face "gray23")
 ;; hiwin-modeを有効化
-;;(hiwin-activate)
+(hiwin-activate)
 
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
@@ -403,25 +410,25 @@
 ;;;   https://github.com/emacs-jp/migemo                            ;;;
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;; (require 'migemo)
+(require 'migemo)
 
-;; (defvar migemo-command nil)
-;; (setq migemo-command "cmigemo")
+(defvar migemo-command nil)
+(setq migemo-command "cmigemo")
 
-;; (defvar migemo-options nil)
-;; (setq migemo-options '("-q" "--emacs"))
+(defvar migemo-options nil)
+(setq migemo-options '("-q" "--emacs"))
 
-;; (defvar migemo-dictionary nil)
-;; (setq migemo-dictionary "/usr/local/share/migemo/utf-8/migemo-dict")
+(defvar migemo-dictionary nil)
+(setq migemo-dictionary "/usr/local/share/migemo/utf-8/migemo-dict")
 
-;; (defvar migemo-user-dictionary nil)
+(defvar migemo-user-dictionary nil)
 
-;; (defvar migemo-regex-dictionary nil)
+(defvar migemo-regex-dictionary nil)
 
-;; (defvar migemo-coding-system nil)
-;; (setq migemo-coding-system 'utf-8-unix)
+(defvar migemo-coding-system nil)
+(setq migemo-coding-system 'utf-8-unix)
 
-;; (load-library "migemo")
+(load-library "migemo")
 
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
@@ -492,7 +499,7 @@
 (setq redisplay-dont-pause t)
 
 ;; recenter-top-bottomのポジション
-(setq recenter-positions '(middle top bottom))
+(setq recenter-positions '(middle bottom top))
 
 ;; 横スクロール開始の残り列数
 (setq hscroll-margin 1)
@@ -543,83 +550,34 @@
 (setq shell-file-name "bash.exe")
 (modify-coding-system-alist 'process ".*sh\\.exe" 'utf-8)
 
-;; ------------------------------------------------------------------------
-;; @ package manager
-   (require 'package)
-   (add-to-list 'package-archives
-                '("melpa" . "http://melpa.milkbox.net/packages/") t)
-   (add-to-list 'package-archives
-                '("marmalade" . "http://marmalade-repo.org/packages/"))
-   (package-initialize)
 
-;; ------------------------------------------------------------------------
-;; @ install if not installed
-(require 'cl)
-(defvar my-package-list
-  '(auto-async-byte-compile
-    auto-complete
-    helm
-    helm-ag
-    helm-descbinds
-    helm-ls-git
-    init-loader
-    magit
-    open-junk-file
-    yasnippet
-    atom-dark-theme
-    neotree))
-(let ((not-installed
-       (loop for package in my-package-list
-             when (not (package-installed-p package))
-             collect package)))
-  (when not-installed
-    (package-refresh-contents)
-    (dolist (package not-installed)
-      (package-install package))))
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+;;; @ package manager                                               ;;;
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;; ------------------------------------------------------------------------
-;; @ w32-symlinks
-
-   ;; (custom-set-variables '(w32-symlinks-handle-shortcuts t))
-   ;; (require 'w32-symlinks)
-
-   ;; (defadvice insert-file-contents-literally
-   ;;   (before insert-file-contents-literally-before activate)
-   ;;   (set-buffer-multibyte nil))
-
-   ;; (defadvice minibuffer-complete (before expand-symlinks activate)
-   ;;   (let ((file (expand-file-name
-   ;;                (buffer-substring-no-properties
-   ;;                 (line-beginning-position) (line-end-position)))))
-   ;;     (when (file-symlink-p file)
-   ;;       (delete-region (line-beginning-position) (line-end-position))
-   ;;       (insert (w32-symlinks-parse-symlink file)))))
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(add-to-list 'package-archives
+             '("marmalade" . "http://marmalade-repo.org/packages/"))
+(package-initialize)
 
 
-;; ------------------------------------------------------------------------
-;; @ toru.yoshihara personal settings
-;; for windows
-(global-set-key [M-kanji] 'ignore)
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+;;; @ server                                                        ;;;
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;; OS if version
+;; emacs-server起動
+(require 'server)
+(defun server-ensure-safe-dir (dir) "Noop" t)
+(setq server-socket-dir "~/.emacs.d")
+(unless (server-running-p)
+  (server-start)
+)
 
-(cond
- ((string-match "linux" system-configuration)
-  )
- ((string-match "mingw" system-configuration)
-  ;; add path for find, grep, and xargs.
-;  (setenv "PATH" (format (expand-file-name "~/kanri/WindowsBinary/GnuWin32/bin") (getenv "PATH")))
-  (setenv "PATH" (format (expand-file-name "~/kanri/WindowsBinary/Git/bin") (getenv "PATH")))
-  )
- )
-
-;; change find-grep command.
-;;(setq grep-find-command '("find . -type f -print0 | xargs -0 -e grep -nH -e "))
-
-
-;;---------------------------------------------------------------------------------
-;; minimum settings
-;;---------------------------------------------------------------------------------
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
+;;; @ ty_minimal_settings                                           ;;;
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; set color current-line
 (global-hl-line-mode 1)
 ;; color settings
@@ -665,7 +623,7 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 ;;; disable toolbar and menubar
 (tool-bar-mode -1)
-;(scroll-bar-mode -1)
+(scroll-bar-mode -1)
 ;(scroll-bar-mode 'right)
 (menu-bar-mode -1)
 ;;; move window with hjkl
@@ -677,7 +635,7 @@
 (global-set-key "\M-n" 'next-error)
 (global-set-key "\M-p" 'previous-error)
 ;; enlarge-window
-(global-set-key "\C-T" 'enlarge-window)
+(global-set-key "\C-t" 'enlarge-window)
 ;; C++ style
 (add-hook 'c++-mode-hook
           '(lambda()
@@ -697,32 +655,64 @@
              ))
 ;; use clipboard
 (setq x-select-enable-clipboard t)
-;; enlarge window
-(global-set-key "\C-t"  'enlarge-window)
 ;; not gen backupfile
 (setq make-backup-files nil)
 
-;;---------------------------------------------------------------------------------
-;; minimum settings end
-;;---------------------------------------------------------------------------------
+;; ------------------------------------------------------------------------
+;; @ package manager
+;; ------------------------------------------------------------------------
+   (require 'package)
+   (add-to-list 'package-archives
+                '("melpa" . "http://melpa.milkbox.net/packages/") t)
+   (add-to-list 'package-archives
+                '("marmalade" . "http://marmalade-repo.org/packages/"))
+   (package-initialize)
 
-;;---------------------------------------------------------------------------------
-;; yasnippet
-;;---------------------------------------------------------------------------------
-(require 'yasnippet)
-(yas/global-mode 1)
+;; ------------------------------------------------------------------------
+;; @ install if not installed
+;; ------------------------------------------------------------------------
+(require 'cl)
+(defvar my-package-list
+  '(auto-async-byte-compile
+    auto-complete
+    helm
+    helm-ag
+    helm-descbinds
+    helm-ls-git
+    init-loader
+    magit
+    open-junk-file
+    yasnippet
+    atom-dark-theme
+    migemo))
+(let ((not-installed
+       (loop for package in my-package-list
+             when (not (package-installed-p package))
+             collect package)))
+  (when not-installed
+    (package-refresh-contents)
+    (dolist (package not-installed)
+      (package-install package))))
 
 ;;---------------------------------------------------------------------------------
 ;; color-theme
 ;;---------------------------------------------------------------------------------
-
 (setq custom-theme-directory "~/.emacs.d/themes/")
+(cond ((equal window-system 'nil)
+       (load-theme 'gnupack-dark-nw t)
+       )
+      (t
+	(load-theme 'gnupack-dark t)
+	))
 ;(load-theme 'atom-dark-nw t)
-(load-theme 'atom-dark t)
+;(load-theme 'atom-dark t)
 ;(load-theme 'misterioso t)
 ;(load-theme 'manoj-dark t)
 ;(load-theme 'manoj-dark_ore t)
-;(set-face-background 'hl-line "color-59")
+
+(cond ((equal window-system 'nil)
+       (set-face-background 'hl-line "color-236")
+       ))
 
 ;(custom-set-faces
 ; '(default ((t (:background "#000000")))))
@@ -751,7 +741,10 @@
 ;; magit
 ;;---------------------------------------------------------------------------------
 (require 'magit)
-
+(global-set-key "\C-M" 'magit-status)
+(add-hook 'magit-mode-hook
+          (lambda ()
+            (local-set-key [(E)] 'magit-ediff)))
 
 ;;---------------------------------------------------------------------------------
 ;; helm (basic)
@@ -782,6 +775,7 @@
         do (global-set-key key func)))
 (trace-function-background 'helm-mp-highlight-region) ;; bug fix??? http://www49.atwiki.jp/ntemacs/m/pages/32.html 
 (setq helm-buffer-max-length 40)
+
 ;;---------------------------------------------------------------------------------
 ;; helm-gtags
 ;;---------------------------------------------------------------------------------
@@ -797,7 +791,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
-; '(helm-gtags-auto-update t)
+ ;'(helm-gtags-auto-update t)
  '(helm-gtags-ignore-case t)
  '(helm-gtags-path-style (quote relative)))
 
@@ -814,7 +808,6 @@
      (define-key helm-gtags-mode-map (kbd "C-c >") 'helm-gtags-next-history)
      (define-key helm-gtags-mode-map (kbd "M-,") 'helm-gtags-pop-stack)))
 
-
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -828,3 +821,9 @@
 (setq default-file-name-coding-system 'utf-8)
 (setq svn-status-svn-file-coding-system 'utf-8)
 
+;; Local Variables:
+;; coding: utf-8
+;; mode: emacs-lisp
+;; End:
+
+;;; ends here

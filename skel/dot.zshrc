@@ -78,6 +78,11 @@ zle -N history-beginning-search-forward-end history-search-end
 bindkey "^P" history-beginning-search-backward-end
 bindkey "^N" history-beginning-search-forward-end 
 
+if [ -f "$HOME/local/bin/screen" ] ; then
+   export SCREEN_BIN="$HOME/local/bin/screen"
+else
+   export SCREEN_BIN="screen"
+fi
 # basic alias
 setopt complete_aliases # aliased ls needs if file/dir completions work
 alias lh='ls -lh'	# size
@@ -90,8 +95,8 @@ alias nnn='emacs -nw'
 alias cp='cp -i'
 alias mv='mv -i'
 alias xxx='chmod +x'
-alias screen="$HOME/local/bin/screen -D -RR"	# 
-alias ssp="screen -X eval split 'select 1' focus 'select 2'"
+alias screen="$SCREEN_BIN -D -RR"
+alias ssp="$SCREEN_BIN -X eval split 'select 1' focus 'select 2'"
 
 # fron ~kota/.cshrc
 alias h='history -r 30 | cut -f 3 | cat -n'	
