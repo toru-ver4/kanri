@@ -657,6 +657,8 @@
 (setq x-select-enable-clipboard t)
 ;; not gen backupfile
 (setq make-backup-files nil)
+;; ignore M-kanji key
+(global-set-key [M-kanji] 'ignore)
 
 ;; ------------------------------------------------------------------------
 ;; @ package manager
@@ -716,6 +718,7 @@
 
 ;(custom-set-faces
 ; '(default ((t (:background "#000000")))))
+
 
 ;;---------------------------------------------------------------------------------
 ;; auto-complete
