@@ -623,8 +623,8 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 ;;; disable toolbar and menubar
 (tool-bar-mode -1)
-;(scroll-bar-mode -1)
-(scroll-bar-mode 'right)
+(scroll-bar-mode -1)
+;(scroll-bar-mode 'right)
 (menu-bar-mode -1)
 ;;; move window with hjkl
 (global-set-key "\M-h" 'windmove-left)
