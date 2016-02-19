@@ -400,7 +400,7 @@
 
 (require 'hiwin)
 
-(setq hiwin-deactive-color "brightblack")
+(set-face-background 'hiwin-face "gray23")
 ;; hiwin-modeを有効化
 (hiwin-activate)
 
@@ -704,7 +704,10 @@
 ;(load-theme 'misterioso t)
 ;(load-theme 'manoj-dark t)
 ;(load-theme 'manoj-dark_ore t)
-;(set-face-background 'hl-line "color-59")
+
+(cond ((equal window-system 'nil)
+       (set-face-background 'hl-line "#000060")
+       ))
 
 ;(custom-set-faces
 ; '(default ((t (:background "#000000")))))

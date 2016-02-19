@@ -45,7 +45,7 @@
   (custom-theme-set-faces
    'gnupack-dark
 
-   `(default     ((t (:foreground ,gray-80 :background ,gray-15)))) 
+   `(default     ((t (:foreground ,gray-80 :background ,gray-05)))) 
    `(bold        ((t (:bold t   :italic nil :underline nil ))))
    `(bold-italic ((t (:bold t   :italic t   :underline nil ))))
    `(italic      ((t (:bold nil :italic t   :underline nil ))))
