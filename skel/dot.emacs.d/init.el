@@ -741,6 +741,7 @@
 ;; magit
 ;;---------------------------------------------------------------------------------
 (require 'magit)
+(global-set-key "\C-M" 'magit-status)
 (add-hook 'magit-mode-hook
           (lambda ()
             (local-set-key [(E)] 'magit-ediff)))
