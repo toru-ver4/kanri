@@ -706,7 +706,7 @@
 ;(load-theme 'manoj-dark_ore t)
 
 (cond ((equal window-system 'nil)
-       (set-face-background 'hl-line "#000060")
+       (set-face-background 'hl-line "color-236")
        ))
 
 ;(custom-set-faces
@@ -736,7 +736,9 @@
 ;; magit
 ;;---------------------------------------------------------------------------------
 (require 'magit)
-
+(add-hook 'magit-mode-hook
+          (lambda ()
+            (local-set-key [(E)] 'magit-ediff)))
 
 ;;---------------------------------------------------------------------------------
 ;; helm (basic)
