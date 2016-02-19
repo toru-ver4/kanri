@@ -1,38 +1,59 @@
+mod windows -= RightWindows
+mod alt += RightWindows
+
+# キーリピート速度の設定
+#def option KeyboardDelay = enable 125 20
+
+# HHKProのように十字キーを使わずに↑↓←→を移動
+mod mod0 += RShift		# RightShiftをモディファイアキーとして設定
+#　↑←↓→をバインド。試行錯誤的に行なったため、随分と汚い。
+key S-M0-LeftSquareBracket = Up
+key M0-Colon = Left
+key S-M0-Solidus = Down
+key M0-*_2 = Right
 
 # 以下は，default.nokokaよりコピー＆バインド変更したもの ---------------------
 #key C-S-M	= Applications		# アプリケーションキー
 key C-S-F10	= &WindowMaximize	# ウィンドウの最小化
 key C-S-F9	= &WindowVMaximize	# ウィンドウの縦最大化
 
-key S-A-H	= &MouseMove(-16, 0)	# マウスの移動
-key S-A-L	= &MouseMove(16, 0)	#	〃
-key S-A-K	= &MouseMove(0, -16)	#	〃
-key S-A-J	= &MouseMove(0, 16)	#	〃
-key S-A-Y	= &MouseMove(-1, 0)	#	〃
-key S-A-O	= &MouseMove(1, 0)	#	〃
-key S-A-I	= &MouseMove(0, -1)	#	〃
-key S-A-U	= &MouseMove(0, 1)	#	〃
+#key S-A-H	= &MouseMove(-16, 0)	# マウスの移動
+#key S-A-L	= &MouseMove(16, 0)	#	〃
+#key S-A-K	= &MouseMove(0, -16)	#	〃
+#key S-A-J	= &MouseMove(0, 16)	#	〃
+#key S-A-Y	= &MouseMove(-1, 0)	#	〃
+#key S-A-O	= &MouseMove(1, 0)	#	〃
+#key S-A-I	= &MouseMove(0, -1)	#	〃
+#key S-A-U	= &MouseMove(0, 1)	#	〃
 
-key S-A-Y		= &WindowClingToLeft	# ウィンドウを左に寄せる
-key S-A-O		= &WindowClingToRight	# ウィンドウを右に寄せる
-key S-A-I		= &WindowClingToTop	# ウィンドウを上に寄せる
-key S-A-U		= &WindowClingToBottom	# ウィンドウを下に寄せる
+key S-A-H		= &WindowClingToLeft	# ウィンドウを左に寄せる
+key S-A-L		= &WindowClingToRight	# ウィンドウを右に寄せる
+key S-A-K		= &WindowClingToTop	# ウィンドウを上に寄せる
+key S-A-J		= &WindowClingToBottom	# ウィンドウを下に寄せる
 
 key C-S-*E	= A-F4		# ウィンドウを閉じる
 
+key C-S-F8	= &WindowVMaximize &Sync &WindowHMaximize &Sync &WindowResizeMoveToPer(50, 100, NW, 0, 0)
 key C-S-F12	= &WindowVMaximize &Sync &WindowHMaximize &Sync &WindowResizeMoveToPer(73, 100, NW, 0, 0)
 #-------------------------------------------------------------------------------
 
-# 仮想デスクトップソフトの制御
-# key C-S-H	= S-A-C-W-Left 
-# key C-S-J	= S-A-C-W-Down
-# key C-S-K	= S-A-C-W-Up
-# key C-S-L	= S-A-C-W-Right
+# デュアルディスプレイ環境下でディスプレイ間移動 -------------------------------
+key S-A-Y	= &WindowMoveTo(C, -1920, 0) &Sync &WindowClingToRight
+#key C-S-U	= &WindowSetAlpha(85)
+#key C-S-I	= 
+key S-A-O	= &WindowMoveTo(C, 1920, 0) &Sync &WindowClingToLeft
+#-------------------------------------------------------------------------------
 
-# key C-S-Y	= A-C-W-Left &Sync S-A-C-W-Left 
-# key C-S-U	= A-C-W-Down &Sync S-A-C-W-Down
-# key C-S-I	= A-C-W-Up &Sync S-A-C-W-Up
-# key C-S-O	= A-C-W-Right &Sync S-A-C-W-Right
+# 仮想デスクトップソフトの制御
+#key C-S-H	= S-A-C-W-Left 
+#key C-S-J	= S-A-C-W-Down
+#key C-S-K	= S-A-C-W-Up
+#key C-S-L	= S-A-C-W-Right
+
+#key C-S-Y	= A-C-W-Left &Sync S-A-C-W-Left 
+#key C-S-U	= A-C-W-Down &Sync S-A-C-W-Down
+#key C-S-I	= A-C-W-Up &Sync S-A-C-W-Up
+#key C-S-O	= A-C-W-Right &Sync S-A-C-W-Right
 #-------------------------------------------------------------------------------
 
 # Orchis Launcherの設定
@@ -48,29 +69,83 @@ window orchis /orchis\.exe/ : Global
  key S-L	= l
 
 window virtualbox /VirtualBox\.exe/ : Global
- key C-S-H = C-S-H
- key C-S-J = C-S-J
- key C-S-K = C-S-K
- key C-S-L = C-S-L
+ #key C-S-H = C-S-H
+ #key C-S-J = C-S-J
+ #key C-S-K = C-S-K
+ #key C-S-L = C-S-L
 
- key C-S-Y = C-S-Y
- key C-S-U = C-S-U
- key C-S-I = C-S-I
- key C-S-O = C-S-O
+ #key C-S-Y = C-S-Y
+ #key C-S-U = C-S-U
+ #key C-S-I = C-S-I
+ #key C-S-O = C-S-O
 
- key S-A-Y = S-A-Y
- key S-A-O = S-A-O
- key S-A-I = S-A-I
- key S-A-U = S-A-U
+ #key S-A-Y = S-A-Y
+ #key S-A-O = S-A-O
+ #key S-A-I = S-A-I
+ #key S-A-U = S-A-U
 
 # Emacsバインド使用の有無
 keymap	KeymapDefault = &Default	# これはどこに書けばよいかわからんかった．
 include	"emacsedit.nodoka.custom"
 
+keymap2	GeneralC-X : EmacsC-X
+ key C-S		= C-S			# 上書き保存(S)
+ key C-W		= LAlt F A		# 名前を付けて保存(A)...
+ key C-F		= C-O			# 開く(O)...
+ key C-C		= LAlt F X		# 終了(X)
+ key _2			= LAlt W Z		# 上下に分割
+ key _3			= LAlt W T		# 左右に分割
+# key C-C		= A-Q			# 終了(X)
+# key C-C		= $WindowClose		# 終了(X)
+
+keymap2	peggyC-X : GeneralC-X
+ event prefixed		= &HelpMessage("メモ帳 C-x-", \
+	"C-x C-s\t上書き保存\r\n"	\
+	"C-x C-f\t開く\t\r\n"		\
+	"C-x k\t\t新規作成\r\n"		\
+	"C-x C-c\t終了")
+ event before-key-down	= &HelpMessage
+ key C-S		= A-F &Sync S # 上書き保存(S)
+ 
+window	peggy /peggypro\.exe/ : EmacsEditCustom
+ if ( !ZXCV ) key C-X	= &Prefix(peggyC-X)
+ key F12 = F12
+
+
 # 以下のようにして設定．
 #window word /WINWORD\.EXE/ : EmacsMove	# 本家？の用意した由緒正しき設定ファイル
 #window word /WINWORD\.EXE/ : EmacsMoveRestricted	# 適当に機能を絞った．
+window matlab /MATLAB\.EXE/ : EmacsEditCustom
+window pnn /_PN\.EXE/ : EmacsEditCustom
+window word /WINWORD\.EXE/ : EmacsEditCustom
+window ccs /ccstudio\.exe/ : EmacsEditCustom
+window ccs /ccstudio\.exe/ : EmacsEditCustom
+ if ( !ZXCV ) key C-X	= &Prefix(peggyC-X)
+
+
+#window peggy /peggypro\.exe/ : EmacsEditCustom
 #window word /WINWORD\.EXE/ : EmacsEditCustom		# テスト用に無理やり作った．
 #window twitdeck /TweetDeck.exe/ : EmacsEdit
-window qtcreator /qtcreator.exe/ : EmacsEdit
 
+ key A-半角/全角		= $ToggleIME
+
+# peggy用にさらなるカスタマイズ
+window peggy /peggypro\.exe/ : Global
+ key A-Solidus = C-Space
+ key A-K       = F6 &Sync F6
+ key A-J       = F6 &Sync F6
+ Key C-A-Tab   = C-A-Tab
+ Key C-S-A-Tab = C-S-A-Tab
+
+window ccs /ccstudio\.exe/ : Global
+ key C-l       = C-A-l
+ key A-Slash   = C-Space
+ key C-S-S     = C-H
+ key C-S-M0-B   = A-Left
+ key C-S-M0-F   = A-Right
+ key C-S-P		= A-S-Q &Sync S &Sync C-Comma  & Sync Enter
+ key C-S-N		= A-S-Q &Sync S &Sync C-Period & Sync Enter
+ key C-S-M0-R	= C-S-R &Sync NumAsterisk
+ 
+window excel /EXCEL\.exe/ : Global
+ key C-R		   = C-V &Wait(50) C-C &Wait(50) Down &Wait(10) Down &Wait(10) Down &Wait(10) Down &Wait(10) Down &Wait(10) Down &Wait(10) Down &Wait(10) Down &Wait(10) Down &Wait(10) Down &Wait(10) Down &Wait(10) Down &Wait(10) Down &Wait(10) Down &Wait(10) Down &Wait(10) Down &Wait(10) Down &Wait(10)
