@@ -59,63 +59,66 @@
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ key binding - keyboard                                        ;;;
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-
-;; Altキーを使用せずにMetaキーを使用（有効：t、無効：nil）
-(setq w32-alt-is-meta t)
+(if (equal system-type 'windows-nt)
+    ;; Altキーを使用せずにMetaキーを使用（有効：t、無効：nil）
+    (setq w32-alt-is-meta t))
 
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ language - input method                                       ;;;
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;; モードラインの表示文字列
-(setq-default w32-ime-mode-line-state-indicator "[Aa] ")
-(setq w32-ime-mode-line-state-indicator-list '("[Aa]" "[あ]" "[Aa]"))
-
-;; IME初期化
-(w32-ime-initialize)
-
-;; デフォルトIME
-(setq default-input-method "W32-IME")
-
-;; IME変更
-(global-set-key (kbd "C-\\") 'toggle-input-method)
-
-;; 漢字/変換キー入力時のエラーメッセージ抑止
-(global-set-key (kbd "<M-kanji>") 'ignore)
-(global-set-key (kbd "<kanji>") 'ignore)
-
+(cond ((equal system-type 'windows-nt)
+       ;; モードラインの表示文字列
+       (setq-default w32-ime-mode-line-state-indicator "[Aa] ")
+       (setq w32-ime-mode-line-state-indicator-list '("[Aa]" "[あ]" "[Aa]"))
+       
+       ;; IME初期化
+       (w32-ime-initialize)
+       
+       ;; デフォルトIME
+       (setq default-input-method "W32-IME")
+       
+       ;; IME変更
+       (global-set-key (kbd "C-\\") 'toggle-input-method)
+       
+       ;; 漢字/変換キー入力時のエラーメッセージ抑止
+       (global-set-key (kbd "<M-kanji>") 'ignore)
+       (global-set-key (kbd "<kanji>") 'ignore)
+       ))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ language - fontset                                            ;;;
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;; デフォルト フォント
-;; (set-face-attribute 'default nil :family "Migu 1M" :height 110)
-(set-face-font 'default "Migu 1M-11:antialias=standard")
+(cond ((equal system-type 'windows-nt)
+       ;; デフォルト フォント
+       ;; (set-face-attribute 'default nil :family "Migu 1M" :height 110)
+       (set-face-font 'default "Migu 1M-11:antialias=standard")
 
-;; プロポーショナル フォント
-;; (set-face-attribute 'variable-pitch nil :family "Migu 1M" :height 110)
-(set-face-font 'variable-pitch "Migu 1M-11:antialias=standard")
+       ;; プロポーショナル フォント
+       ;; (set-face-attribute 'variable-pitch nil :family "Migu 1M" :height 110)
+       (set-face-font 'variable-pitch "Migu 1M-11:antialias=standard")
 
-;; 等幅フォント
-;; (set-face-attribute 'fixed-pitch nil :family "Migu 1M" :height 110)
-(set-face-font 'fixed-pitch "Migu 1M-11:antialias=standard")
+       ;; 等幅フォント
+       ;; (set-face-attribute 'fixed-pitch nil :family "Migu 1M" :height 110)
+       (set-face-font 'fixed-pitch "Migu 1M-11:antialias=standard")
 
-;; ツールチップ表示フォント
-;; (set-face-attribute 'tooltip nil :family "Migu 1M" :height 90)
-(set-face-font 'tooltip "Migu 1M-9:antialias=standard")
+       ;; ツールチップ表示フォント
+       ;; (set-face-attribute 'tooltip nil :family "Migu 1M" :height 90)
+       (set-face-font 'tooltip "Migu 1M-9:antialias=standard")
 
 ;;; fontset
-
-;; フォントサイズ調整
-(global-set-key (kbd "C-<wheel-up>")   '(lambda() (interactive) (text-scale-increase 1)))
-(global-set-key (kbd "C-=")            '(lambda() (interactive) (text-scale-increase 1)))
-(global-set-key (kbd "C-<wheel-down>") '(lambda() (interactive) (text-scale-decrease 1)))
-(global-set-key (kbd "C--")            '(lambda() (interactive) (text-scale-decrease 1)))
-
-;; フォントサイズ リセット
-(global-set-key (kbd "M-0") '(lambda() (interactive) (text-scale-set 0)))
+       
+       ;; フォントサイズ調整
+       (global-set-key (kbd "C-<wheel-up>")   '(lambda() (interactive) (text-scale-increase 1)))
+       (global-set-key (kbd "C-=")            '(lambda() (interactive) (text-scale-increase 1)))
+       (global-set-key (kbd "C-<wheel-down>") '(lambda() (interactive) (text-scale-decrease 1)))
+       (global-set-key (kbd "C--")            '(lambda() (interactive) (text-scale-decrease 1)))
+       
+       ;; フォントサイズ リセット
+       (global-set-key (kbd "M-0") '(lambda() (interactive) (text-scale-set 0)))
+       ))
 
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
@@ -227,58 +230,61 @@
 ;;; @ screen - minibuffer                                           ;;;
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;; minibufferのアクティブ時、IMEを無効化
-(add-hook 'minibuffer-setup-hook
-          (lambda ()
-            (deactivate-input-method)))
-(wrap-function-to-control-ime 'y-or-n-p nil nil)
-(wrap-function-to-control-ime 'map-y-or-n-p nil nil)
-(wrap-function-to-control-ime 'read-char nil nil)
+(cond ((equal system-type 'windows-nt)
+       ;; minibufferのアクティブ時、IMEを無効化
+       (add-hook 'minibuffer-setup-hook
+		 (lambda ()
+		   (deactivate-input-method)))
+       (wrap-function-to-control-ime 'y-or-n-p nil nil)
+       (wrap-function-to-control-ime 'map-y-or-n-p nil nil)
+       (wrap-function-to-control-ime 'read-char nil nil)
+       ))
 
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ screen - cursor                                               ;;;
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-;; カーソルの点滅（有効：1、無効：0）
-(blink-cursor-mode 0)
+(cond ((equal system-type 'windows-nt)
+       ;; カーソルの点滅（有効：1、無効：0）
+       (blink-cursor-mode 0)
+       
+       ;; 非アクティブウィンドウのカーソル表示（有効：t、無効：nil）
+       (setq-default cursor-in-non-selected-windows t)
+       
+       ;; IME無効／有効時のカーソルカラー定義
+       (unless (facep 'cursor-ime-off)
+	 (make-face 'cursor-ime-off)
+	 (set-face-attribute 'cursor-ime-off nil
+			     :background "DarkRed" :foreground "White")
+	 )
+       (unless (facep 'cursor-ime-on)
+	 (make-face 'cursor-ime-on)
+	 (set-face-attribute 'cursor-ime-on nil
+			     :background "DarkGreen" :foreground "White")
+	 )
+       
+       ;; IME無効／有効時のカーソルカラー設定
+       (advice-add 'ime-force-on
+		   :before (lambda (&rest args)
+			     (if (facep 'cursor-ime-on)
+				 (let ( (fg (face-attribute 'cursor-ime-on :foreground))
+					(bg (face-attribute 'cursor-ime-on :background)) )
+				   (set-face-attribute 'cursor nil :foreground fg :background bg) )
+			       )
+			     ))
+       (advice-add 'ime-force-off
+		   :before (lambda (&rest args)
+			     (if (facep 'cursor-ime-off)
+				 (let ( (fg (face-attribute 'cursor-ime-off :foreground))
+					(bg (face-attribute 'cursor-ime-off :background)) )
+				   (set-face-attribute 'cursor nil :foreground fg :background bg) )
+			       )
+			     ))
 
-;; 非アクティブウィンドウのカーソル表示（有効：t、無効：nil）
-(setq-default cursor-in-non-selected-windows t)
-
-;; IME無効／有効時のカーソルカラー定義
-(unless (facep 'cursor-ime-off)
-  (make-face 'cursor-ime-off)
-  (set-face-attribute 'cursor-ime-off nil
-                      :background "DarkRed" :foreground "White")
-  )
-(unless (facep 'cursor-ime-on)
-  (make-face 'cursor-ime-on)
-  (set-face-attribute 'cursor-ime-on nil
-                      :background "DarkGreen" :foreground "White")
-  )
-
-;; IME無効／有効時のカーソルカラー設定
-(advice-add 'ime-force-on
-            :before (lambda (&rest args)
-                      (if (facep 'cursor-ime-on)
-                          (let ( (fg (face-attribute 'cursor-ime-on :foreground))
-                                 (bg (face-attribute 'cursor-ime-on :background)) )
-                            (set-face-attribute 'cursor nil :foreground fg :background bg) )
-                        )
-                      ))
-(advice-add 'ime-force-off
-            :before (lambda (&rest args)
-                      (if (facep 'cursor-ime-off)
-                          (let ( (fg (face-attribute 'cursor-ime-off :foreground))
-                                 (bg (face-attribute 'cursor-ime-off :background)) )
-                            (set-face-attribute 'cursor nil :foreground fg :background bg) )
-                        )
-                      ))
-
-;; バッファ切り替え時の状態引継ぎ設定（有効：t、無効：nil）
-(setq w32-ime-buffer-switch-p t)
-
+       ;; バッファ切り替え時の状態引継ぎ設定（有効：t、無効：nil）
+       (setq w32-ime-buffer-switch-p t)
+       ))
 
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ screen - linum                                                ;;;
@@ -352,7 +358,7 @@
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
 ;; 大文字・小文字を区別しないでサーチ（有効：t、無効：nil）
-(setq-default case-fold-search nil)
+(setq-default case-fold-search t)
 
 ;; インクリメント検索時に縦スクロールを有効化（有効：t、無効：nil）
 (setq isearch-allow-scroll nil)
@@ -394,6 +400,7 @@
 
 (require 'hiwin)
 
+(setq hiwin-deactive-color "brightblack")
 ;; hiwin-modeを有効化
 (hiwin-activate)
 
@@ -677,7 +684,7 @@
     open-junk-file
     yasnippet
     atom-dark-theme
-    neotree))
+    migemo))
 (let ((not-installed
        (loop for package in my-package-list
              when (not (package-installed-p package))
@@ -773,7 +780,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
-; '(helm-gtags-auto-update t)
+ ;'(helm-gtags-auto-update t)
  '(helm-gtags-ignore-case t)
  '(helm-gtags-path-style (quote relative)))
 
