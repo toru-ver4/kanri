@@ -41,3 +41,17 @@ skel/dot.emacs.d/elpa/archives/melpa/archive-contents
 skel/dot.emacs.d/elpa/gnupg/pubring.gpg
 skel/dot.emacs.d/elpa/gnupg/secring.gpg
 skel/dot.emacs.d/elpa/gnupg/trustdb.gpg
+skel/dot.emacs.d/elpa/atom-dark-theme-20151119.2335/atom-dark-theme.el
+skel/dot.emacs.d/elpa/atom-dark-theme-20151119.2335/atom-dark-theme-autoloads.el
+skel/dot.emacs.d/elpa/atom-dark-theme-20151119.2335/atom-dark-theme-pkg.el
+skel/dot.emacs.d/elpa/migemo-20150412.741/migemo-autoloads.el
+skel/dot.emacs.d/elpa/migemo-20150412.741/migemo-pkg.el
+skel/dot.emacs.d/elpa/migemo-20150412.741/migemo.el
+skel/dot.emacs.d/elpa/neotree-20151101.607/icons/close.xpm
+skel/dot.emacs.d/elpa/neotree-20151101.607/icons/leaf.xpm
+skel/dot.emacs.d/elpa/neotree-20151101.607/icons/open.xpm
+skel/dot.emacs.d/elpa/neotree-20151101.607/neotree-autoloads.el
+skel/dot.emacs.d/elpa/neotree-20151101.607/neotree-pkg.el
+skel/dot.emacs.d/elpa/neotree-20151101.607/neotree.el
+emacs.exe.stackdump
+skel/dot.emacs.d/server
