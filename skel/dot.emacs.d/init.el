@@ -400,7 +400,11 @@
 
 (require 'hiwin)
 
-(set-face-background 'hiwin-face "gray23")
+(cond ((equal window-system 'nil)
+       (set-face-background 'hiwin-face "gray23"))
+      (t
+       (set-face-background 'hiwin-face "gray15"))
+      )
 ;; hiwin-modeを有効化
 (hiwin-activate)
 
@@ -721,6 +725,13 @@
 
 
 ;;---------------------------------------------------------------------------------
+;; auto-insert
+;;---------------------------------------------------------------------------------
+(auto-insert-mode)
+(setq auto-insert-directory "~/.emacs.d/template/")
+(define-auto-insert "\\.py$" "pyton-template.py")
+
+;;---------------------------------------------------------------------------------
 ;; auto-complete
 ;;---------------------------------------------------------------------------------
 (require 'auto-complete)
@@ -765,8 +776,8 @@
          (,(kbd "C-^")   helm-c-apropos)
 ;         (,(kbd "C-;")   helm-resume)
 	 (,(kbd "M-.")   helm-resume)
-         (,(kbd "M-s s")   helm-occur)
-	 (,(kbd "M-s g")   helm-ag)
+         (,(kbd "C-:")   helm-occur)
+	 (,(kbd "C-;")   helm-ag)
          (,(kbd "M-x")   helm-M-x)
          (,(kbd "M-y")   helm-show-kill-ring)
          (,(kbd "M-z")   helm-do-grep)
