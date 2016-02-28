@@ -96,23 +96,39 @@ TSファイルはそのままだとファイルサイズが大きいので、H26
 暫定のエンコードパラメータは以下の通り。
 
 ```
-> ffmpeg -i ..\orufenzu.ts -f mp4 -c:v libx264 -preset slow -crf 23 -vf yadif,decimate -tune animation -r 24000/1001 -s 1920x1080 -ac 2 -c:a ac3 -b:a 128k orufenzu_slow.mp4
+> ffmpeg -i input.ts -f mp4 -c:v libx264 -preset veryslow -crf 24 -vf dejudder,fps=30000/1001,fieldmatch,yadif,decimate,hqdn3d,unsharp=la=0.5 -tune animation -r 24000/1001 -s 1920x1080 -ac 2 -c:a ac3 -b:a 128k out.mp4
 ```
-
-### 現状の問題点
-yadifフィルタを使ってインターレース解除すると、斜め線に縞模様が出来てしまう…。
-ニューラルネットを使うインターレース解除フィルタの **nnedi** を使うとマシになるが、
-nnedi はエンコード時間がクソ長いので実用的ではない。
-
-| ソース | インターレース解除後 |
-|:-----:|:---:|
-| ![ソース](./figure/org.png) | ![インターレース解除後](./figure/yadif.png) |
 
 | パラメータ | 役割                     | 備考                            |
 |:---------------|:-------------------------|:--------------------------------|
-| preset | エンコード速度とファイルサイズのバランスを決めるパラメータ。今回の設定では画質とは無関係。 | 固定ビットレートの場合は画質と関係あり |
+| preset | エンコード速度とファイルサイズのバランスを決める<br>パラメータ。今回の設定では画質とは無関係。 | 固定ビットレートの場合は画質と関係あり |
+| fieldmatch | 逆テレシネ変換が出来るように、<br>フィールドの並べ替えを行うフィルタ | - |
 | yadif | デインターレースするフィルタ | 昔は --deinterlace だったらしい |
-| decimate | 逆テレシネ変換するフィルタ | TV放送でアニメのような 24fps のコンテンツを扱う際は、テレシネ変換をして無理やり 30fps に押し込んでる。それの逆変換。|
+| decimate | 重複フレームを削除するフィルタ | - |
+| hqdn3d | ノイズ除去フィルタ | 地デジ特有の粒子状ノイズを軽減する |
+| unsharp | 画像先鋭化 | エンコードするとボケた感じになるので… |
+
+
+### テレシネ変換の補足
+```
+# Original 24fps source
+  Frame:          1 2 3 4     <-- 24p
+
+# TV 
+  Top fields:     1 2 2 3 4   <-- 60i
+  Bottom fields:  1 2 3 4 4   <-- 60i
+
+# Apply the "fieldmatch" filter
+  Top fields:     1 2 2 3 4   <-- 60i
+  Bottom fields:  1 2 2 3 4   <-- 60i
+
+# Apply the "yadif" filter =
+  Frame:          1 2 2 3 4   <-- 30p
+
+# Apply the "decimate" filter =
+  Frame:          1 2 3 4     <-- 24p
+
+```
 
 # ffmpeg の build
 CPUでエンコードすると時間がかかって仕方ないので、H/W Encoder を導入する。
