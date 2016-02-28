@@ -96,7 +96,7 @@ TSファイルはそのままだとファイルサイズが大きいので、H26
 暫定のエンコードパラメータは以下の通り。
 
 ```
-> ffmpeg -i input.ts -f mp4 -c:v libx264 -preset veryslow -crf 24 -vf dejudder,fps=30000/1001,fieldmatch,yadif,decimate,hqdn3d,unsharp=la=0.5 -tune animation -r 24000/1001 -s 1920x1080 -ac 2 -c:a ac3 -b:a 128k out.mp4
+> ffmpeg -i input.ts -f mp4 -c:v libx264 -preset veryslow -crf 24 -vf dejudder,fps=30000/1001,fieldmatch,yadif,decimate,hqdn3d,unsharp=la=0.3 -tune animation -r 24000/1001 -s 1920x1080 -ac 2 -c:a ac3 -b:a 128k out.mp4
 ```
 
 | パラメータ | 役割                     | 備考                            |
