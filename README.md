@@ -49,4 +49,28 @@ How to Transform.
 > pandoc input.md -s --self-contained -c Github.css -o out.html
 ```
 
+## Jupyter
 
+### Install
+
+```bat:
+pip install jupyter
+```
+
+### Initial Settings
+
+make the config file.
+
+```bat:
+> jupyter notebook --generate-config
+```
+
+edit the config file($HOME/.jupyter/jupyter_notebook_config.py).<br>
+change **c.FileContentsManager.root_dir** parameters.
+
+```python:jupyter_notebook_config.py
+c.FileContentsManager.root_dir = 'C:\home'
+```
+
+### add patch
+https://github.com/jupyter/nbconvert/commit/14f542b76738cd3231b7fddadbf04cbc1ebbad17
