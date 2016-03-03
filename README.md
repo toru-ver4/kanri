@@ -54,8 +54,8 @@ How to Transform.
 ### Install
 
 ```bat:
-pip install jupyter
-```
+> pip install jupyter
+``` 
 
 ### Initial Settings
 
@@ -72,5 +72,12 @@ change **c.FileContentsManager.root_dir** parameters.
 c.FileContentsManager.root_dir = 'C:\home'
 ```
 
-### add patch
-https://github.com/jupyter/nbconvert/commit/14f542b76738cd3231b7fddadbf04cbc1ebbad17
+### convert from the jupyter file to the pdf.
+
+0. install LuaTeX see [THIS PAGE](https://texwiki.texjp.org/?TeX%20Live).
+1. first, save as .md file using Jupyter UI.
+2. second, convert from .md to .pdf using pandoc. Commands to be used are as follows.
+
+```bat:
+pandoc test.md --latex-engine=lualatex -o test.pdf
+```
