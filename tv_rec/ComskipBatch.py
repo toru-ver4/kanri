@@ -72,7 +72,7 @@ if __name__ == '__main__':
     command_list = ffmpeg_path + " -i " + ts_file_name
     p = subprocess.Popen(command_list.split(" "), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     outs, errs = p.communicate()
-    errs_str = errs.decode('utf-8')
+    errs_str = str(errs)
     re_obj = const_re_duration_pattern.search(errs_str)
     if re_obj:
         end_time = re_obj.group(1)
@@ -80,13 +80,11 @@ if __name__ == '__main__':
         print("error! input file format is invalid")
         sys.exit(1)
 
-
     # cm区間情報の抽出
     command_list = comskip_path + " " + "-t -d 255 -v 1 --ini=" + comskip_ini_file_path \
                    + " " + ts_file_name
     print(command_list)
-    # ret = subprocess.call(command_list.split(" "))
-    ret = 0x00000000
+    ret = subprocess.call(command_list.split(" "))
 
     # エラーの場合は戻り値が負なので、32bitの最上位bitが立っているかチェック
     if ret & const_check_error_bit_mask == 0x00000000:
