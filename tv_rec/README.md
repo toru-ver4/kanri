@@ -77,46 +77,74 @@ AviUtil を使う。やり方はそのうち調べる。
 ### 概要
 以下の3つのソフトを組み合わせて実現する
 * [comskip](http://www.kaashoek.com/comskip/) 、フリーウェアのCM位置検出ソフト
-* [ComskipBatch.rb](http://eco.senritu.net/comskipbatch-rb/) 、comskip で検出した情報を元に、実際にCMをカットするスクリプト
+* [ComskipBatch.py](https://github.com/toru-ver4/kanri/mater/tv_rec/ComskipBatch.py) 、comskip で検出した情報を元に、実際にCMをカットする自作スクリプト
 * [ffmpeg](http://ffmpeg.zeranoe.com/builds/) 、同じみのエンコードソフト。今回は ts ファイルの切り貼りに使う
 
-### やり方
-以下の bat ファイルを作り、ドラッグ・アンド・ドロップで ts ファイルを放り込む。
+### 準備
+以下の通りに各種ファイルを置く。
+```
+REC_ROOT_DIR
+│  
+│  201602210830010102-aaa.ts
+│  201602221700000102-bbb.ts
+│  201602231729000102-ccc.ts
+│  
+├─cm_cut_ng(directory)
+├─cm_cut_ok(directory)
+│      
+└─comskip_batch(directory)
+   │  ComskipBatch.py
+   │  
+   ├─comskip(directory)
+   │  comskip.exe
+   │  comskip.ini
+   │  etc, ...
+   │      
+   └─ffmpeg(directory)
+       │  
+       └─bin(directory)
+           ffmpeg.exe
 
 ```
-chcp 65001 # rubyスクリプトの文字コードが utf-8 のため。
-ruby .\comskip_batch\ComskipBatch.rb --margin 5 --file %* --move_to E:/Documents/DTV_REC/cm_cut_ok --failed_to E:/Documents/DTV_REC/cm_cut_ng
-set /P USR_INPUT_STR="Please type any key to exit this script : "
+
+### やり方
+REC_ROOT_DIR で以下のようにコマンドを打つ。
+
+```
+> python comskip_batch\ComskipBatch.py "201602210830010102-aaa.ts"
 ```
 
 # TSファイルのエンコードについて
 TSファイルはそのままだとファイルサイズが大きいので、H264/H265(HEVC)でエンコードを行う。<br>
 
 ## エンコードパラメータ
-暫定のエンコードパラメータは以下の通り。
+推奨するエンコードパラメータは以下の通り。
 
 ```
-> ffmpeg -i input.ts -f mp4 -c:v libx264 -preset veryslow -crf 24 -vf dejudder,fps=30000/1001,fieldmatch,yadif,decimate,hqdn3d,unsharp=la=0.3 -tune animation -r 24000/1001 -s 1920x1080 -ac 2 -c:a ac3 -b:a 128k out.mp4
+> ffmpeg -i input.ts -f mp4 -c:v libx264 -preset veryslow -crf 24 -vf dejudder,fps=30000/1001,fieldmatch,yadif,decimate,hqdn3d,unsharp=la=0.4 -tune animation -r 24000/1001 -s 1920x1080 -ac 2 -c:a ac3 -b:a 128k out.mp4
 ```
 
 | パラメータ | 役割                     | 備考                            |
 |:---------------|:-------------------------|:--------------------------------|
 | preset | エンコード速度とファイルサイズのバランスを決める<br>パラメータ。今回の設定では画質とは無関係。 | 固定ビットレートの場合は画質と関係あり |
-| fieldmatch | 逆テレシネ変換が出来るように、<br>フィールドの並べ替えを行うフィルタ | - |
-| yadif | デインターレースするフィルタ | 昔は --deinterlace だったらしい |
-| decimate | 重複フレームを削除するフィルタ | - |
+| fieldmatch | 逆テレシネ変換が出来るように、<br>フィールドの並べ替えを行うフィルタ | 下の補足説明参照。 |
+| yadif | デインターレースするフィルタ | 下の補足説明参照。 |
+| decimate | 重複フレームを削除するフィルタ | 下の補足説明参照。 |
 | hqdn3d | ノイズ除去フィルタ | 地デジ特有の粒子状ノイズを軽減する |
 | unsharp | 画像先鋭化 | エンコードするとボケた感じになるので… |
 
 
-### テレシネ変換の補足
+### 逆テレシネ変換の補足
 ```
 # Original 24fps source
   Frame:          1 2 3 4     <-- 24p
 
-# TV 
+# TV Source             
   Top fields:     1 2 2 3 4   <-- 60i
   Bottom fields:  1 2 3 4 4   <-- 60i
+                  o o x x o
+
+  x : Top and Bottom is not match.
 
 # Apply the "fieldmatch" filter
   Top fields:     1 2 2 3 4   <-- 60i
@@ -207,6 +235,13 @@ $ PKG_CONFIG_PATH="$HOME/win32/lib/pkgconfig" LDFLAGS="-L$HOME/win32/lib" \
   --enable-libx264 --enable-libmfx --arch=x86 --target-os=mingw32 \
   --cross-prefix=i686-w64-mingw32- --pkg-config=pkg-config --prefix=$HOME/win32
 ```
+
+# スリープモードへの移行について
+録画データのエンコードは夜間に行いたいが、Windowsはエンコード中にも平気でスリープモードへ移行してしまう。
+そこでフリーウェアの [SleepTool](http://www.vector.co.jp/soft/winnt/util/se495541.html) を使う。
+
+このソフトを使うと、CPU使用率やDiskアクセス量を監視してスリープするか判別してくれる。
+
 
 # 各種バイナリ置き場
 [ここ](http://up.mapopi.com/?pg=0)
