@@ -12,6 +12,7 @@ import math
 import subprocess
 import struct
 import re
+import shutil
 COMSKIP_EXE = "comskip.exe"
 COMSKIP_INI = "comskip.ini"
 FFMPEG_EXE = "ffmpeg.exe"
@@ -62,11 +63,14 @@ if __name__ == '__main__':
     
     ts_file_basename, ext = os.path.splitext(ts_file_name)
     ts_file_path = os.path.dirname(ts_file_name)
+    mp4_file_path = ts_file_basename + ".mp4"
     vdr_file_path = ts_file_basename + ".vdr"
     script_path = os.path.dirname(__file__)
     comskip_path = os.path.join(script_path, os.path.join("comskip",COMSKIP_EXE))
     comskip_ini_file_path = os.path.join(script_path, os.path.join("comskip",COMSKIP_INI))
     ffmpeg_path = os.path.join(script_path, os.path.join('ffmpeg', os.path.join('bin', FFMPEG_EXE)))
+    ok_dir_path = os.path.join(script_path, "../cm_cut_ok")
+    ng_dir_path = os.path.join(script_path, "../cm_cut_ng")
 
     # コンテンツ時間の確認
     command_list = ffmpeg_path + " -i " + ts_file_name
@@ -126,6 +130,7 @@ if __name__ == '__main__':
         diff_time = hms_str_to_sec_ms(end_time) - st_time
         contents_time_pare_list.append((vdr_param[-1], sec_ms_to_hms_str(diff_time)))
 
+    # vdrファイルの分析結果をもとに、コンテンツ本編のみを抜き出す。
     print(contents_time_pare_list)
     cut_file_list = []
     for idx, time_pare in enumerate(contents_time_pare_list):
@@ -144,9 +149,10 @@ if __name__ == '__main__':
             print('error! "{:s}" is failed. ret = {}'.format(" ".join(e.cmd), e.returncode))
             sys.exit(1)
 
-    command_list = ffmpeg_path + '-y -i concat:' + "|".join(cut_file_list) + ' ' \
-                   + "-c copy -bsf:a aac_adtstoasc " \
-                   + os.path.splitext(os.path.basename(ts_file_name))[0] + "_cm_cut.mp4"
+    # コンテンツ本編のみのファイルを結合する
+    cm_cut_ts_file_name = os.path.splitext(os.path.basename(ts_file_name))[0] + "_cm_cut.mp4"
+    command_list = ffmpeg_path + ' -y -i concat:' + "|".join(cut_file_list) + ' ' \
+                   + "-c copy -bsf:a aac_adtstoasc " + cm_cut_ts_file_name
     print(command_list)
 
     try:
@@ -154,6 +160,24 @@ if __name__ == '__main__':
     except subprocess.CalledProcessError as e:
         print('error! "{:s}" is failed. ret = {}'.format(" ".join(e.cmd), e.returncode))
         sys.exit(1)
+
+    # コンテンツをエンコード
+    command_list = ffmpeg_path + ' -y -i ' + cm_cut_ts_file_name + \
+                   " -f mp4 -c:v libx264 -preset veryslow -crf 24" + \
+                   " -vf dejudder,fps=30000/1001,fieldmatch,yadif,decimate,hqdn3d,unsharp=la=0.4" + \
+                   "-tune animation -r 24000/1001 -s 1920x1080 -ac 2 -c:a ac3 -b:a 128k " + \
+                   mp4_file_path
+    try:
+        subprocess.check_output(command_list.split(" "))
+    except subprocess.CalledProcessError as e:
+        print('error! "{:s}" is failed. ret = {}'.format(" ".join(e.cmd), e.returncode))
+        sys.exit(1)
+
+    # mp4ファイルをOKフォルダに移動
+    try:
+        shutil.move(mp4_file_path, ok_dir_path)
+    except OSError as e:
+        print("error! failed mp4 file copy.")
 
     print("Windowsを閉じるには何かキーを入力して下さい")
     input_word = input('>>> ')
