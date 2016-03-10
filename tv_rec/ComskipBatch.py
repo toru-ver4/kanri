@@ -125,7 +125,7 @@ if __name__ == '__main__':
     # cm区間情報の抽出
     command_list = comskip_path + " " + "-t -d 255 -v 1 --ini=" + comskip_ini_file_path \
                    + " " + ts_file_name
-        print(command_list)
+    print(command_list)
     ret = subprocess.call(command_list.split(" "))
     temp_file_list.append(ts_file_basename + ".log")
     temp_file_list.append(vdr_file_path)
@@ -175,7 +175,7 @@ if __name__ == '__main__':
     min_contents_len = hms_str_to_sec_ms(end_time) * 0.79
     contents_len = 0
     for c_time in contents_time_pare_list:
-        contents_len += hms_str_to_sec_ms(c_time)
+        contents_len += hms_str_to_sec_ms(c_time[1])
     if contents_len < min_contents_len:
         print("error! CM is too long.")
         error_process(450)
@@ -216,7 +216,7 @@ if __name__ == '__main__':
     # コンテンツをエンコード
     command_list = ffmpeg_path + ' -y -i ' + cm_cut_ts_file_name + \
                    " -f mp4 -c:v libx264 -preset veryslow -crf 24" + \
-                   " -vf dejudder,fps=30000/1001,fieldmatch,yadif,decimate,hqdn3d,unsharp=la=0.4" + \
+                   " -vf dejudder,fps=30000/1001,fieldmatch=mode=pcn_ub:combmatch=full,yadif,decimate,hqdn3d,unsharp=la=0.4" + \
                    " -tune animation -r 24000/1001 -s 1920x1080 -ac 2 -c:a ac3 -b:a 128k " + \
                    mp4_file_path
     try:
