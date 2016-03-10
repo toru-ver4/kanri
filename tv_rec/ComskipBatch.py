@@ -108,7 +108,7 @@ if __name__ == '__main__':
     ffmpeg_path = os.path.join(script_path, os.path.join('ffmpeg', os.path.join('bin', FFMPEG_EXE)))
     ok_dir_path = os.path.join(script_path, "../cm_cut_ok")
     ng_dir_path = os.path.join(script_path, "../cm_cut_ng")
-    temp_file_list = [ts_file_basename + "ts.err", ts_file_basename + ".ts.program.txt"]
+    temp_file_list = [ts_file_basename + ".ts.err", ts_file_basename + ".ts.program.txt"]
 
     # コンテンツ時間の確認
     command_list = ffmpeg_path + " -i " + ts_file_name
@@ -236,6 +236,12 @@ if __name__ == '__main__':
 
     # remove temporary files
     remove_temp_files()
+
+    # remove master ts file.
+    try:
+        os.remove(ts_file_name)
+    except OSError as e:
+        print("error! {:s} is not removed.".format(e.filename))
 
     print("Windowsを閉じるには何かキーを入力して下さい")
     input_word = input('>>> ')
