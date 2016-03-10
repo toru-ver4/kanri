@@ -108,7 +108,7 @@ if __name__ == '__main__':
     ffmpeg_path = os.path.join(script_path, os.path.join('ffmpeg', os.path.join('bin', FFMPEG_EXE)))
     ok_dir_path = os.path.join(script_path, "../cm_cut_ok")
     ng_dir_path = os.path.join(script_path, "../cm_cut_ng")
-    temp_file_list = []
+    temp_file_list = [ts_file_basename + "ts.err", ts_file_basename + ".ts.program.txt"]
 
     # コンテンツ時間の確認
     command_list = ffmpeg_path + " -i " + ts_file_name
@@ -128,6 +128,7 @@ if __name__ == '__main__':
     print(command_list)
     ret = subprocess.call(command_list.split(" "))
     temp_file_list.append(ts_file_basename + ".log")
+    temp_file_list.append(ts_file_basename + ".txt")
     temp_file_list.append(vdr_file_path)
 
     # エラーの場合は戻り値が負なので、32bitの最上位bitが立っているかチェック
@@ -233,7 +234,8 @@ if __name__ == '__main__':
         print("error! failed mp4 file copy.")
         error_process(800)
 
-
+    # remove temporary files
+    remove_temp_files()
 
     print("Windowsを閉じるには何かキーを入力して下さい")
     input_word = input('>>> ')
