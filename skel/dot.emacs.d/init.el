@@ -639,7 +639,7 @@
 (global-set-key "\M-n" 'next-error)
 (global-set-key "\M-p" 'previous-error)
 ;; enlarge-window
-(global-set-key "\C-t" 'enlarge-window)
+;;(global-set-key "\C-t" 'enlarge-window)
 ;; C++ style
 (add-hook 'c++-mode-hook
           '(lambda()
@@ -682,6 +682,7 @@
   '(auto-async-byte-compile
     auto-complete
     helm
+    helm-gtags
     helm-ag
     helm-descbinds
     helm-ls-git
@@ -798,6 +799,7 @@
 (add-hook 'c-mode-hook 'helm-gtags-mode)
 (add-hook 'c++-mode-hook 'helm-gtags-mode)
 (add-hook 'asm-mode-hook 'helm-gtags-mode)
+(add-hook 'python-mode-hook 'helm-gtags-mode)
 
 ;; customize
 (custom-set-variables
@@ -834,6 +836,11 @@
 (setq process-coding-system-alist '(("svn" . utf-8)))
 (setq default-file-name-coding-system 'utf-8)
 (setq svn-status-svn-file-coding-system 'utf-8)
+
+;;---------------------------------------------------------
+;; helm-etgs-plus
+;;---------------------------------------------------------n
+(require 'helm-etags+)
 
 ;; Local Variables:
 ;; coding: utf-8
