@@ -138,7 +138,7 @@
                 (vertical-scroll-bars . 1  ) ; スクロールバー
                 (scroll-bar-width     . 17 ) ; スクロールバー幅
                 (cursor-type          . box) ; カーソル種別
-                (alpha                . 100) ; 透明度
+                (alpha                . 85) ; 透明度
                 ) default-frame-alist) )
 (setq initial-frame-alist default-frame-alist)
 
