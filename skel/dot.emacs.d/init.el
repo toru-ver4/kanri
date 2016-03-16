@@ -59,7 +59,7 @@
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ key binding - keyboard                                        ;;;
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-(if (equal system-type 'windows-nt)
+(if (equal system-type 'cygwin)
     ;; Altキーを使用せずにMetaキーを使用（有効：t、無効：nil）
     (setq w32-alt-is-meta t))
 
@@ -68,7 +68,7 @@
 ;;; @ language - input method                                       ;;;
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-(cond ((equal system-type 'windows-nt)
+(cond ((equal system-type 'cygwin)
        ;; モードラインの表示文字列
        (setq-default w32-ime-mode-line-state-indicator "[Aa] ")
        (setq w32-ime-mode-line-state-indicator-list '("[Aa]" "[あ]" "[Aa]"))
@@ -91,7 +91,7 @@
 ;;; @ language - fontset                                            ;;;
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-(cond ((equal system-type 'windows-nt)
+(cond ((equal system-type 'cygwin)
        ;; デフォルト フォント
        ;; (set-face-attribute 'default nil :family "Migu 1M" :height 110)
        (set-face-font 'default "Migu 1M-11:antialias=standard")
@@ -230,7 +230,7 @@
 ;;; @ screen - minibuffer                                           ;;;
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-(cond ((equal system-type 'windows-nt)
+(cond ((equal system-type 'cygwin)
        ;; minibufferのアクティブ時、IMEを無効化
        (add-hook 'minibuffer-setup-hook
 		 (lambda ()
@@ -245,7 +245,7 @@
 ;;; @ screen - cursor                                               ;;;
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-(cond ((equal system-type 'windows-nt)
+(cond ((equal system-type 'cygwin)
        ;; カーソルの点滅（有効：1、無効：0）
        (blink-cursor-mode 0)
        
@@ -799,7 +799,7 @@
 (add-hook 'c-mode-hook 'helm-gtags-mode)
 (add-hook 'c++-mode-hook 'helm-gtags-mode)
 (add-hook 'asm-mode-hook 'helm-gtags-mode)
-(add-hook 'python-mode-hook 'helm-gtags-mode)
+;;(add-hook 'python-mode-hook 'helm-gtags-mode)
 
 ;; customize
 (custom-set-variables
@@ -837,10 +837,6 @@
 (setq default-file-name-coding-system 'utf-8)
 (setq svn-status-svn-file-coding-system 'utf-8)
 
-;;---------------------------------------------------------
-;; helm-etgs-plus
-;;---------------------------------------------------------n
-(require 'helm-etags+)
 
 ;; Local Variables:
 ;; coding: utf-8
