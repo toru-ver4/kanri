@@ -124,8 +124,8 @@
    `(mcomplete-substr-method-alternative-part-face ((t (:foreground ,green-light ))))
    `(mcomplete-substr-method-fixed-part-face       ((t (:foreground ,green-light ))))
 
-   `(hiwin-face ((t (:background ,gray-25))))
-   `(hiwin-focus-out-face ((t (:foreground ,gray-65 :background ,gray-25))))
+;;   `(hiwin-face ((t (:background ,gray-25))))
+;;   `(hiwin-focus-out-face ((t (:foreground ,gray-65 :background ,gray-25))))
 
    `(rowin-face ((t (:background ,green-deep))))
 

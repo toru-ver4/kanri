@@ -29,6 +29,7 @@ $ sudo ./script/mkLinuxSymLink.sh  # make symbolic links.
 > windows_init.bat
 > cinst chocolatey.config -y
 > python -m pip install -U pip  # see https://pip.pypa.io/en/latest/installing/
+> pip install pyflakes pep8
 > pip install matplotlib ... and what you need
 ```
 
