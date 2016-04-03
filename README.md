@@ -29,11 +29,11 @@ $ sudo ./script/mkLinuxSymLink.sh  # make symbolic links.
 > windows_init.bat
 > cinst chocolatey.config -y
 > python -m pip install -U pip  # see https://pip.pypa.io/en/latest/installing/
-> pip install pyflakes pep8
+> pip install pyflakes pep8/	
 > pip install matplotlib ... and what you need
 ```
 
-## Markdown to PDF
+## Markdown to HTML
 ### Windows Environment
 Install markdown-pdf.
 
@@ -50,35 +50,3 @@ How to Transform.
 > pandoc input.md -s --self-contained -c Github.css -o out.html
 ```
 
-## Jupyter
-
-### Install
-
-```bat:
-> pip install jupyter
-``` 
-
-### Initial Settings
-
-make the config file.
-
-```bat:
-> jupyter notebook --generate-config
-```
-
-edit the config file($HOME/.jupyter/jupyter_notebook_config.py).<br>
-change **c.FileContentsManager.root_dir** parameters.
-
-```python:jupyter_notebook_config.py
-c.FileContentsManager.root_dir = 'C:\home'
-```
-
-### convert from the jupyter file to the pdf.
-
-0. install LuaTeX see [THIS PAGE](https://texwiki.texjp.org/?TeX%20Live).
-1. first, save as .md file using Jupyter UI.
-2. second, convert from .md to .pdf using pandoc. Commands to be used are as follows.
-
-```bat:
-pandoc test.md --latex-engine=lualatex -o test.pdf
-```
