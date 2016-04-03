@@ -59,7 +59,7 @@
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ key binding - keyboard                                        ;;;
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-(if (equal system-type 'windows-nt)
+(if (equal system-type 'cygwin)
     ;; Altキーを使用せずにMetaキーを使用（有効：t、無効：nil）
     (setq w32-alt-is-meta t))
 
@@ -68,7 +68,7 @@
 ;;; @ language - input method                                       ;;;
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-(cond ((equal system-type 'windows-nt)
+(cond ((equal system-type 'cygwin)
        ;; モードラインの表示文字列
        (setq-default w32-ime-mode-line-state-indicator "[Aa] ")
        (setq w32-ime-mode-line-state-indicator-list '("[Aa]" "[あ]" "[Aa]"))
@@ -91,7 +91,7 @@
 ;;; @ language - fontset                                            ;;;
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-(cond ((equal system-type 'windows-nt)
+(cond ((equal system-type 'cygwin)
        ;; デフォルト フォント
        ;; (set-face-attribute 'default nil :family "Migu 1M" :height 110)
        (set-face-font 'default "Migu 1M-11:antialias=standard")
@@ -138,7 +138,7 @@
                 (vertical-scroll-bars . 1  ) ; スクロールバー
                 (scroll-bar-width     . 17 ) ; スクロールバー幅
                 (cursor-type          . box) ; カーソル種別
-                (alpha                . 100) ; 透明度
+                (alpha                . 85) ; 透明度
                 ) default-frame-alist) )
 (setq initial-frame-alist default-frame-alist)
 
@@ -230,7 +230,7 @@
 ;;; @ screen - minibuffer                                           ;;;
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-(cond ((equal system-type 'windows-nt)
+(cond ((equal system-type 'cygwin)
        ;; minibufferのアクティブ時、IMEを無効化
        (add-hook 'minibuffer-setup-hook
 		 (lambda ()
@@ -245,7 +245,7 @@
 ;;; @ screen - cursor                                               ;;;
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
-(cond ((equal system-type 'windows-nt)
+(cond ((equal system-type 'cygwin)
        ;; カーソルの点滅（有効：1、無効：0）
        (blink-cursor-mode 0)
        
@@ -400,7 +400,11 @@
 
 (require 'hiwin)
 
-(set-face-background 'hiwin-face "gray23")
+(cond ((equal window-system 'nil)
+       (set-face-background 'hiwin-face "gray23"))
+      (t
+       (set-face-background 'hiwin-face "gray15"))
+      )
 ;; hiwin-modeを有効化
 (hiwin-activate)
 
@@ -635,7 +639,7 @@
 (global-set-key "\M-n" 'next-error)
 (global-set-key "\M-p" 'previous-error)
 ;; enlarge-window
-(global-set-key "\C-t" 'enlarge-window)
+;;(global-set-key "\C-t" 'enlarge-window)
 ;; C++ style
 (add-hook 'c++-mode-hook
           '(lambda()
@@ -657,6 +661,8 @@
 (setq x-select-enable-clipboard t)
 ;; not gen backupfile
 (setq make-backup-files nil)
+;; ignore M-kanji key
+(global-set-key [M-kanji] 'ignore)
 
 ;; ------------------------------------------------------------------------
 ;; @ package manager
@@ -676,6 +682,7 @@
   '(auto-async-byte-compile
     auto-complete
     helm
+    helm-gtags
     helm-ag
     helm-descbinds
     helm-ls-git
@@ -716,6 +723,14 @@
 
 ;(custom-set-faces
 ; '(default ((t (:background "#000000")))))
+
+
+;;---------------------------------------------------------------------------------
+;; auto-insert
+;;---------------------------------------------------------------------------------
+(auto-insert-mode)
+(setq auto-insert-directory "~/.emacs.d/template/")
+(define-auto-insert "\\.py$" "pyton-template.py")
 
 ;;---------------------------------------------------------------------------------
 ;; auto-complete
@@ -762,8 +777,8 @@
          (,(kbd "C-^")   helm-c-apropos)
 ;         (,(kbd "C-;")   helm-resume)
 	 (,(kbd "M-.")   helm-resume)
-         (,(kbd "M-s s")   helm-occur)
-	 (,(kbd "M-s g")   helm-ag)
+         (,(kbd "C-:")   helm-occur)
+	 (,(kbd "C-;")   helm-ag)
          (,(kbd "M-x")   helm-M-x)
          (,(kbd "M-y")   helm-show-kill-ring)
          (,(kbd "M-z")   helm-do-grep)
@@ -784,6 +799,7 @@
 (add-hook 'c-mode-hook 'helm-gtags-mode)
 (add-hook 'c++-mode-hook 'helm-gtags-mode)
 (add-hook 'asm-mode-hook 'helm-gtags-mode)
+;;(add-hook 'python-mode-hook 'helm-gtags-mode)
 
 ;; customize
 (custom-set-variables
@@ -820,6 +836,7 @@
 (setq process-coding-system-alist '(("svn" . utf-8)))
 (setq default-file-name-coding-system 'utf-8)
 (setq svn-status-svn-file-coding-system 'utf-8)
+
 
 ;; Local Variables:
 ;; coding: utf-8

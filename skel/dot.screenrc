@@ -7,7 +7,7 @@ defbce on # for Vim
 #
 escape ^]^]
 
-shell bash  #
+shell zsh
 
 # 256 color
 term xterm-256color

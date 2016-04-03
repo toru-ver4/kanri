@@ -39,13 +39,13 @@
       (gray-05       "#0D0D0D") (gray-10       "#1A1A1A") (gray-15       "#262626") (gray-20       "#333333") (gray-25       "#404040")
       (gray-30       "#4D4D4D") (gray-35       "#595959") (gray-40       "#666666") (gray-45       "#737373") (gray-50       "#808080")
       (gray-55       "#8C8C8C") (gray-60       "#999999") (gray-65       "#A6A6A6") (gray-70       "#B3B3B3") (gray-75       "#BFBFBF")
-      (gray-80       "#CCCCCC") (gray-85       "#D9D9D9") (gray-90       "#E6E6E6") (gray-95       "#F2F2F2") 
+      (gray-80       "#CCCCCC") (gray-85       "#D9D9D9") (gray-90       "#E6E6E6") (gray-95       "#F2F2F2") (gray-00       "#000000")
       )
 
   (custom-theme-set-faces
    'gnupack-dark
 
-   `(default     ((t (:foreground ,gray-80 :background ,gray-05)))) 
+   `(default     ((t (:foreground ,gray-95 :background ,gray-00)))) 
    `(bold        ((t (:bold t   :italic nil :underline nil ))))
    `(bold-italic ((t (:bold t   :italic t   :underline nil ))))
    `(italic      ((t (:bold nil :italic t   :underline nil ))))
@@ -123,8 +123,8 @@
    `(mcomplete-substr-method-alternative-part-face ((t (:foreground ,green-light ))))
    `(mcomplete-substr-method-fixed-part-face       ((t (:foreground ,green-light ))))
 
-   `(hiwin-face ((t (:background ,gray-25))))
-   `(hiwin-focus-out-face ((t (:foreground ,gray-65 :background ,gray-25))))
+;;   `(hiwin-face ((t (:background ,gray-25))))
+;;   `(hiwin-focus-out-face ((t (:foreground ,gray-65 :background ,gray-25))))
 
    `(rowin-face ((t (:background ,green-deep))))
 
