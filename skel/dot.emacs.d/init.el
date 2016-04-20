@@ -837,6 +837,8 @@
 (setq default-file-name-coding-system 'utf-8)
 (setq svn-status-svn-file-coding-system 'utf-8)
 
+;; Color
+(set-frame-parameter nil 'alpha 80) ;透明度
 
 ;; Local Variables:
 ;; coding: utf-8
