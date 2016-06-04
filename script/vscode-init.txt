@@ -1,0 +1,1 @@
+mklink /D C:\Users\toruv\AppData\Roaming\Code\User C:\home\kanri\skel\vscode
