@@ -43,5 +43,6 @@
 { "key": "ctrl+shift+b",            "command": "workbench.action.navigateBack" },
 { "key": "ctrl+shift+f",            "command": "workbench.action.navigateForward" },
 { "key": "alt+h",                   "command": "workbench.action.focusLeftEditor" },
-{ "key": "alt+l",                   "command": "workbench.action.focusRightEditor" }
+{ "key": "alt+l",                   "command": "workbench.action.focusRightEditor" },
+{ "key": "ctrl+x 3",                "command": "workbench.action.splitEditor" }
 ]
