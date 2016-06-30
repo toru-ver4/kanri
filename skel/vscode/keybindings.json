@@ -28,8 +28,6 @@
                                     "when": "editorTextFocus" },
 { "key": "ctrl+w",                  "command": "editor.action.clipboardCutAction" },
 { "key": "alt+w",                   "command": "editor.action.clipboardCopyAction" },
-{ "key": "ctrl+/",                  "command": "undo",
-                                    "when": "editorTextFocus" },
 { "key": "ctrl+x ctrl+s",           "command": "workbench.action.files.save" },
 { "key": "ctrl+s",                  "command": "actions.find" },
 { "key": "ctrl+k",                  "command": "editor.action.deleteLines",
