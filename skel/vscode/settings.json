@@ -3,6 +3,10 @@
     // フォント サイズを制御します。
     "editor.fontSize": 18,
 
+    "markdown.styles": [
+        "C:\\home\\kanri\\skel\\vscode\\markdown_style.css"
+    ],
+
     // Whether to lint Python files.
     "python.linting.enabled": true,
 
