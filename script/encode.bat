@@ -1,0 +1,32 @@
+REM ffmpeg.exe -i "プリパラ OP2.mkv" -c:v libx264 -crf 19 -c:a ac3 "プリパラ OP2.mp4"
+REM ffmpeg.exe -i "プリパラ OP1.mkv" -c:v libx264 -crf 19 -c:a ac3 "プリパラ OP1.mp4"
+REM ffmpeg.exe -i "甘城ブリリアントパーク_OP.mkv" -c:v libx264 -crf 19 -c:a ac3 "甘城ブリリアントパーク_OP.mp4"
+REM ffmpeg.exe -i "アイカツ！劇場版_Pretty Pretty.mkv" -c:v libx264 -crf 19 -c:a ac3 "アイカツ！劇場版_Pretty Pretty.mp4"
+REM ffmpeg.exe -i "アイカツ！劇場版_ダイヤモンドハッピー.mkv" -c:v libx264 -crf 19 -c:a ac3 "アイカツ！劇場版_ダイヤモンドハッピー.mp4"
+REM ffmpeg.exe -i "アイカツ！劇場版_チュチュ・バレリーナ.mkv" -c:v libx264 -crf 19 -c:a ac3 "アイカツ！劇場版_チュチュ・バレリーナ.mp4"
+REM ffmpeg.exe -i "アイカツ！劇場版_ハッピィクレッシェンド.mkv" -c:v libx264 -crf 19 -c:a ac3 "アイカツ！劇場版_ハッピィクレッシェンド.mp4"
+REM ffmpeg.exe -i "アイカツ！劇場版_ハローニューワールド.mkv" -c:v libx264 -crf 19 -c:a ac3 "アイカツ！劇場版_ハローニューワールド.mp4"
+REM ffmpeg.exe -i "アイカツ！劇場版_恋するみたいなキャラメリゼ.mkv" -c:v libx264 -crf 19 -c:a ac3 "アイカツ！劇場版_恋するみたいなキャラメリゼ.mp4"
+REM ffmpeg.exe -i "AIKATSU_THE_MOVIE_3D.chapter01.mkv" -c:v libx264 -crf 19 -c:a ac3 "AIKATSU_THE_MOVIE_3D.chapter01.mp4"
+REM ffmpeg.exe -i "AIKATSU_THE_MOVIE_3D.chapter02.mkv" -c:v libx264 -crf 19 -c:a ac3 "AIKATSU_THE_MOVIE_3D.chapter02.mp4"
+REM ffmpeg.exe -i "AIKATSU_THE_MOVIE_3D.chapter03.mkv" -c:v libx264 -crf 19 -c:a ac3 "AIKATSU_THE_MOVIE_3D.chapter03.mp4"
+REM ffmpeg.exe -i "AIKATSU_THE_MOVIE_3D.chapter04.mkv" -c:v libx264 -crf 19 -c:a ac3 "AIKATSU_THE_MOVIE_3D.chapter04.mp4"
+REM ffmpeg.exe -i "AIKATSU_THE_MOVIE_3D.chapter05.mkv" -c:v libx264 -crf 19 -c:a ac3 "AIKATSU_THE_MOVIE_3D.chapter05.mp4"
+REM ffmpeg.exe -i "AIKATSU_THE_MOVIE_3D.chapter06.mkv" -c:v libx264 -crf 19 -c:a ac3 "AIKATSU_THE_MOVIE_3D.chapter06.mp4"
+REM ffmpeg.exe -i "AIKATSU_THE_MOVIE_3D.chapter07.mkv" -c:v libx264 -crf 19 -c:a ac3 "AIKATSU_THE_MOVIE_3D.chapter07.mp4"
+REM ffmpeg.exe -i "AIKATSU_THE_MOVIE_3D.chapter08.mkv" -c:v libx264 -crf 19 -c:a ac3 "AIKATSU_THE_MOVIE_3D.chapter08.mp4"
+REM ffmpeg.exe -i "AIKATSU_THE_MOVIE_3D.chapter09.mkv" -c:v libx264 -crf 19 -c:a ac3 "AIKATSU_THE_MOVIE_3D.chapter09.mp4"
+rem ffmpeg.exe -i "DIMENSION_W OP.mkv" -c:v libx264 -crf 19 -c:a ac3 "DIMENSION_W OP.mp4"
+REM ffmpeg.exe -i "ラブライブ！劇場版_ED.mkv" -c:v libx264 -crf 19 -c:a ac3 "ラブライブ！劇場版_ED.mp4"
+
+REM ffmpeg.exe -i "ガンダムビルドファイターズ_ED1.mkv" -c:v libx264 -crf 19 -c:a ac3 "ガンダムビルドファイターズ_ED1.mp4"
+REM ffmpeg.exe -i "ガンダムビルドファイターズ_ED2.mkv" -c:v libx264 -crf 19 -c:a ac3 "ガンダムビルドファイターズ_ED2.mp4"
+REM ffmpeg.exe -i "ガンダムビルドファイターズ_OP1.mkv" -c:v libx264 -crf 19 -c:a ac3 "ガンダムビルドファイターズ_OP1.mp4"
+REM ffmpeg.exe -i "ガンダムビルドファイターズ_OP2.mkv" -c:v libx264 -crf 19 -c:a ac3 "ガンダムビルドファイターズ_OP2.mp4"
+
+ffmpeg.exe -i "【公式配信】 第21回 『CGWORLD CHANNEL』 映画「シン・ゴジラ」メイキングスペシャル!! ニコニコ生放送 01.mp4" -c:v libx264 -crf 22 -c:a ac3 "【公式配信】 第21回 『CGWORLD CHANNEL』 映画「シン・ゴジラ」メイキングスペシャル!! ニコニコ生放送 001.mp4"
+ffmpeg.exe -i "【公式配信】 第21回 『CGWORLD CHANNEL』 映画「シン・ゴジラ」メイキングスペシャル!! ニコニコ生放送 02.mp4" -c:v libx264 -crf 22 -c:a ac3 "【公式配信】 第21回 『CGWORLD CHANNEL』 映画「シン・ゴジラ」メイキングスペシャル!! ニコニコ生放送 002.mp4"
+ffmpeg.exe -i "【公式配信】 第21回 『CGWORLD CHANNEL』 映画「シン・ゴジラ」メイキングスペシャル!! ニコニコ生放送 03.mp4" -c:v libx264 -crf 22 -c:a ac3 "【公式配信】 第21回 『CGWORLD CHANNEL』 映画「シン・ゴジラ」メイキングスペシャル!! ニコニコ生放送 003.mp4"
+
+
+
