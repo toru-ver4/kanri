@@ -1,6 +1,22 @@
 import os
 import subprocess
 
+
+"""
+# 概要
+Chromecast用に動画データをコンバートする
+
+# 使い方
+1. src, dst フォルダを作る
+2. src フォルダに変換したい動画を入れる
+3. 本スクリプトを実行(引数不要)
+
+# 注意事項
+srcフォルダにあるファイルは問答無用で変換するので、
+動画ファイル以外があるとエラーになると思う。
+  ⇒ってか、そのくらいチェックする機構を作れよという…
+"""
+
 const_src_dir = './src'
 const_dst_dir = './dst'
 const_enc_param = '-c:v libx264 -crf 19 -c:a ac3'
