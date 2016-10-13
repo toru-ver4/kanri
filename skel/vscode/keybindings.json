@@ -42,8 +42,6 @@
                                "when": "editorTextFocus" },
 { "key": "ctrl+h",             "command": "deleteLeft"},
 { "key": "ctrl+y",             "command": "editor.action.clipboardPasteAction" },
-{ "key": "ctrl+shift+b",       "command": "workbench.action.navigateBack" },
-{ "key": "ctrl+shift+f",       "command": "workbench.action.navigateForward" },
 { "key": "ctrl+x 3",           "command": "workbench.action.splitEditor" },
 { "key": "ctrl+c",             "command": "editor.action.clipboardCopyAction" },
 { "key": "ctrl+v",             "command": "editor.action.clipboardPasteAction" },
