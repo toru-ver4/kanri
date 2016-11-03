@@ -1,6 +1,6 @@
 import os
 import subprocess
-
+import time
 
 """
 # 概要
@@ -20,6 +20,7 @@ srcフォルダにあるファイルは問答無用で変換するので、
 const_src_dir = './src'
 const_dst_dir = './dst'
 const_enc_param = '-c:v libx264 -crf 19 -c:a ac3'
+# const_enc_param = '-c:v h264_qsv -c:a ac3'
 
 
 def main_func():
@@ -31,9 +32,12 @@ def main_func():
                                for x in in_file_name_list]
 
     for src, dst in zip(in_file_full_name_list, out_file_full_name_list):
-        cmd = 'ffmpeg -i "{}" {} "{}" -y'.format(src, const_enc_param, dst)
+        cmd = 'ffmpeg.exe -i "{}" {} "{}" -y'.format(src, const_enc_param, dst)
         print(cmd)
+        t0 = time.clock()
         subprocess.call(cmd)
+        t1 = time.clock()
+        print("dt="+str(t1-t0)+"[s]")
 
 
 if __name__ == '__main__':
