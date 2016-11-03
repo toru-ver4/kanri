@@ -1,0 +1,12 @@
+body {
+  font-family: Meiryo, Segoe WPC,Segoe UI,SFUIText-Light,HelveticaNeue-Light,sans-serif;
+  font-size: 16px;
+  padding-left: 14px;
+  line-height: 22px;
+}
+
+code {
+  font-family: 'Migu 1M', Menlo,Monaco,Consolas,Droid Sans Mono,Courier New,monospace;
+  font-size: 16px;
+  line-height: 18px;
+}
