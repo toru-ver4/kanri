@@ -3,6 +3,16 @@
     // フォント サイズを制御します。
     "editor.fontSize": 18,
 
+    // Set individual ruby linters to use
+    "ruby.lint": {
+        "reek": false,
+        "rubocop": true,
+        "ruby": true, //Runs ruby -wc
+        "fasterer": false,
+        "debride": false,
+        "ruby-lint": true
+    },
+
     "markdown.styles": [
         "C:\\home\\kanri\\skel\\vscode\\markdown_style.css"
     ],
