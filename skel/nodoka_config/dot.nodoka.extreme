@@ -1,50 +1,50 @@
 mod windows -= RightWindows
 mod alt += RightWindows
 
-# ƒL[ƒŠƒs[ƒg‘¬“x‚Ìİ’è
+# ã‚­ãƒ¼ãƒªãƒ”ãƒ¼ãƒˆé€Ÿåº¦ã®è¨­å®š
 #def option KeyboardDelay = enable 125 20
 
-# HHKPro‚Ì‚æ‚¤‚É\šƒL[‚ğg‚í‚¸‚Éª«©¨‚ğˆÚ“®
-mod mod0 += RShift		# RightShift‚ğƒ‚ƒfƒBƒtƒ@ƒCƒAƒL[‚Æ‚µ‚Äİ’è
-#@ª©«¨‚ğƒoƒCƒ“ƒhBsöŒë“I‚És‚È‚Á‚½‚½‚ßA•ª‚Æ‰˜‚¢B
+# HHKProã®ã‚ˆã†ã«åå­—ã‚­ãƒ¼ã‚’ä½¿ã‚ãšã«â†‘â†“â†â†’ã‚’ç§»å‹•
+mod mod0 += RShift		# RightShiftã‚’ãƒ¢ãƒ‡ã‚£ãƒ•ã‚¡ã‚¤ã‚¢ã‚­ãƒ¼ã¨ã—ã¦è¨­å®š
+#ã€€â†‘â†â†“â†’ã‚’ãƒã‚¤ãƒ³ãƒ‰ã€‚è©¦è¡ŒéŒ¯èª¤çš„ã«è¡Œãªã£ãŸãŸã‚ã€éšåˆ†ã¨æ±šã„ã€‚
 key S-M0-LeftSquareBracket = Up
 key M0-Colon = Left
 key S-M0-Solidus = Down
 key M0-*_2 = Right
 
-# ˆÈ‰º‚ÍCdefault.nokoka‚æ‚èƒRƒs[•ƒoƒCƒ“ƒh•ÏX‚µ‚½‚à‚Ì ---------------------
-#key C-S-M	= Applications		# ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒL[
-key C-S-F10	= &WindowMaximize	# ƒEƒBƒ“ƒhƒE‚ÌÅ¬‰»
-key C-S-F9	= &WindowVMaximize	# ƒEƒBƒ“ƒhƒE‚ÌcÅ‘å‰»
+# ä»¥ä¸‹ã¯ï¼Œdefault.nokokaã‚ˆã‚Šã‚³ãƒ”ãƒ¼ï¼†ãƒã‚¤ãƒ³ãƒ‰å¤‰æ›´ã—ãŸã‚‚ã® ---------------------
+#key C-S-M	= Applications		# ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã‚­ãƒ¼
+key C-S-F10	= &WindowMaximize	# ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æœ€å°åŒ–
+key C-S-F9	= &WindowVMaximize	# ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç¸¦æœ€å¤§åŒ–
 
-#key S-A-H	= &MouseMove(-16, 0)	# ƒ}ƒEƒX‚ÌˆÚ“®
-#key S-A-L	= &MouseMove(16, 0)	#	V
-#key S-A-K	= &MouseMove(0, -16)	#	V
-#key S-A-J	= &MouseMove(0, 16)	#	V
-#key S-A-Y	= &MouseMove(-1, 0)	#	V
-#key S-A-O	= &MouseMove(1, 0)	#	V
-#key S-A-I	= &MouseMove(0, -1)	#	V
-#key S-A-U	= &MouseMove(0, 1)	#	V
+#key S-A-H	= &MouseMove(-16, 0)	# ãƒã‚¦ã‚¹ã®ç§»å‹•
+#key S-A-L	= &MouseMove(16, 0)	#	ã€ƒ
+#key S-A-K	= &MouseMove(0, -16)	#	ã€ƒ
+#key S-A-J	= &MouseMove(0, 16)	#	ã€ƒ
+#key S-A-Y	= &MouseMove(-1, 0)	#	ã€ƒ
+#key S-A-O	= &MouseMove(1, 0)	#	ã€ƒ
+#key S-A-I	= &MouseMove(0, -1)	#	ã€ƒ
+#key S-A-U	= &MouseMove(0, 1)	#	ã€ƒ
 
-key S-A-H		= &WindowClingToLeft	# ƒEƒBƒ“ƒhƒE‚ğ¶‚ÉŠñ‚¹‚é
-key S-A-L		= &WindowClingToRight	# ƒEƒBƒ“ƒhƒE‚ğ‰E‚ÉŠñ‚¹‚é
-key S-A-K		= &WindowClingToTop	# ƒEƒBƒ“ƒhƒE‚ğã‚ÉŠñ‚¹‚é
-key S-A-J		= &WindowClingToBottom	# ƒEƒBƒ“ƒhƒE‚ğ‰º‚ÉŠñ‚¹‚é
+key S-A-H		= &WindowClingToLeft	# ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’å·¦ã«å¯„ã›ã‚‹
+key S-A-L		= &WindowClingToRight	# ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’å³ã«å¯„ã›ã‚‹
+key S-A-K		= &WindowClingToTop	# ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ä¸Šã«å¯„ã›ã‚‹
+key S-A-J		= &WindowClingToBottom	# ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ä¸‹ã«å¯„ã›ã‚‹
 
-key C-S-*E	= A-F4		# ƒEƒBƒ“ƒhƒE‚ğ•Â‚¶‚é
+# key C-S-*E	= A-F4		# ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‰ã˜ã‚‹ã€‚æœ€è¿‘ä½¿ã£ã¦ãªã„ã®ã§æ¶ˆã™ã€‚
 
 key C-S-F8	= &WindowVMaximize &Sync &WindowHMaximize &Sync &WindowResizeMoveToPer(50, 100, NW, 0, 0)
 key C-S-F12	= &WindowVMaximize &Sync &WindowHMaximize &Sync &WindowResizeMoveToPer(73, 100, NW, 0, 0)
 #-------------------------------------------------------------------------------
 
-# ƒfƒ…ƒAƒ‹ƒfƒBƒXƒvƒŒƒCŠÂ‹«‰º‚ÅƒfƒBƒXƒvƒŒƒCŠÔˆÚ“® -------------------------------
+# ãƒ‡ãƒ¥ã‚¢ãƒ«ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ç’°å¢ƒä¸‹ã§ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤é–“ç§»å‹• -------------------------------
 key S-A-Y	= &WindowMoveTo(C, -1920, 0) &Sync &WindowClingToRight
 #key C-S-U	= &WindowSetAlpha(85)
 #key C-S-I	= 
 key S-A-O	= &WindowMoveTo(C, 1920, 0) &Sync &WindowClingToLeft
 #-------------------------------------------------------------------------------
 
-# ‰¼‘zƒfƒXƒNƒgƒbƒvƒ\ƒtƒg‚Ì§Œä
+# ä»®æƒ³ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ã‚½ãƒ•ãƒˆã®åˆ¶å¾¡
 #key C-S-H	= S-A-C-W-Left 
 #key C-S-J	= S-A-C-W-Down
 #key C-S-K	= S-A-C-W-Up
@@ -56,13 +56,13 @@ key S-A-O	= &WindowMoveTo(C, 1920, 0) &Sync &WindowClingToLeft
 #key C-S-O	= A-C-W-Right &Sync S-A-C-W-Right
 #-------------------------------------------------------------------------------
 
-# Orchis Launcher‚Ìİ’è
+# Orchis Launcherã®è¨­å®š
 window orchis /orchis\.exe/ : Global
  key h		= C-B
  key j		= C-N
  key k		= C-P
  key l		= C-F
- # ã‚ÅŠ„‚è“–‚Ä‚½ƒL[‚ğƒVƒtƒg{‚Ì’l‚Åİ’è‚µ‚Ä‚¨‚­
+ # ä¸Šã§å‰²ã‚Šå½“ã¦ãŸã‚­ãƒ¼ã‚’ã‚·ãƒ•ãƒˆï¼‹ã®å€¤ã§è¨­å®šã—ã¦ãŠã
  key S-H	= h
  key S-J	= j
  key S-K	= k
@@ -84,37 +84,37 @@ window virtualbox /VirtualBox\.exe/ : Global
  #key S-A-I = S-A-I
  #key S-A-U = S-A-U
 
-# EmacsƒoƒCƒ“ƒhg—p‚Ì—L–³
-keymap	KeymapDefault = &Default	# ‚±‚ê‚Í‚Ç‚±‚É‘‚¯‚Î‚æ‚¢‚©‚í‚©‚ç‚ñ‚©‚Á‚½D
+# Emacsãƒã‚¤ãƒ³ãƒ‰ä½¿ç”¨ã®æœ‰ç„¡
+keymap	KeymapDefault = &Default	# ã“ã‚Œã¯ã©ã“ã«æ›¸ã‘ã°ã‚ˆã„ã‹ã‚ã‹ã‚‰ã‚“ã‹ã£ãŸï¼
 include	"emacsedit.nodoka.custom"
 
 keymap2	GeneralC-X : EmacsC-X
- key C-S		= C-S			# ã‘‚«•Û‘¶(S)
- key C-W		= LAlt F A		# –¼‘O‚ğ•t‚¯‚Ä•Û‘¶(A)...
- key C-F		= C-O			# ŠJ‚­(O)...
- key C-C		= LAlt F X		# I—¹(X)
- key _2			= LAlt W Z		# ã‰º‚É•ªŠ„
- key _3			= LAlt W T		# ¶‰E‚É•ªŠ„
-# key C-C		= A-Q			# I—¹(X)
-# key C-C		= $WindowClose		# I—¹(X)
+ key C-S		= C-S			# ä¸Šæ›¸ãä¿å­˜(S)
+ key C-W		= LAlt F A		# åå‰ã‚’ä»˜ã‘ã¦ä¿å­˜(A)...
+ key C-F		= C-O			# é–‹ã(O)...
+ key C-C		= LAlt F X		# çµ‚äº†(X)
+ key _2			= LAlt W Z		# ä¸Šä¸‹ã«åˆ†å‰²
+ key _3			= LAlt W T		# å·¦å³ã«åˆ†å‰²
+# key C-C		= A-Q			# çµ‚äº†(X)
+# key C-C		= $WindowClose		# çµ‚äº†(X)
 
 keymap2	peggyC-X : GeneralC-X
- event prefixed		= &HelpMessage("ƒƒ‚’  C-x-", \
-	"C-x C-s\tã‘‚«•Û‘¶\r\n"	\
-	"C-x C-f\tŠJ‚­\t\r\n"		\
-	"C-x k\t\tV‹Kì¬\r\n"		\
-	"C-x C-c\tI—¹")
+ event prefixed		= &HelpMessage("ãƒ¡ãƒ¢å¸³ C-x-", \
+	"C-x C-s\tä¸Šæ›¸ãä¿å­˜\r\n"	\
+	"C-x C-f\té–‹ã\t\r\n"		\
+	"C-x k\t\tæ–°è¦ä½œæˆ\r\n"		\
+	"C-x C-c\tçµ‚äº†")
  event before-key-down	= &HelpMessage
- key C-S		= A-F &Sync S # ã‘‚«•Û‘¶(S)
+ key C-S		= A-F &Sync S # ä¸Šæ›¸ãä¿å­˜(S)
  
 window	peggy /peggypro\.exe/ : EmacsEditCustom
  if ( !ZXCV ) key C-X	= &Prefix(peggyC-X)
  key F12 = F12
 
 
-# ˆÈ‰º‚Ì‚æ‚¤‚É‚µ‚Äİ’èD
-#window word /WINWORD\.EXE/ : EmacsMove	# –{‰ÆH‚Ì—pˆÓ‚µ‚½—R³‚µ‚«İ’èƒtƒ@ƒCƒ‹
-#window word /WINWORD\.EXE/ : EmacsMoveRestricted	# “K“–‚É‹@”\‚ği‚Á‚½D
+# ä»¥ä¸‹ã®ã‚ˆã†ã«ã—ã¦è¨­å®šï¼
+#window word /WINWORD\.EXE/ : EmacsMove	# æœ¬å®¶ï¼Ÿã®ç”¨æ„ã—ãŸç”±ç·’æ­£ã—ãè¨­å®šãƒ•ã‚¡ã‚¤ãƒ«
+#window word /WINWORD\.EXE/ : EmacsMoveRestricted	# é©å½“ã«æ©Ÿèƒ½ã‚’çµã£ãŸï¼
 window matlab /MATLAB\.EXE/ : EmacsEditCustom
 window pnn /_PN\.EXE/ : EmacsEditCustom
 window word /WINWORD\.EXE/ : EmacsEditCustom
@@ -124,12 +124,12 @@ window ccs /ccstudio\.exe/ : EmacsEditCustom
 
 
 #window peggy /peggypro\.exe/ : EmacsEditCustom
-#window word /WINWORD\.EXE/ : EmacsEditCustom		# ƒeƒXƒg—p‚É–³—‚â‚èì‚Á‚½D
+#window word /WINWORD\.EXE/ : EmacsEditCustom		# ãƒ†ã‚¹ãƒˆç”¨ã«ç„¡ç†ã‚„ã‚Šä½œã£ãŸï¼
 #window twitdeck /TweetDeck.exe/ : EmacsEdit
 
- key A-”¼Šp/‘SŠp		= $ToggleIME
+ key A-åŠè§’/å…¨è§’		= $ToggleIME
 
-# peggy—p‚É‚³‚ç‚È‚éƒJƒXƒ^ƒ}ƒCƒY
+# peggyç”¨ã«ã•ã‚‰ãªã‚‹ã‚«ã‚¹ã‚¿ãƒã‚¤ã‚º
 window peggy /peggypro\.exe/ : Global
  key A-Solidus = C-Space
  key A-K       = F6 &Sync F6

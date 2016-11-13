@@ -4,54 +4,54 @@
 #
 # Modify by applet on 2010-03-29
 
-# ‚Ü‚¸ƒL[ƒ{[ƒh’è‹`‚ð“Ç‚Ýž‚ÞB
+# ã¾ãšã‚­ãƒ¼ãƒœãƒ¼ãƒ‰å®šç¾©ã‚’èª­ã¿è¾¼ã‚€ã€‚
 if ( USE104 )
-  include "104.nodoka"			# 104 ƒL[ƒ{[ƒhÝ’è
+  include "104.nodoka"			# 104 ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰è¨­å®š
   if ( USE109on104 )
-    include "109on104.nodoka"		# 104 ƒL[ƒ{[ƒh‚ð 109 ƒL[ƒ{[ƒh•—‚É
+    include "109on104.nodoka"		# 104 ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã‚’ 109 ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰é¢¨ã«
   endif
 else
-  include "109.nodoka"			# 109 ƒL[ƒ{[ƒhÝ’è
+  include "109.nodoka"			# 109 ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰è¨­å®š
   if ( USE104on109 )
-    include "104on109.nodoka"		# 109 ƒL[ƒ{[ƒh‚ð 104 ƒL[ƒ{[ƒh•—‚É
+    include "104on109.nodoka"		# 109 ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã‚’ 104 ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰é¢¨ã«
   endif
 endif
 
 if ( USEdefault )
-  include	"default2.nodoka"	# Emacs ƒ‰ƒCƒN‚È‚³‚Ü‚´‚Ü‚ÈÝ’è
+  include	"default2.nodoka"	# Emacs ãƒ©ã‚¤ã‚¯ãªã•ã¾ã–ã¾ãªè¨­å®š
 endif
 
-# Global keymap Ý’è
+# Global keymap è¨­å®š
 keymap Global
 
-# ˆÈ‰º‚ÍA•Ö‹XãAÝ’è‚·‚é‚à‚Ì
-key C-A-D = &DescribeBindings 		# Œ»Ý‚ÌƒL[ƒ}ƒbƒv‚ÌƒƒOo—Í
-key F1 = &SendPostMessage("PostTray",,"‚Ì‚Ç‚©", 0x0205, 0, 0)	# ‚Ì‚Ç‚©‚Ìƒƒjƒ…[‚ðŠJ‚­
+# ä»¥ä¸‹ã¯ã€ä¾¿å®œä¸Šã€è¨­å®šã™ã‚‹ã‚‚ã®
+key C-A-D = &DescribeBindings 		# ç¾åœ¨ã®ã‚­ãƒ¼ãƒžãƒƒãƒ—ã®ãƒ­ã‚°å‡ºåŠ›
+key F1 = &SendPostMessage("PostTray",,"ã®ã©ã‹", 0x0205, 0, 0)	# ã®ã©ã‹ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’é–‹ã
 
-# ˆÈ‰º‚ÉA‚²Ž©g‚ÌÝ’è‚ðŒä‘‚«‰º‚³‚¢B
+# ä»¥ä¸‹ã«ã€ã”è‡ªèº«ã®è¨­å®šã‚’å¾¡æ›¸ãä¸‹ã•ã„ã€‚
 
-# CapsLock‚ðCtrl‚Åã‘‚«
+# CapsLockã‚’Ctrlã§ä¸Šæ›¸ã
 if ( USE109 )
-  mod control += ‰p”
-  key *‰p” = *LeftControl
+  mod control += è‹±æ•°
+  key *è‹±æ•° = *LeftControl
   #mod control -= LeftControl
-  #key *LeftControl = *‰p”
+  #key *LeftControl = *è‹±æ•°
 else
   mod control += CapsLock
   key *CapsLock = LeftControl
 endif
 
 if ( EXTREME )
-  include	"HHKon109.nodoka" 	# UNIX”z—ñ‚É•ÏŠ·B‰´X‹S’{Žd—l 
-  include	"dot.nodoka.extreme"	# ‰´X•Ï‘ÔƒL[ƒoƒCƒ“ƒh	
+  include	"HHKon109.nodoka" 	# UNIXé…åˆ—ã«å¤‰æ›ã€‚ä¿ºã€…é¬¼ç•œä»•æ§˜ 
+  include	"dot.nodoka.extreme"	# ä¿ºã€…å¤‰æ…‹ã‚­ãƒ¼ãƒã‚¤ãƒ³ãƒ‰	
 endif
 
 if ( ENGLISH )
-  include      "HHKon104.nodoka" 	# UNIX”z—ñ‚É•ÏŠ·B‰´X‹S’{Žd—l 
-  include      "dot.nodoka.extreme"	# ‰´X•Ï‘ÔƒL[ƒoƒCƒ“ƒh	
+  include      "HHKon104.nodoka" 	# UNIXé…åˆ—ã«å¤‰æ›ã€‚ä¿ºã€…é¬¼ç•œä»•æ§˜ 
+  include      "dot.nodoka.extreme"	# ä¿ºã€…å¤‰æ…‹ã‚­ãƒ¼ãƒã‚¤ãƒ³ãƒ‰	
 endif
 
-# Ctrl+Shift+F2‚Å“ü—Í‚ðƒgƒOƒ‹
+# Ctrl+Shift+F2ã§å…¥åŠ›ã‚’ãƒˆã‚°ãƒ«
 if ( MYNODOKA )
    if ( USE104on109 )
      key C-S-F2 => &IconColor(2) &HelpMessage("Reloaded", "TY_NODOKA") &LoadSetting("TY_NODOKA")
