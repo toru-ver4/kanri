@@ -26,6 +26,12 @@ skel/dot.emacs.d/eshell/history
 *.out
 *.app
 
+# moving pictures
+*.mp3
+*.mp4
+*.mkv
+*.mov
+
 # Windows Binary
 WindowsBinary
 

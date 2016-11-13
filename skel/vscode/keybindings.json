@@ -46,7 +46,6 @@
 { "key": "ctrl+c",             "command": "editor.action.clipboardCopyAction" },
 { "key": "ctrl+v",             "command": "editor.action.clipboardPasteAction" },
 { "key": "ctrl+r",             "command": "editor.action.startFindReplaceAction" },
-{ "key": "ctrl+shift+v",       "command": "markdown.showPreview",
-                                  "when": "!terminalFocus" },
-{ "key": "ctrl+shift+w",       "command": "markdown.showPreviewToSide" }
+{ "key": "ctrl+shift+v",       "command": "markdown.showPreviewToSide" },
+{ "key": "ctrl+shift+w",       "command": "workbench.action.toggleSidebarVisibility" }
 ]
