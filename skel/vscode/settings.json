@@ -34,5 +34,6 @@
 
     // Whether to lint Python files using flake8
     "python.linting.flake8Enabled": true,
-    "files.autoSave": "afterDelay"
+    "files.autoSave": "afterDelay",
+    "window.zoomLevel": 0
 }
