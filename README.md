@@ -50,3 +50,13 @@ How to Transform.
 > pandoc input.md -s --self-contained -c Github.css -o out.html
 ```
 
+## VS Code settings
+### Make symboric link
+
+```bat:
+> mklink /D C:\home\kanri\skel\vscode C:\Users\toruv\AppData\Roaming\Code\User
+```
+
+## Enable debug settings
+
+see [this page](https://code.visualstudio.com/docs/languages/python)

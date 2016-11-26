@@ -17,6 +17,9 @@
         "C:\\home\\kanri\\skel\\vscode\\markdown_style.css"
     ],
 
+    // List of paths to libraries and the like that need to be imported by auto complete engine. E.g. when using Google App SDK, the paths are not in system path, hence need to be added into this list.
+    "python.autoComplete.extraPaths": [],
+
     // Whether to lint Python files.
     "python.linting.enabled": true,
 
@@ -30,5 +33,6 @@
     "python.linting.pep8Enabled": false,
 
     // Whether to lint Python files using flake8
-    "python.linting.flake8Enabled": true    
+    "python.linting.flake8Enabled": true,
+    "files.autoSave": "afterDelay"
 }
