@@ -1,5 +1,13 @@
 // 既定の設定を上書きするには、このファイル内に設定を挿入します
 {
+    "background.enabled" : true,
+    "background.useDefault" : false,
+    "background.customImages" : [
+        "file:///C:/home/kanri/skel/vscode/bg_image/Lillie_1400.png",
+        "file:///C:/home/kanri/skel/vscode/bg_image/Lillie_1400.png",
+        "file:///C:/home/kanri/skel/vscode/bg_image/Lillie_1400.png"
+    ],
+
     // フォント サイズを制御します。
     "editor.fontSize": 18,
 
