@@ -3,8 +3,8 @@
     "background.enabled" : true,
     "background.useDefault" : false,
     "background.customImages" : [
-        "file:///C:/home/kanri/skel/vscode/bg_image/Lillie_1400.png",
-        "file:///C:/home/kanri/skel/vscode/bg_image/Lillie_1400.png",
+        "file:///C:/home/kanri/skel/vscode/bg_image/wafuku_42.png",
+        "file:///C:/home/kanri/skel/vscode/bg_image/Lillie_1400.png"
         "file:///C:/home/kanri/skel/vscode/bg_image/Lillie_1400.png"
     ],
 
@@ -43,5 +43,15 @@
     // Whether to lint Python files using flake8
     "python.linting.flake8Enabled": true,
     "files.autoSave": "afterDelay",
-    "window.zoomLevel": 0
+    "window.zoomLevel": 0,
+    "sync.gist": "",
+    "sync.lastUpload": null,
+    "sync.autoDownload": false,
+    "sync.autoUpload": false,
+    "sync.lastDownload": null,
+    "sync.version": 242,
+    "sync.showSummary": true,
+    "sync.forceDownload": false,
+    "sync.workspaceSync": false,
+    "sync.anonymousGist": false
 }
