@@ -3,8 +3,8 @@
     "background.enabled" : true,
     "background.useDefault" : false,
     "background.customImages" : [
+        "file:///C:/home/kanri/skel/vscode/bg_image/C3Q50p5UMAEIt3D.png",
         "file:///C:/home/kanri/skel/vscode/bg_image/wafuku_42.png",
-        "file:///C:/home/kanri/skel/vscode/bg_image/Lillie_1400.png"
         "file:///C:/home/kanri/skel/vscode/bg_image/Lillie_1400.png"
     ],
 
