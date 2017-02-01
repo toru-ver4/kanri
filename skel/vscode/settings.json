@@ -3,9 +3,9 @@
     "background.enabled" : true,
     "background.useDefault" : false,
     "background.customImages" : [
+        "file:///C:/home/kanri/skel/vscode/bg_image/kanna_dark.png",
         "file:///C:/home/kanri/skel/vscode/bg_image/C3Q50p5UMAEIt3D.png",
-        "file:///C:/home/kanri/skel/vscode/bg_image/wafuku_42.png",
-        "file:///C:/home/kanri/skel/vscode/bg_image/Lillie_1400.png"
+        "file:///C:/home/kanri/skel/vscode/bg_image/wafuku_42.png"
     ],
 
     // フォント サイズを制御します。
@@ -45,11 +45,11 @@
     "files.autoSave": "afterDelay",
     "window.zoomLevel": 0,
     "sync.gist": "",
-    "sync.lastUpload": null,
+    "sync.lastUpload": "1970-01-01T00:00:00.000Z",
     "sync.autoDownload": false,
     "sync.autoUpload": false,
-    "sync.lastDownload": null,
-    "sync.version": 242,
+    "sync.lastDownload": "1970-01-01T00:00:00.000Z",
+    "sync.version": 243,
     "sync.showSummary": true,
     "sync.forceDownload": false,
     "sync.workspaceSync": false,
