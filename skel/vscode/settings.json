@@ -21,6 +21,9 @@
         "ruby-lint": true
     },
 
+    // 有効にすると、既存のインスタンスを再利用せずに新しいウィンドウでファイルを開きます。
+    "window.openFilesInNewWindow": "default",
+
     "markdown.styles": [
         "C:\\home\\kanri\\skel\\vscode\\markdown_style.css"
     ],
