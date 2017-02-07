@@ -3,8 +3,8 @@
     "background.enabled" : true,
     "background.useDefault" : false,
     "background.customImages" : [
+        "file:///C:/home/kanri/skel/vscode/bg_image/tori_friends_kuro.png",
         "file:///C:/home/kanri/skel/vscode/bg_image/kanna_dark.png",
-        "file:///C:/home/kanri/skel/vscode/bg_image/C3Q50p5UMAEIt3D.png",
         "file:///C:/home/kanri/skel/vscode/bg_image/wafuku_42.png"
     ],
 
