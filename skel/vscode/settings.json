@@ -52,9 +52,17 @@
     "sync.autoDownload": false,
     "sync.autoUpload": false,
     "sync.lastDownload": "1970-01-01T00:00:00.000Z",
-    "sync.version": 243,
+    "sync.version": 262,
     "sync.showSummary": true,
     "sync.forceDownload": false,
     "sync.workspaceSync": false,
-    "sync.anonymousGist": false
+    "sync.anonymousGist": false,
+    "sync.host": "",
+    "sync.pathPrefix": "",
+    "[cpp]": {
+        "editor.quickSuggestions": false
+    },
+    "[c]": {
+        "editor.quickSuggestions": false
+    }
 }
