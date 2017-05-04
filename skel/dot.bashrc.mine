@@ -19,3 +19,4 @@ bind '"\C-p": history-search-backward'
 export DISPLAY=localhost:0.0
 export PYTHONPATH=/home/toru/work/sip/lib
 
+alias screen="screen -D -RR"
