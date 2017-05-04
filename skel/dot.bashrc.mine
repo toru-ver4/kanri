@@ -1,0 +1,21 @@
+WORKING_DIRECTORY='\[\e[$[COLUMNS-$(echo -n " (\w)" | wc -c)]C\e[1;37m[\w]\e[0m\e[$[COLUMNS]D\]'
+PS1=${WORKING_DIRECTORY}'${debian_chroot:+($debian_chroot)}\[\e[0;33m\]\[\e[1;32m\]\u@\h\[\e[00m\]\$ '
+
+export PATH="~/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+export HISTCONTROL=ignoredups
+export HISTCONTROL=ignorespace
+export HISTSIZE=10000
+
+bind '"\e[A": history-search-backward'
+bind '"\e[0A": history-search-backward'
+bind '"\e[B": history-search-forward'
+bind '"\e[0B": history-search-forward'
+bind '"\C-n": history-search-forward'
+bind '"\C-p": history-search-backward'
+
+export DISPLAY=localhost:0.0
+export PYTHONPATH=/home/toru/work/sip/lib
+
