@@ -17,6 +17,6 @@ bind '"\C-n": history-search-forward'
 bind '"\C-p": history-search-backward'
 
 export DISPLAY=localhost:0.0
-export PYTHONPATH=/home/toru/work/sip/lib
+export PYTHONPATH=/home/toru/work/sip/lib:/home/toru/local/python3/python3
 
 alias screen="screen -D -RR"
