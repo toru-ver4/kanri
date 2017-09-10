@@ -70,3 +70,4 @@ skel/dot.emacs.d/url/cache/toruv/http/org/gnu/www/82ff36e6a213c89b885639dc4aa8e8
 **/*.DB
 **/.BROWSE.VC.DB*
 **/syncSettings.json
+skel/vscode
