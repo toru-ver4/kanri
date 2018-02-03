@@ -45,26 +45,3 @@ if __name__ == '__main__':
     # get_in_file_filepath_in_directory()
     # get_out_file_filepath_in_directory()
     endode()
-
-"""
-01_Make it!（らぁら＆みれぃVer.）_i☆Ris
-02_ま～ぶるMake up a-ha-ha！_真中らぁら＆南みれぃ
-03_太陽のflare sherbet（解放乙女ヴァルキュリア未完成Ver.）_北条そふぃ
-04_Pretty Prism Paradise!!!_SoLaMi♡SMILE
-05_No D&D code_DressingPafé
-06_太陽のflare sherbet（解放乙女ヴァルキュリア完成Ver.）_北条そふぃ
-07_HAPPYぱLUCKY_SoLaMi♡SMILE
-08_CHANGE! MY WORLD_DressingPafé
-09_Realize!_SoLaMiDressing
-10_0-week-old（ゼロウィークオールド／ファルル）
-11_君100％人生_北条コスモ
-12_Love friend style_SoLaMiDressing
-13_Love friend style_真中らぁら
-14_Make it!_SoLaMiDressing & ファルル
-15_ドリームパレード_真中らぁら
-16_ドリームパレード_南みれぃ
-17_でび＆えん☆Reversible- Ring_アロマゲドン
-18_ラッキー!サプライズ☆バースデイ_そらマゲドン・み
-19_コノウタトマレイヒ_緑風ふわり
-20_純・アモーレ・愛_紫京院ひびき
-"""
