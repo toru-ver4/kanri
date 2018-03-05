@@ -35,7 +35,7 @@ def endode(src="src", dst="dst"):
     in_name_list = get_in_file_filepath_in_directory(dir=src)
     out_name_list = get_out_file_filepath_in_directory(src="src", dst="dst")
     for in_name, out_name in zip(in_name_list, out_name_list):
-        base_str = 'ffmpeg -i "{}" -c:v libx264 -crf 18 -c:a libmp3lame -ab 192k "{}"'
+        base_str = 'ffmpeg -i "{}" -c:v libx264 -crf 19 -c:a libmp3lame -ab 192k "{}"'
         # print(base_str.format(in_name, out_name))
         os.system(base_str.format(in_name, out_name))
 
